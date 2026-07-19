@@ -1,0 +1,51 @@
+{
+  "hosting": {
+    "public": ".",
+    "cleanUrls": true,
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "headers": [
+      {
+        "source": "**/*.@(jpg|jpeg|png|gif|webp|svg|avif|xml|txt)",
+        "headers": [{"key": "Cache-Control", "value": "max-age=31536000"}]
+      },
+      {
+        "source": "**/*.@(js|css)",
+        "headers": [{"key": "Cache-Control", "value": "max-age=31536000"}]
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "/sitemap.xml",
+        "destination": "/sitemap.xml"
+      },
+      {
+        "source": "/robots.txt",
+        "destination": "/robots.txt"
+      },
+      {
+        "source": "/blog/giveease-case-study",
+        "destination": "/blog/giveease-case-study.html"
+      },
+      {
+        "source": "/blog/spendwise-case-study",
+        "destination": "/blog/spendwise-case-study.html"
+      },
+      {
+        "source": "/blog/jetpack-compose-vs-xml",
+        "destination": "/blog/jetpack-compose-vs-xml.html"
+      },
+      {
+        "source": "/privacy",
+        "destination": "/privacy.html"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

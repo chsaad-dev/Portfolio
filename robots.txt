@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Allow: /blog/
+Allow: /privacy
+Sitemap: https://muhammadsaad-portfolio.web.app/sitemap.xml
