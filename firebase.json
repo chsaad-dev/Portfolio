@@ -5,7 +5,11 @@
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**"
+      ".git/**",
+      "**/node_modules/**",
+      "scratch/**",
+      "package.json",
+      "package-lock.json"
     ],
     "headers": [
       {
