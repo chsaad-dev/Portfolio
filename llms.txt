@@ -1,0 +1,22 @@
+# Muhammad Saad - Android Developer Portfolio
+
+> Muhammad Saad is a native Android developer specializing in Kotlin, Jetpack Compose, MVVM Clean Architecture, Room Database, and Firebase backend systems.
+
+## Core Expertise
+- **Role**: Android Developer / Mobile Software Engineer
+- **Tech Stack**: Kotlin, Jetpack Compose, Room SQLite, Coroutines, Hilt, Firebase (Auth, Firestore, Storage, FCM), Flutter
+- **Education**: Bachelor of Software Engineering, COMSATS University Islamabad, Sahiwal Campus (Graduated July 2026)
+- **Certifications**: Meta Android Developer Certificate, Google UX Design Professional Certificate
+
+## Portfolio Projects & Technical Case Studies
+- [GiveEase Case Study](https://muhammadsaad-portfolio.web.app/blog/giveease-case-study): Engineering breakdown of a verified Android donation platform using Kotlin, Firebase Firestore, and MVVM architecture.
+- [SpendWise Case Study](https://muhammadsaad-portfolio.web.app/blog/spendwise-case-study): Technical architecture guide for an offline-first Android expense tracker using Room SQLite database and Jetpack Compose.
+- [Jetpack Compose vs XML Article](https://muhammadsaad-portfolio.web.app/blog/jetpack-compose-vs-xml): Performance and syntax comparison between declarative compose layouts and imperative XML view hierarchies.
+- [CampusConnect Admin Console](https://campusconnect71x75.web.app/): Social campus application featuring Gemini 2.5 Flash-Lite AI integration via Cloudflare Workers and a React admin moderation panel.
+- [NoteSync Repository](https://github.com/chsaad-dev/NoteSync): Offline-first encrypted notes application built with Flutter, Riverpod, Isar DB, and AES biometrics.
+
+## Contact & Links
+- **Portfolio Website**: https://muhammadsaad-portfolio.web.app/
+- **GitHub Profile**: https://github.com/chsaad-dev/
+- **LinkedIn Profile**: https://www.linkedin.com/in/muhammad-saad075/
+- **Email Contact**: saaddevlabs@gmail.com

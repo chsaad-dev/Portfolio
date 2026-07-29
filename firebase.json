@@ -35,6 +35,10 @@
         "destination": "/robots.txt"
       },
       {
+        "source": "/llms.txt",
+        "destination": "/llms.txt"
+      },
+      {
         "source": "/blog/giveease-case-study",
         "destination": "/blog/giveease-case-study.html"
       },
