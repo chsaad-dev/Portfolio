@@ -152,7 +152,7 @@ img { max-width:100%; display:block; }
 /* ===== HERO ===== */
 .hero {
     min-height:100vh; display:flex; align-items:center;
-    position:relative; padding:0 2rem; overflow:hidden;
+    position:relative; padding: 7rem 2rem 4rem 2rem; overflow:hidden;
 }
 .hero-blob-1, .hero-blob-2 {
     position:absolute; border-radius:50%;
@@ -831,7 +831,8 @@ img { max-width:100%; display:block; }
     color: var(--android);
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    margin-bottom: 0.8rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1.2rem;
     opacity: 0;
     animation: fadeUp 0.6s forwards 0.1s;
 }
