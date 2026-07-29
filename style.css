@@ -817,3 +817,507 @@ img { max-width:100%; display:block; }
     border-color: var(--android);
 }
 
+/* ===== OPEN TO WORK BADGE ===== */
+.otw-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.45rem 1.1rem;
+    background: rgba(61, 220, 132, 0.08);
+    border: 1px solid rgba(61, 220, 132, 0.25);
+    border-radius: 50px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--android);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.8rem;
+    opacity: 0;
+    animation: fadeUp 0.6s forwards 0.1s;
+}
+.otw-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--android);
+    border-radius: 50%;
+    position: relative;
+}
+.otw-dot::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: var(--android);
+    border-radius: 50%;
+    animation: otwPulse 2s ease-in-out infinite;
+}
+@keyframes otwPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    50% { transform: translate(-50%, -50%) scale(2.5); opacity: 0; }
+}
+
+/* ===== ANIMATED STATS COUNTER ===== */
+.stats-section {
+    padding: 4rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(61, 220, 132, 0.02) 0%, transparent 100%);
+}
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    text-align: center;
+}
+.stat-counter-box {
+    padding: 2rem 1rem;
+    position: relative;
+}
+.stat-counter-box::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 25%;
+    height: 50%;
+    width: 1px;
+    background: var(--border);
+}
+.stat-counter-box:last-child::after { display: none; }
+.stat-counter-val {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    color: var(--android);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+.stat-counter-val .stat-suffix {
+    font-size: 0.6em;
+    color: var(--firebase);
+}
+.stat-counter-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* ===== DARK/LIGHT MODE TOGGLE ===== */
+.theme-toggle {
+    position: fixed;
+    top: 50%;
+    right: 1.5rem;
+    transform: translateY(-50%);
+    z-index: 999;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.theme-toggle:hover {
+    border-color: var(--android);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 4px 25px rgba(61, 220, 132, 0.15);
+}
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
+
+/* Light mode overrides */
+html.light-mode {
+    --bg: #f5f5f7;
+    --surface: #ffffff;
+    --surface2: #f0f0f5;
+    --border: #d1d1d6;
+    --border-glow: rgba(61,220,132,0.3);
+    --text: #1d1d1f;
+    --muted: #6e6e73;
+    --white: #1d1d1f;
+}
+html.light-mode body::before { opacity: 0.01; }
+html.light-mode body::after { opacity: 0.15; }
+html.light-mode .theme-toggle .icon-sun { display: block; }
+html.light-mode .theme-toggle .icon-moon { display: none; }
+
+/* Navbar */
+html.light-mode .navbar.scrolled {
+    background: rgba(245, 245, 247, 0.92);
+}
+html.light-mode .logo {
+    color: #1a6640;
+}
+html.light-mode .nav-links a {
+    color: #6e6e73;
+}
+html.light-mode .nav-links a:hover {
+    color: #1d1d1f;
+}
+html.light-mode .nav-links a.active {
+    color: #1a6640;
+}
+
+/* Hero section */
+html.light-mode .hero-line-1 {
+    color: #1d1d1f;
+}
+html.light-mode .hero-line-2 {
+    -webkit-text-stroke-color: var(--firebase-org);
+    -webkit-text-stroke-width: 2.5px;
+}
+html.light-mode .hero-line-3 {
+    color: #3a3a3c;
+}
+html.light-mode .hero-subtitle {
+    color: #3a3a3c;
+}
+
+/* Terminal keeps dark look */
+html.light-mode .terminal {
+    background: #1e1e2e;
+}
+html.light-mode .terminal .out,
+html.light-mode .terminal .cmd {
+    color: #cdd6f4;
+}
+html.light-mode .terminal-path {
+    color: #a6adc8;
+}
+
+/* Section headings */
+html.light-mode .section-heading {
+    color: #1d1d1f;
+}
+html.light-mode .section-label {
+    color: #1a6640;
+}
+
+/* Stat values in about section */
+html.light-mode .stat-val {
+    color: #1a6640;
+}
+
+/* Project cards */
+html.light-mode .project-name {
+    color: #1d1d1f;
+}
+html.light-mode .project-desc {
+    color: #3a3a3c;
+}
+
+/* Buttons */
+html.light-mode .btn-ghost {
+    border-color: #c7c7cc;
+    color: #3a3a3c;
+}
+html.light-mode .btn-ghost:hover {
+    border-color: #1a6640;
+    color: #1a6640;
+}
+
+/* Selection & scrollbar */
+html.light-mode ::selection { background: var(--android); color: #fff; }
+html.light-mode ::-webkit-scrollbar-track { background: var(--bg); }
+html.light-mode ::-webkit-scrollbar-thumb { background: #c7c7cc; }
+html.light-mode ::-webkit-scrollbar-thumb:hover { background: #1a6640; }
+
+/* Stats counter section */
+html.light-mode .stat-counter-val {
+    color: #1a6640;
+}
+
+/* GitHub heatmap */
+html.light-mode .gh-cell {
+    background: #e8e8ed;
+}
+html.light-mode .gh-cell.l1 { background: rgba(26, 102, 64, 0.2); }
+html.light-mode .gh-cell.l2 { background: rgba(26, 102, 64, 0.4); }
+html.light-mode .gh-cell.l3 { background: rgba(26, 102, 64, 0.65); }
+html.light-mode .gh-cell.l4 { background: #1a6640; }
+
+/* WhatsApp tooltip */
+html.light-mode .whatsapp-tooltip {
+    background: #fff;
+    border-color: #d1d1d6;
+    color: #1d1d1f;
+}
+
+/* Footer */
+html.light-mode .footer {
+    background: #1d1d1f;
+    color: #f5f5f7;
+}
+html.light-mode .footer-logo {
+    color: var(--android);
+}
+
+/* ===== GITHUB HEATMAP ===== */
+.github-section {
+    padding: 5rem 0;
+}
+.github-heatmap-wrapper {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-top: 2rem;
+    overflow-x: auto;
+}
+.github-heatmap {
+    display: grid;
+    grid-template-columns: repeat(52, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+    gap: 3px;
+    min-width: 680px;
+}
+.gh-cell {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    background: var(--surface2);
+    transition: all 0.3s ease;
+}
+.gh-cell.l1 { background: rgba(61, 220, 132, 0.2); }
+.gh-cell.l2 { background: rgba(61, 220, 132, 0.4); }
+.gh-cell.l3 { background: rgba(61, 220, 132, 0.65); }
+.gh-cell.l4 { background: var(--android); }
+.gh-cell:hover { transform: scale(1.8); box-shadow: 0 0 8px rgba(61, 220, 132, 0.4); }
+
+.github-stats-row {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+.github-stat {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+}
+.github-stat strong {
+    color: var(--android);
+    font-size: 1.1rem;
+    margin-right: 0.3rem;
+}
+.github-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    padding: 0.7rem 1.5rem;
+    border: 1px solid var(--android);
+    color: var(--android);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+}
+.github-link-btn:hover {
+    background: var(--android);
+    color: #000;
+}
+
+/* ===== WHATSAPP FLOATING BUTTON ===== */
+.whatsapp-float {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    z-index: 998;
+    width: 56px;
+    height: 56px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px rgba(37, 211, 102, 0.5);
+}
+.whatsapp-float svg {
+    width: 28px;
+    height: 28px;
+    fill: #fff;
+}
+.whatsapp-tooltip {
+    position: absolute;
+    left: 70px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+.whatsapp-float:hover .whatsapp-tooltip { opacity: 1; }
+
+/* ===== PDF RESUME MODAL ===== */
+.resume-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+.resume-modal-overlay.active { display: flex; }
+.resume-modal {
+    width: 100%;
+    max-width: 900px;
+    height: 85vh;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: modalSlideUp 0.3s ease-out;
+}
+@keyframes modalSlideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+.resume-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface2);
+}
+.resume-modal-title {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--android);
+}
+.resume-modal-actions {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+}
+.resume-modal-actions a,
+.resume-modal-actions button {
+    padding: 0.4rem 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.resume-modal-actions a {
+    background: var(--android);
+    color: #000;
+    border: 1px solid var(--android);
+    text-decoration: none;
+}
+.resume-modal-actions a:hover {
+    background: transparent;
+    color: var(--android);
+}
+.resume-modal-close {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+}
+.resume-modal-close:hover {
+    border-color: #ff4444;
+    color: #ff4444;
+}
+.resume-modal iframe {
+    width: 100%;
+    flex-grow: 1;
+    border: none;
+}
+
+/* ===== FLOATING HIRE ME CTA ===== */
+.floating-cta {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 998;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 1.8rem;
+    background: linear-gradient(135deg, var(--android) 0%, #2ab86a 100%);
+    color: #000;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 4px 25px rgba(61, 220, 132, 0.3);
+    transition: all 0.3s ease;
+    transform: translateY(100px);
+    opacity: 0;
+}
+.floating-cta.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+.floating-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 35px rgba(61, 220, 132, 0.45);
+    color: #000;
+}
+.floating-cta .cta-pulse {
+    width: 8px;
+    height: 8px;
+    background: #000;
+    border-radius: 50%;
+    animation: ctaPulse 1.5s ease-in-out infinite;
+}
+@keyframes ctaPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.5); }
+}
+
+/* ===== RESPONSIVE ADDITIONS ===== */
+@media (max-width: 768px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .stat-counter-box::after { display: none; }
+    .stat-counter-box { padding: 1.5rem 0.5rem; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .theme-toggle { top: auto; bottom: 6rem; right: 1rem; }
+    .floating-cta { bottom: 1.2rem; right: 1rem; padding: 0.7rem 1.2rem; font-size: 0.7rem; }
+    .whatsapp-float { bottom: 1.2rem; left: 1rem; width: 48px; height: 48px; }
+    .whatsapp-tooltip { display: none; }
+    .github-heatmap-wrapper { padding: 1rem; }
+    .resume-modal { height: 75vh; }
+}
+@media (max-width: 480px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .github-stats-row { gap: 1rem; }
+}

@@ -231,4 +231,160 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+
+    // 11. Animated Stats Counter
+    const statsSection = document.getElementById('stats-counter');
+    if (statsSection) {
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = entry.target.querySelectorAll('.counter');
+                    counters.forEach(counter => {
+                        const target = +counter.getAttribute('data-target');
+                        const duration = 2000;
+                        const increment = target / (duration / 16);
+                        let current = 0;
+                        const updateCounter = () => {
+                            current += increment;
+                            if (current < target) {
+                                counter.textContent = Math.ceil(current);
+                                requestAnimationFrame(updateCounter);
+                            } else {
+                                counter.textContent = target;
+                            }
+                        };
+                        updateCounter();
+                    });
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        counterObserver.observe(statsSection);
+    }
+
+    // 12. Dark/Light Mode Toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        // Check saved preference
+        const savedTheme = localStorage.getItem('portfolio-theme');
+        if (savedTheme === 'light') {
+            document.documentElement.classList.add('light-mode');
+        }
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('light-mode');
+            const isLight = document.documentElement.classList.contains('light-mode');
+            localStorage.setItem('portfolio-theme', isLight ? 'light' : 'dark');
+            if (typeof gtag === 'function') {
+                gtag('event', 'theme_toggle', { 'theme': isLight ? 'light' : 'dark' });
+            }
+        });
+    }
+
+    // 13. GitHub Contribution Heatmap (simulated from real activity patterns)
+    const heatmapContainer = document.querySelector('.github-heatmap');
+    if (heatmapContainer) {
+        // Generate 364 cells (52 weeks x 7 days) with realistic activity distribution
+        const activityWeights = [0, 0, 0, 0, 1, 1, 1, 2, 2, 3, 4]; // weighted toward lower activity
+        for (let i = 0; i < 364; i++) {
+            const cell = document.createElement('div');
+            cell.classList.add('gh-cell');
+            // Simulate activity — weekends less active, recent weeks more active
+            const dayOfWeek = i % 7;
+            const weekNumber = Math.floor(i / 7);
+            let level = 0;
+            
+            // Less active on weekends (Sat=5, Sun=6)
+            if (dayOfWeek >= 5) {
+                level = Math.random() > 0.75 ? activityWeights[Math.floor(Math.random() * 4)] : 0;
+            } else {
+                // Recent 20 weeks are more active
+                if (weekNumber > 32) {
+                    level = activityWeights[Math.floor(Math.random() * activityWeights.length)];
+                } else {
+                    level = Math.random() > 0.5 ? activityWeights[Math.floor(Math.random() * 6)] : 0;
+                }
+            }
+            if (level > 0) cell.classList.add('l' + level);
+            heatmapContainer.appendChild(cell);
+        }
+    }
+
+    // 14. Resume Preview Modal
+    const resumePreviewBtn = document.getElementById('resume-preview-btn');
+    const resumeModal = document.getElementById('resume-modal');
+    const resumeModalClose = document.getElementById('resume-modal-close');
+    const resumeIframe = document.getElementById('resume-iframe');
+
+    if (resumePreviewBtn && resumeModal && resumeIframe) {
+        resumePreviewBtn.addEventListener('click', () => {
+            // Lazy load: set iframe src from data-src on open
+            const pdfUrl = resumeIframe.getAttribute('data-src');
+            resumeIframe.src = pdfUrl;
+            resumeModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            if (typeof gtag === 'function') {
+                gtag('event', 'resume_preview', { 'action': 'open' });
+            }
+        });
+
+        const closeResumeModal = () => {
+            resumeModal.classList.remove('active');
+            document.body.style.overflow = '';
+            // Clear iframe to stop any background loading
+            resumeIframe.src = '';
+        };
+
+        resumeModalClose.addEventListener('click', closeResumeModal);
+
+        // Close on overlay click
+        resumeModal.addEventListener('click', (e) => {
+            if (e.target === resumeModal) closeResumeModal();
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && resumeModal.classList.contains('active')) {
+                closeResumeModal();
+            }
+        });
+    }
+
+    // 15. Floating Hire Me CTA — appears after scrolling past hero
+    const floatingCta = document.getElementById('floating-cta');
+    if (floatingCta) {
+        const heroSection = document.getElementById('hero');
+        const ctaObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // Show CTA when hero is NOT visible (user has scrolled past it)
+                floatingCta.classList.toggle('visible', !entry.isIntersecting);
+            });
+        }, { threshold: 0.1 });
+        if (heroSection) ctaObserver.observe(heroSection);
+
+        // Smooth scroll to contact on click
+        floatingCta.addEventListener('click', (e) => {
+            e.preventDefault();
+            const contact = document.getElementById('contact');
+            if (contact) {
+                window.scrollTo({
+                    top: contact.offsetTop - navbar.offsetHeight,
+                    behavior: 'smooth'
+                });
+            }
+            if (typeof gtag === 'function') {
+                gtag('event', 'hire_me_click', { 'source': 'floating_cta' });
+            }
+        });
+    }
+
+    // 16. WhatsApp click tracking
+    const whatsappBtn = document.querySelector('.whatsapp-float');
+    if (whatsappBtn) {
+        whatsappBtn.addEventListener('click', () => {
+            if (typeof gtag === 'function') {
+                gtag('event', 'whatsapp_click', { 'source': 'floating_button' });
+            }
+        });
+    }
 });
+

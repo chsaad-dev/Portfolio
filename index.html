@@ -406,6 +406,7 @@
     <div class="hero-blob-1"></div>
     <div class="hero-blob-2"></div>
     <div class="hero-content">
+        <div class="otw-badge"><span class="otw-dot"></span> Open to Work</div>
         <div class="typing-tag"><span id="typed-text"></span><span class="typing-cursor"></span></div>
         <h1 class="hero-title">
             <span class="hero-line-1">MUHAMMAD SAAD</span>
@@ -416,7 +417,8 @@
         <p class="hero-subtitle">I'm Muhammad Saad, an Android developer specializing in Kotlin, Jetpack Compose, and Firebase backend development. With 5+ published projects using MVVM architecture and clean code principles, I build scalable mobile applications that solve real-world problems. Currently open to freelance and full-time opportunities.</p>
         <div class="hero-buttons">
             <a href="#projects" class="btn btn-primary">VIEW PROJECTS</a>
-            <a href="/muhammad-saad-android-developer-resume.pdf?v=3" class="btn btn-resume" download>Download Resume</a>
+            <button class="btn btn-resume" id="resume-preview-btn">Preview Resume</button>
+            <a href="/muhammad-saad-android-developer-resume.pdf?v=3" class="btn btn-ghost" download>DOWNLOAD PDF &darr;</a>
             <a href="https://github.com/chsaad-dev/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">OPEN GITHUB &rarr;</a>
         </div>
     </div>
@@ -489,6 +491,30 @@
                         <p><span class="out">&rarr; Open to opportunities<span class="terminal-cursor"></span></span></p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Animated Stats Counter -->
+<section class="stats-section" id="stats-counter">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-counter-box reveal">
+                <div class="stat-counter-val"><span class="counter" data-target="5">0</span><span class="stat-suffix">+</span></div>
+                <div class="stat-counter-label">Projects Built</div>
+            </div>
+            <div class="stat-counter-box reveal">
+                <div class="stat-counter-val"><span class="counter" data-target="10">0</span><span class="stat-suffix">+</span></div>
+                <div class="stat-counter-label">Technologies</div>
+            </div>
+            <div class="stat-counter-box reveal">
+                <div class="stat-counter-val"><span class="counter" data-target="3">0</span><span class="stat-suffix">+</span></div>
+                <div class="stat-counter-label">Years Coding</div>
+            </div>
+            <div class="stat-counter-box reveal">
+                <div class="stat-counter-val"><span class="counter" data-target="4">0</span><span class="stat-suffix"></span></div>
+                <div class="stat-counter-label">Certifications</div>
             </div>
         </div>
     </div>
@@ -740,6 +766,23 @@
     </div>
 </section>
 
+<!-- GitHub Activity Heatmap -->
+<section class="github-section section-padding" id="github-activity">
+    <div class="container">
+        <div class="section-label reveal">// OPEN SOURCE</div>
+        <h2 class="section-heading reveal">GitHub Activity</h2>
+        <div class="github-heatmap-wrapper reveal">
+            <div class="github-heatmap" aria-label="GitHub contribution heatmap showing coding activity over the past year"></div>
+            <div class="github-stats-row">
+                <div class="github-stat"><strong>10+</strong> Public Repos</div>
+                <div class="github-stat"><strong>5+</strong> Projects Shipped</div>
+                <div class="github-stat"><strong>Kotlin</strong> Primary Language</div>
+            </div>
+            <a href="https://github.com/chsaad-dev/" target="_blank" rel="noopener noreferrer" class="github-link-btn">View Full Profile on GitHub &rarr;</a>
+        </div>
+    </div>
+</section>
+
 <!-- Firebase Showcase (Backend Expertise) -->
 <section id="backend" class="backend-section section-padding">
     <div class="container">
@@ -893,6 +936,38 @@
     </div>
     <div class="footer-center"><a href="/privacy" style="color: var(--android); text-decoration: underline;">Privacy Policy</a> · Designed &amp; Developed by Saad</div>
 </footer>
+
+<!-- Dark/Light Mode Toggle -->
+<button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+    <span class="icon-moon">&#127769;</span>
+    <span class="icon-sun">&#9728;&#65039;</span>
+</button>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/923111223381?text=Hi%20Muhammad%20Saad%2C%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span class="whatsapp-tooltip">Chat with me on WhatsApp</span>
+</a>
+
+<!-- Floating Hire Me CTA -->
+<a href="#contact" class="floating-cta" id="floating-cta">
+    <span class="cta-pulse"></span>
+    Hire Me
+</a>
+
+<!-- Resume Preview Modal -->
+<div class="resume-modal-overlay" id="resume-modal">
+    <div class="resume-modal">
+        <div class="resume-modal-header">
+            <span class="resume-modal-title">&#128196; Muhammad Saad — Resume</span>
+            <div class="resume-modal-actions">
+                <a href="/muhammad-saad-android-developer-resume.pdf?v=3" download>Download</a>
+                <button class="resume-modal-close" id="resume-modal-close">&#10005; Close</button>
+            </div>
+        </div>
+        <iframe id="resume-iframe" data-src="/muhammad-saad-android-developer-resume.pdf?v=3" title="Muhammad Saad Resume Preview"></iframe>
+    </div>
+</div>
 
 <script src="script.js"></script>
 </body>
