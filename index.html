@@ -6,6 +6,7 @@
     <title>Muhammad Saad | Android Developer Portfolio | Kotlin & Firebase Expert</title>
     
     <!-- Meta Tags for SEO -->
+    <meta name="google-site-verification" content="google2918549faa03e77e">
     <meta name="description" content="Hire Muhammad Saad, an Android developer specializing in Kotlin, Jetpack Compose, Firebase, and MVVM architecture. View 5+ real-world projects including donation apps, expense trackers, and lost & found platforms. Open to freelance and full-time opportunities.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="theme-color" content="#060608">
@@ -132,126 +133,131 @@
         }
         .hero-line-1 { display:block; color:var(--white); }
         .hero-line-2 {
-            display:block; color:transparent;
-            -webkit-text-stroke: 2px var(--firebase);
-        }
-        .hero-line-3 {
-            display:block; font-size:clamp(1.5rem,3.5vw,3.5rem);
-            color:var(--text);
-        }
+        :root{--bg:#060608;--surface:#0d0d10;--text:#EDEDED;--android:#3DDC84;--firebase:#FFCA28;--font-display:'Bebas Neue',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'Space Mono',monospace;}
+        body{background:var(--bg);color:var(--text);font-family:var(--font-body);margin:0;padding:0;overflow-x:hidden;}
+        .navbar{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:1.2rem 0;}
+        .hero{min-height:100vh;display:flex;align-items:center;padding:7rem 2rem 4rem 2rem;position:relative;}
+        .hero-title{font-family:var(--font-display);font-size:clamp(4rem,9vw,9rem);line-height:0.95;margin-bottom:1.5rem;}
+        .hero-line-1{color:#FFF;display:block;}
+        .hero-line-2{color:transparent;-webkit-text-stroke:2px var(--firebase);display:block;}
+        .btn-primary{background:var(--android);color:#000;padding:0.85rem 2rem;font-family:var(--font-mono);font-weight:700;text-decoration:none;display:inline-block;}
     </style>
 
     <!-- Main Stylesheet (Loaded Asynchronously for Performance) -->
     <link rel="stylesheet" href="/style.css?v=3" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="/style.css?v=3"></noscript>
 
-    <!-- Person/ProfilePage Schema (JSON-LD) -->
+    <!-- Person Schema (JSON-LD) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ProfilePage",
-      "mainEntity": {
-        "@type": "Person",
-        "name": "Muhammad Saad",
-        "jobTitle": "Android Developer",
-        "description": "Android developer specializing in Kotlin, Jetpack Compose, Firebase, and MVVM architecture. Building clean, scalable mobile applications.",
-        "url": "https://muhammadsaad-portfolio.web.app",
-        "image": "https://muhammadsaad-portfolio.web.app/assets/muhammad-saad-android-developer.webp",
-        "sameAs": [
-          "https://github.com/chsaad-dev",
-          "https://linkedin.com/in/muhammad-saad075"
-        ],
-        "knowsAbout": ["Android Development", "Kotlin", "Jetpack Compose", "Firebase", "MVVM Architecture", "Mobile App Development", "Room Database", "Coroutines"],
-        "alumniOf": {
-          "@type": "EducationalOrganization",
-          "name": "COMSATS University Islamabad, Sahiwal Campus"
+      "@type": "Person",
+      "name": "Muhammad Saad",
+      "url": "https://muhammadsaad-portfolio.web.app/",
+      "image": "https://muhammadsaad-portfolio.web.app/assets/muhammad-saad-android-developer.jpg",
+      "jobTitle": "Android Developer",
+      "description": "Android developer specializing in Kotlin, Jetpack Compose, and Firebase backend development.",
+      "sameAs": [
+        "https://github.com/chsaad-dev",
+        "https://www.linkedin.com/in/muhammad-saad075/"
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "COMSATS University Islamabad, Sahiwal Campus",
+        "url": "https://sahiwal.comsats.edu.pk/"
+      },
+      "knowsAbout": ["Kotlin", "Jetpack Compose", "Firebase", "MVVM Architecture", "Room Database", "Android Development"],
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "Meta Android Developer Certificate",
+          "url": "https://www.coursera.org/professional-certificates/meta-android-developer"
         },
-        "hasCredential": [
-          {
-            "@type": "EducationalOccupationalCredential",
-            "name": "Meta Android Developer Certificate",
-            "recognizedBy": {"@type": "Organization", "name": "Meta"}
-          },
-          {
-            "@type": "EducationalOccupationalCredential",
-            "name": "Google UX Design Professional Certificate",
-            "recognizedBy": {"@type": "Organization", "name": "Google"}
-          },
-          {
-            "@type": "EducationalOccupationalCredential",
-            "name": "AI For Everyone Certificate",
-            "recognizedBy": {"@type": "Organization", "name": "DeepLearning.AI"}
-          }
-        ],
-        "worksFor": {
-          "@type": "Organization",
-          "name": "Freelance / Open to Opportunities"
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "Google UX Design Professional Certificate",
+          "url": "https://www.coursera.org/professional-certificates/google-ux-design"
         }
-      }
+      ]
     }
     </script>
 
-    <!-- SoftwareApplication Schema for GiveEase -->
+    <!-- ItemList Schema for 5 Featured Projects (JSON-LD) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "GiveEase",
-      "applicationCategory": "MobileApplication",
-      "operatingSystem": "Android",
-      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
-      "description": "Verified donation platform connecting donors with trusted NGOs using Firebase, Kotlin, and MVVM architecture. Features real-time impact tracking and government ID verification.",
-      "author": {
-        "@type": "Person",
-        "name": "Muhammad Saad"
-      },
-      "softwareVersion": "1.0",
-      "programmingLanguage": "Kotlin",
-      "featureList": ["Firebase Authentication", "Cloud Firestore", "Real-time Database", "Firebase Storage", "Push Notifications", "MVVM Architecture"]
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "GiveEase",
+            "applicationCategory": "MobileApplication",
+            "operatingSystem": "Android",
+            "url": "https://muhammadsaad-portfolio.web.app/blog/giveease-case-study",
+            "codeRepository": "https://github.com/chsaad-dev/GiveEase",
+            "author": { "@type": "Person", "name": "Muhammad Saad" }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "SpendWise",
+            "applicationCategory": "MobileApplication",
+            "operatingSystem": "Android",
+            "url": "https://muhammadsaad-portfolio.web.app/blog/spendwise-case-study",
+            "codeRepository": "https://github.com/chsaad-dev/SpendWise",
+            "author": { "@type": "Person", "name": "Muhammad Saad" }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "FindCircle",
+            "applicationCategory": "MobileApplication",
+            "operatingSystem": "Android",
+            "url": "https://muhammadsaad-portfolio.web.app/#projects",
+            "codeRepository": "https://github.com/chsaad-dev/FindCircle",
+            "author": { "@type": "Person", "name": "Muhammad Saad" }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "CampusConnect",
+            "applicationCategory": "MobileApplication",
+            "operatingSystem": "Android",
+            "url": "https://campusconnect71x75.web.app/",
+            "codeRepository": "https://github.com/chsaad-dev/CampusConnect",
+            "author": { "@type": "Person", "name": "Muhammad Saad" }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "NoteSync",
+            "applicationCategory": "MobileApplication",
+            "operatingSystem": "Android",
+            "url": "https://github.com/chsaad-dev/NoteSync",
+            "codeRepository": "https://github.com/chsaad-dev/NoteSync",
+            "author": { "@type": "Person", "name": "Muhammad Saad" }
+          }
+        }
+      ]
     }
     </script>
 
-    <!-- SoftwareApplication Schema for SpendWise -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "SpendWise",
-      "applicationCategory": "MobileApplication",
-      "operatingSystem": "Android",
-      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
-      "description": "Offline-first expense tracking application built with Kotlin, Jetpack Compose, and Room Database. Features category-specific budget tracking and PDF report generation.",
-      "author": {
-        "@type": "Person",
-        "name": "Muhammad Saad"
-      },
-      "softwareVersion": "1.0",
-      "programmingLanguage": "Kotlin",
-      "featureList": ["Offline-First", "Room Database", "Jetpack Compose", "MVVM Architecture", "PDF Report Generation", "Material 3 Design"]
-    }
-    </script>
-
-    <!-- SoftwareApplication Schema for FindCircle -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "FindCircle",
-      "applicationCategory": "MobileApplication",
-      "operatingSystem": "Android",
-      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
-      "description": "Community-driven lost and found mobile app with real-time location mapping, smart image-based matching, and instant push notifications using FCM.",
-      "author": {
-        "@type": "Person",
-        "name": "Muhammad Saad"
-      },
-      "softwareVersion": "1.0",
-      "programmingLanguage": "Kotlin",
-      "featureList": ["Real-time Location Mapping", "Image-based Matching", "FCM Push Notifications", "MVVM Architecture", "Cloud Firestore"]
-    }
-    </script>
-
-    <!-- FAQPage Schema -->
+    <!-- FAQPage Schema for Rich Snippets & AI Answer Engines -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -259,26 +265,34 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "What technologies does Muhammad Saad specialize in?",
+          "name": "What Android tech stack does Muhammad Saad specialize in?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Muhammad Saad specializes in Android development using Kotlin, Jetpack Compose, MVVM architecture, Firebase services (Auth, Firestore, Storage, FCM), Room Database, and Coroutines."
+            "text": "Muhammad Saad specializes in native Android development using Kotlin, Jetpack Compose, MVVM Clean Architecture, Room Database, Coroutines, Hilt, and Firebase backend infrastructure (Auth, Firestore, Storage, FCM)."
           }
         },
         {
           "@type": "Question",
-          "name": "Is Muhammad Saad available for hire?",
+          "name": "Is Muhammad Saad available for freelance Android development or full-time roles?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes, Muhammad Saad is currently open to freelance projects and full-time Android developer positions. He has 5+ completed projects and expertise in building scalable mobile applications."
+            "text": "Yes, Muhammad Saad is open to freelance Android app projects, contract development, and full-time remote or on-site Android Engineer positions."
           }
         },
         {
           "@type": "Question",
-          "name": "What projects has Muhammad Saad built?",
+          "name": "Does Muhammad Saad build offline-first Android applications?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Muhammad Saad has built GiveEase (a verified donation platform), SpendWise (an offline expense tracker), and FindCircle (a lost & found community app), all using Kotlin and Firebase."
+            "text": "Yes, projects like SpendWise and NoteSync are architected offline-first using Room SQLite and Isar databases, ensuring zero-latency local operations with automatic background cloud sync when online."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What AI features has Muhammad Saad integrated into Android apps?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Muhammad Saad integrated Google's Gemini 2.5 Flash-Lite LLM via Cloudflare Worker API proxies into CampusConnect to provide automated course support and smart campus assistance."
           }
         },
         {
@@ -286,7 +300,15 @@
           "name": "What certifications does Muhammad Saad hold?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Muhammad Saad holds certifications from Meta (Android Mobile Application Development), Google (UX Design Professional Certificate), and DeepLearning.AI (AI For Everyone)."
+            "text": "Muhammad Saad holds the Meta Android Developer Certificate and the Google UX Design Professional Certificate from Coursera."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is Muhammad Saad's educational background?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Muhammad Saad graduated with a Bachelor of Software Engineering degree from COMSATS University Islamabad, Sahiwal Campus in July 2026."
           }
         }
       ]
@@ -318,62 +340,6 @@
       "url": "https://muhammadsaad-portfolio.web.app/"
     }
     </script>
-
-    <!-- Standalone Testimonials / Review Schema -->
-    <script type="application/ld+json">
-[
-  {
-    "@context": "https://schema.org",
-    "@type": "Review",
-    "itemReviewed": {
-      "@type": "SoftwareApplication",
-      "name": "GiveEase",
-      "applicationCategory": "MobileApplication",
-      "operatingSystem": "Android"
-    },
-    "author": {
-      "@type": "Person",
-      "name": "Dr. Javed Ferzund",
-      "jobTitle": "Associate Professor Computer Science Department",
-      "worksFor": {
-        "@type": "EducationalOrganization",
-        "name": "COMSATS University Islamabad, Sahiwal Campus"
-      }
-    },
-    "reviewBody": "Muhammad Saad demonstrated outstanding technical acumen during his Final Year Project (GiveEase). His ability to architect a secure, real-time donation platform utilizing Firebase Firestore and Kotlin MVVM guidelines set a high standard for academic engineering projects.",
-    "reviewRating": {
-      "@type": "Rating",
-      "ratingValue": "5",
-      "bestRating": "5"
-    }
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "Review",
-    "itemReviewed": {
-      "@type": "SoftwareApplication",
-      "name": "SpendWise",
-      "applicationCategory": "MobileApplication",
-      "operatingSystem": "Android"
-    },
-    "author": {
-      "@type": "Person",
-      "name": "ShahbazAli",
-      "jobTitle": "Founder & CEO",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Conceptive IT Solutions"
-      }
-    },
-    "reviewBody": "Saad's SpendWise expense tracker shows a mature understanding of local database transactions and offline-first state synchronization. His implementation of clean MVVM patterns and Jetpack Compose is industrial-grade.",
-    "reviewRating": {
-      "@type": "Rating",
-      "ratingValue": "5",
-      "bestRating": "5"
-    }
-  }
-]
-</script>
 </head>
 <body>
 
@@ -501,19 +467,19 @@
     <div class="container">
         <div class="stats-grid">
             <div class="stat-counter-box reveal">
-                <div class="stat-counter-val"><span class="counter" data-target="5">0</span><span class="stat-suffix">+</span></div>
+                <div class="stat-counter-val"><span class="counter" data-target="5">5</span><span class="stat-suffix">+</span></div>
                 <div class="stat-counter-label">Projects Built</div>
             </div>
             <div class="stat-counter-box reveal">
-                <div class="stat-counter-val"><span class="counter" data-target="10">0</span><span class="stat-suffix">+</span></div>
+                <div class="stat-counter-val"><span class="counter" data-target="10">10</span><span class="stat-suffix">+</span></div>
                 <div class="stat-counter-label">Technologies</div>
             </div>
             <div class="stat-counter-box reveal">
-                <div class="stat-counter-val"><span class="counter" data-target="3">0</span><span class="stat-suffix">+</span></div>
+                <div class="stat-counter-val"><span class="counter" data-target="3">3</span><span class="stat-suffix">+</span></div>
                 <div class="stat-counter-label">Years Coding</div>
             </div>
             <div class="stat-counter-box reveal">
-                <div class="stat-counter-val"><span class="counter" data-target="4">0</span><span class="stat-suffix"></span></div>
+                <div class="stat-counter-val"><span class="counter" data-target="4">4</span><span class="stat-suffix"></span></div>
                 <div class="stat-counter-label">Certifications</div>
             </div>
         </div>
@@ -721,6 +687,75 @@
                     </div>
                 </div>
             </div>
+        <div class="project-item reverse reveal">
+            <div>
+                <div class="project-number">04</div>
+                <h3 class="project-name">CampusConnect — Social Campus Platform &amp; AI Assistant</h3>
+                <p class="project-desc">CampusConnect is a social campus application built with Kotlin, XML, MVVM Clean Architecture, Hilt dependency injection, Firebase, and Room. It features an integrated AI assistant powered by Gemini 2.5 Flash-Lite via Cloudflare Workers and is paired with a live web admin console for moderation.</p>
+                <div class="project-challenge">
+                    <span class="challenge-label">&#9889; Problem Solved:</span>
+                    University campuses lack a unified digital hub for verified announcements, student collaboration, and AI-driven course support. CampusConnect unifies real-time feeds with an admin management console deployed live at <a href="https://campusconnect71x75.web.app/" target="_blank" rel="noopener noreferrer" style="color: var(--android); text-decoration: underline;">campusconnect71x75.web.app</a>.
+                </div>
+                <div class="project-meta">ROLE &rarr; <span>Full Stack &amp; Android Lead</span> &nbsp;&nbsp; YEAR &rarr; <span>2025-2026</span></div>
+                <div class="project-tags"><span>Kotlin</span><span>MVVM Clean</span><span>Hilt</span><span>Firebase</span><span>Room</span><span>Gemini AI</span></div>
+                <div class="project-actions">
+                    <a href="https://github.com/chsaad-dev/CampusConnect" target="_blank" rel="noopener noreferrer" class="project-link">VIEW ON GITHUB &rarr;</a>
+                    <a href="https://campusconnect71x75.web.app/" target="_blank" rel="noopener noreferrer" class="project-link">ADMIN CONSOLE &rarr;</a>
+                </div>
+                
+                <div class="project-share">
+                    <span class="share-label">SHARE PROJECT:</span>
+                    <button class="share-btn" data-url="https://muhammadsaad-portfolio.web.app/#projects">Copy Link</button>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://muhammadsaad-portfolio.web.app/" target="_blank" rel="noopener noreferrer" class="share-btn">LinkedIn</a>
+                    <a href="https://twitter.com/intent/tweet?url=https://muhammadsaad-portfolio.web.app/&text=Check%20out%20CampusConnect%20-%20A%20Social%20Campus%20Platform" target="_blank" rel="noopener noreferrer" class="share-btn">X</a>
+                </div>
+            </div>
+            <div>
+                <div class="project-mockup">
+                    <div class="mockup-inner">
+                        <picture>
+                            <source srcset="/assets/campusconnect-social-campus-android-app.avif 1x, /assets/campusconnect-social-campus-android-app-2x.avif 2x" type="image/avif">
+                            <source srcset="/assets/campusconnect-social-campus-android-app.webp 1x, /assets/campusconnect-social-campus-android-app-2x.webp 2x" type="image/webp">
+                            <img src="/assets/campusconnect-social-campus-android-app.jpg" alt="CampusConnect Android app, social campus platform with Gemini AI assistant and web admin console" width="260" height="520" loading="lazy" style="width: 100%; height: auto; display: block;">
+                        </picture>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-item reveal">
+            <div>
+                <div class="project-number">05</div>
+                <h3 class="project-name">NoteSync — Offline-First Encrypted Cloud Sync Notes</h3>
+                <p class="project-desc">NoteSync is an offline-first notes application built with Flutter and Riverpod. It features cloud synchronization with Firebase Auth &amp; Firestore, local Isar database storage, rich text formatting via flutter_quill, and hardware-backed AES encryption using local_auth and flutter_secure_storage.</p>
+                <div class="project-challenge">
+                    <span class="challenge-label">&#9889; Problem Solved:</span>
+                    Note-taking applications often force users to choose between offline privacy and seamless cloud sync. NoteSync guarantees instant zero-latency local note editing protected by hardware biometrics while background-syncing encrypted notes to the cloud.
+                </div>
+                <div class="project-meta">ROLE &rarr; <span>Cross-Platform Engineer</span> &nbsp;&nbsp; YEAR &rarr; <span>2025-2026</span></div>
+                <div class="project-tags"><span>Flutter</span><span>Riverpod</span><span>Isar DB</span><span>Firebase</span><span>AES Security</span></div>
+                <div class="project-actions">
+                    <a href="https://github.com/chsaad-dev/NoteSync" target="_blank" rel="noopener noreferrer" class="project-link">VIEW ON GITHUB &rarr;</a>
+                </div>
+                
+                <div class="project-share">
+                    <span class="share-label">SHARE PROJECT:</span>
+                    <button class="share-btn" data-url="https://github.com/chsaad-dev/NoteSync">Copy Link</button>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://github.com/chsaad-dev/NoteSync" target="_blank" rel="noopener noreferrer" class="share-btn">LinkedIn</a>
+                    <a href="https://twitter.com/intent/tweet?url=https://github.com/chsaad-dev/NoteSync&text=Check%20out%20NoteSync%20-%20Offline-First%20Encrypted%20Notes%20App" target="_blank" rel="noopener noreferrer" class="share-btn">X</a>
+                </div>
+            </div>
+            <div>
+                <div class="project-mockup">
+                    <div class="mockup-inner">
+                        <picture>
+                            <source srcset="/assets/notesync-offline-notes-flutter-app.avif 1x, /assets/notesync-offline-notes-flutter-app-2x.avif 2x" type="image/avif">
+                            <source srcset="/assets/notesync-offline-notes-flutter-app.webp 1x, /assets/notesync-offline-notes-flutter-app-2x.webp 2x" type="image/webp">
+                            <img src="/assets/notesync-offline-notes-flutter-app.jpg" alt="NoteSync Flutter app, offline-first notes application with AES encryption and biometric security" width="260" height="520" loading="lazy" style="width: 100%; height: auto; display: block;">
+                        </picture>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -791,10 +826,10 @@
         <p class="backend-sub reveal">Every app I build uses Firebase as its backbone. Here's how I use each service.</p>
         <div class="backend-grid">
             <div class="service-card reveal"><h4>Firebase Auth</h4><p>Email/password and Google Sign-In for user accounts</p><span class="service-tag">All Projects</span></div>
-            <div class="service-card reveal"><h4>Cloud Firestore</h4><p>Real-time NoSQL data sync across app</p><span class="service-tag">GiveEase · GupShup</span></div>
-            <div class="service-card reveal"><h4>Realtime Database</h4><p>Live data updates for chat or feed features</p><span class="service-tag">GiveEase · GupShup</span></div>
+            <div class="service-card reveal"><h4>Cloud Firestore</h4><p>Real-time NoSQL data sync across app</p><span class="service-tag">GiveEase · CampusConnect</span></div>
+            <div class="service-card reveal"><h4>Realtime Database</h4><p>Live data updates for chat or feed features</p><span class="service-tag">CampusConnect · NoteSync</span></div>
             <div class="service-card reveal"><h4>Firebase Storage</h4><p>User profile pictures and file uploads</p><span class="service-tag">Multiple Projects</span></div>
-            <div class="service-card reveal"><h4>FCM</h4><p>Push notifications to keep users engaged</p><span class="service-tag">GiveEase · GupShup</span></div>
+            <div class="service-card reveal"><h4>FCM</h4><p>Push notifications to keep users engaged</p><span class="service-tag">GiveEase · FindCircle</span></div>
             <div class="service-card reveal"><h4>Crashlytics</h4><p>Crash reporting and monitoring in production</p><span class="service-tag">SpendWise</span></div>
             <div class="service-card reveal"><h4>Firebase Hosting</h4><p>Hosting this very portfolio site</p><span class="service-tag">Portfolio</span></div>
             <div class="service-card reveal"><h4>Remote Config</h4><p>Feature flags without app updates</p><span class="service-tag">SpendWise</span></div>

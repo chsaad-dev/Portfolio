@@ -43,10 +43,21 @@
         }
       },
       "datePublished": "2026-07-19",
-      "dateModified": "2026-07-19",
+      "dateModified": "2026-07-30",
       "mainEntityOfPage": "https://muhammadsaad-portfolio.web.app/blog/spendwise-case-study",
       "inLanguage": "en-US",
       "keywords": "offline-first Android app, Android Room database tutorial, Jetpack Compose expense tracker, Material 3 budget manager"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://muhammadsaad-portfolio.web.app/" },
+        { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://muhammadsaad-portfolio.web.app/#blog" },
+        { "@type": "ListItem", "position": 3, "name": "SpendWise Case Study", "item": "https://muhammadsaad-portfolio.web.app/blog/spendwise-case-study" }
+      ]
     }
     </script>
 </head>
@@ -69,19 +80,19 @@
 <main class="container section-padding" style="margin-top: 4rem; max-width: 850px;">
     <article class="blog-post" style="color: var(--text); line-height: 1.8;">
         <header class="post-header" style="margin-bottom: 3rem;">
-            <div class="section-label">// CASE STUDY — OFFLINE-FIRST MOBILE DATABASE</div>
+            <div class="section-label">// CASE STUDY — OFFLINE EXPENSE TRACKER</div>
             <h1 class="post-title" style="font-family: var(--font-ui); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin: 1rem 0; font-weight: 800;">
                 SpendWise: Building an Offline-First Expense Tracker with Room Database
             </h1>
-            <p style="color: var(--muted); font-family: var(--font-mono); font-size: 0.85rem;">
-                Published on: July 19, 2026 | Last Updated: July 19, 2026 | Author: Muhammad Saad
-            </p>
+            <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(61, 220, 132, 0.1); border: 1px solid var(--android-dim); padding: 0.4rem 0.8rem; border-radius: 4px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--android); margin-top: 0.5rem;">
+                <span>📅 Published: July 19, 2026</span> · <span style="color: var(--firebase);">⚡ Last Updated: July 30, 2026</span> · <span>👨‍💻 Author: Muhammad Saad</span>
+            </div>
         </header>
 
         <section class="post-body">
-            <h2 style="font-family: var(--font-ui); color: var(--android); font-size: 1.8rem; margin: 2rem 0 1rem;">1. Introduction: The Need for Local-First Financial Privacy</h2>
+            <h2 style="font-family: var(--font-ui); color: var(--android); font-size: 1.8rem; margin: 2rem 0 1rem;">1. Why choose Room SQLite for offline-first expense tracking?</h2>
             <p style="margin-bottom: 1.5rem; opacity: 0.85;">
-                In a world dominated by cloud architectures and SaaS solutions, the average smartphone user's privacy has become increasingly compromised. Nowhere is this more sensitive than in personal finance. Most budgeting and expense tracking apps require immediate internet connectivity, forcing users to link their bank credentials and stream transaction histories to remote servers. This raises critical security questions: How is this data protected? Who has access to it? What happens if the network goes down?
+                <strong>SpendWise is an offline-first Android expense tracking application built with Kotlin, Jetpack Compose, and Room SQLite database that stores financial data locally without requiring internet connectivity.</strong> In modern mobile app development, relying solely on cloud backend servers poses privacy risks and network latency friction. Financial management apps in particular handle sensitive user transactions where data exposure or network dropped packets can degrade user trust.
             </p>
             <p style="margin-bottom: 1.5rem; opacity: 0.85;">
                 To address these concerns, I developed <strong>SpendWise</strong>, a personal finance application engineered as an <strong>offline-first Android app</strong>. The app stores all transaction records, budget configurations, and categories locally on the user's device. In this article, I discuss the structural design of SpendWise, focusing on the Android Room SQLite database mapping, SQL transactional queries, Jetpack Compose layouts, and offline PDF document generation.

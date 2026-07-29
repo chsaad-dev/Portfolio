@@ -232,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 11. Animated Stats Counter
+    // 11. Animated Stats Counter (INP optimized & non-blocking)
     const statsSection = document.getElementById('stats-counter');
     if (statsSection) {
         const counterObserver = new IntersectionObserver((entries) => {
@@ -241,19 +241,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     const counters = entry.target.querySelectorAll('.counter');
                     counters.forEach(counter => {
                         const target = +counter.getAttribute('data-target');
-                        const duration = 2000;
-                        const increment = target / (duration / 16);
-                        let current = 0;
-                        const updateCounter = () => {
-                            current += increment;
-                            if (current < target) {
-                                counter.textContent = Math.ceil(current);
-                                requestAnimationFrame(updateCounter);
+                        if (!target) return;
+                        counter.textContent = '0';
+                        const duration = 1500;
+                        let startTime = null;
+                        
+                        const step = (timestamp) => {
+                            if (!startTime) startTime = timestamp;
+                            const progress = Math.min((timestamp - startTime) / duration, 1);
+                            const value = Math.floor(progress * target);
+                            counter.textContent = value;
+                            if (progress < 1) {
+                                requestAnimationFrame(step);
                             } else {
                                 counter.textContent = target;
                             }
                         };
-                        updateCounter();
+                        requestAnimationFrame(step);
                     });
                     counterObserver.unobserve(entry.target);
                 }
