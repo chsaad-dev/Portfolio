@@ -36,14 +36,21 @@
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 
-    <!-- Google Analytics (gtag.js) Boilerplate -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HXW16GRMHH"></script>
+    <!-- Google Analytics (gtag.js) Deferred for Maximum Mobile Speed -->
     <script>
-      
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-HXW16GRMHH');
+
+      window.addEventListener('load', function() {
+          setTimeout(function() {
+              var s = document.createElement('script');
+              s.async = true;
+              s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HXW16GRMHH';
+              document.head.appendChild(s);
+          }, 1000);
+      });
     </script>
 
     <!-- Preconnect / Preload LCP Assets -->
