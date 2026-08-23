@@ -72,3 +72,7 @@ node_modules/
 scratch/
 package.json
 package-lock.json
+
+# Wrangler
+.wrangler/
+.dev.vars
