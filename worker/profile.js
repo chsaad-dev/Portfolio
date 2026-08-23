@@ -1,21 +1,20 @@
 export const PROFILE = {
   name: "Muhammad Saad",
   role: "Android Developer",
-  location: "Lahore, Pakistan",
+  location: "Sahiwal, Pakistan",
   education: [
     "BS Software Engineering, COMSATS University Islamabad, Sahiwal Campus (Graduated July 2026, CGPA 3.14/4.00)"
   ],
   certifications: [
     "Meta Android Developer Certificate",
     "Google UX Design Professional Certificate",
-    "DeepLearning.AI AI For Everyone",
-    "Design Thinking For Innovation (Coursera, University of Virginia)"
+    "AI For Everyone by DeepLearning.AI",
+    "Design Thinking For Innovation (By University of Virginia & Darden School of Business)"
   ],
   stack: [
     "Kotlin", "Java", "Jetpack Compose", "MVVM / Clean Architecture",
     "Room Database", "Coroutines", "Retrofit",
     "Firebase (Auth, Firestore, Realtime DB, Storage, FCM, Crashlytics, Remote Config, Hosting)",
-    "Flutter", "Riverpod"
   ],
   projects: [
     { name: "GiveEase", desc: "Verified donation platform connecting donors and NGOs, ID-verified trust system, real-time impact tracking.", tech: "Kotlin, Firebase Auth, Firestore, Storage, MVVM", role: "Team Lead — Final Year Project (2024-2026)" },

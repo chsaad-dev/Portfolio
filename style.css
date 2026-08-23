@@ -27,7 +27,7 @@
 ::-webkit-scrollbar-thumb:hover { background: var(--android); }
 
 * { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 
 body {
     background: var(--bg);
@@ -182,7 +182,7 @@ img { max-width:100%; display:block; }
 
 .hero-title {
     font-family:var(--font-display);
-    font-size:clamp(4rem,9vw,9rem);
+    font-size:clamp(2.5rem,10vw,9rem);
     line-height:0.95; margin-bottom:1.5rem;
 }
 .hero-line-1 { display:block; color:var(--white); opacity:0; animation: fadeIn 0.7s forwards 0.2s; }
