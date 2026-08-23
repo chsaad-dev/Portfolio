@@ -17,8 +17,8 @@ export const PROFILE = {
     "Firebase (Auth, Firestore, Realtime DB, Storage, FCM, Crashlytics, Remote Config, Hosting)",
   ],
   projects: [
-    { name: "GiveEase", desc: "Verified donation platform connecting donors and NGOs, ID-verified trust system, real-time impact tracking.", tech: "Kotlin, Firebase Auth, Firestore, Storage, MVVM", role: "Team Lead — Final Year Project (2024-2026)" },
-    { name: "SpendWise", desc: "Offline-first expense tracker, local PDF reports, zero data leaves device.", tech: "Kotlin, Jetpack Compose, Room, Material 3", role: "Personal Project (2025-2026)" },
+    { name: "GiveEase", desc: "Verified donation platform connecting donors and NGOs, ID-verified trust system, real-time impact tracking.", tech: "Kotlin, Firebase Auth, Firestore, Storage, MVVM", role: "Team Lead — Final Year Project (2025-2026)" },
+    { name: "SpendWise", desc: "Offline-first expense tracker app, local PDF reports, zero data leaves device.", tech: "Kotlin, Jetpack Compose, Room, Material Design3", role: "Personal Project (2025-2026)" },
     { name: "FindCircle", desc: "Lost & found community app with real-time location mapping and image-based matching.", tech: "Kotlin, MVVM, Coroutines, FCM", role: "Personal Project (2025-2026)" },
     { name: "CampusConnect", desc: "Social campus app with an integrated Gemini AI assistant via Cloudflare Workers and a live web admin console.", tech: "Kotlin, MVVM Clean, Hilt, Firebase, Room, Gemini AI", role: "Full Stack & Android Lead (2025-2026)" },
     { name: "NoteSync", desc: "Offline-first notes app with cloud sync and hardware-backed AES encryption.", tech: "Flutter, Riverpod, Isar DB, Firebase, AES", role: "Cross-Platform Engineer (2025-2026)" }
