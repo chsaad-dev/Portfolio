@@ -1315,7 +1315,7 @@ html.light-mode .footer-logo {
     .stat-counter-box::after { display: none; }
     .stat-counter-box { padding: 1.5rem 0.5rem; }
     .testimonials-grid { grid-template-columns: 1fr; }
-    .theme-toggle { top: auto; bottom: 6rem; right: 1rem; }
+    .theme-toggle { top: auto; bottom: 9rem; right: 1rem; }
     .floating-cta { bottom: 1.2rem; right: 1rem; padding: 0.7rem 1.2rem; font-size: 0.7rem; }
     .whatsapp-float { bottom: 1.2rem; left: 1rem; width: 48px; height: 48px; }
     .whatsapp-tooltip { display: none; }
