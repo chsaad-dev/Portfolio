@@ -921,21 +921,61 @@
   #ai-chat-btn {
     background: var(--accent);
     color: white;
-    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    width: 58px;
+    height: 58px;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    box-shadow: 0 8px 24px -4px rgba(37, 99, 235, 0.45), 0 4px 12px rgba(0, 0, 0, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
-    transition: transform 0.2s, background 0.2s;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, box-shadow 0.2s ease;
   }
   #ai-chat-btn:hover {
-    transform: scale(1.05);
+    transform: scale(1.06) translateY(-2px);
     background: var(--accent-hover);
+    box-shadow: 0 12px 28px -4px rgba(37, 99, 235, 0.55), 0 6px 16px rgba(0, 0, 0, 0.35);
+  }
+  #ai-chat-btn:active {
+    transform: scale(0.96) translateY(0);
+  }
+  #ai-chat-btn .ai-icon-sparkle {
+    display: block;
+    width: 24px;
+    height: 24px;
+    transition: transform 0.2s ease;
+  }
+  #ai-chat-btn .ai-icon-close {
+    display: none;
+    width: 20px;
+    height: 20px;
+    transition: transform 0.2s ease;
+  }
+  #ai-chat-btn.open .ai-icon-sparkle {
+    display: none;
+  }
+  #ai-chat-btn.open .ai-icon-close {
+    display: block;
+  }
+  .ai-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+    flex-shrink: 0;
+  }
+  .ai-badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--accent);
+    background: rgba(37, 99, 235, 0.12);
+    border: 1px solid rgba(37, 99, 235, 0.25);
+    padding: 2px 6px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
   }
   #ai-chat-panel {
     display: none;
@@ -1066,7 +1106,14 @@
     #ai-chat-btn {
       width: 50px;
       height: 50px;
-      font-size: 20px;
+    }
+    #ai-chat-btn .ai-icon-sparkle {
+      width: 21px;
+      height: 21px;
+    }
+    #ai-chat-btn .ai-icon-close {
+      width: 17px;
+      height: 17px;
     }
   }
 </style>
@@ -1074,8 +1121,12 @@
 <div id="ai-chat-widget">
   <div id="ai-chat-panel">
     <div id="ai-chat-header">
-      <span> Ask about Saad</span>
-      <button id="ai-chat-close">&times;</button>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span class="ai-status-dot"></span>
+        <span>Ask about Saad</span>
+        <span class="ai-badge">AI</span>
+      </div>
+      <button id="ai-chat-close" title="Close chat">&times;</button>
     </div>
     <div id="ai-chat-messages">
       <div class="ai-msg">Hi! I'm Saad's AI assistant. Ask me anything about his skills, projects, or background!</div>
@@ -1083,10 +1134,24 @@
     <div id="ai-chat-typing">AI is typing...</div>
     <form id="ai-chat-input-area" onsubmit="return false;">
       <input type="text" id="ai-chat-input" placeholder="Type a message..." autocomplete="off">
-      <button type="submit" id="ai-chat-send">&#10148;</button>
+      <button type="submit" id="ai-chat-send" title="Send message" aria-label="Send message">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
     </form>
   </div>
-  <button id="ai-chat-btn" title="Chat with AI">&#129302;</button>
+  <button id="ai-chat-btn" title="Chat with AI" aria-label="Chat with AI assistant">
+    <svg class="ai-icon-sparkle" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2C12 7.5 7.5 12 2 12C7.5 12 12 16.5 12 22C12 16.5 16.5 12 22 12C16.5 12 12 7.5 12 2Z" fill="currentColor"/>
+      <path d="M19 2C19 4.2 17.2 6 15 6C17.2 6 19 7.8 19 10C19 7.8 20.8 6 23 6C20.8 6 19 4.2 19 2Z" fill="currentColor" opacity="0.85"/>
+    </svg>
+    <svg class="ai-icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
 </div>
 
 <script>
@@ -1105,9 +1170,13 @@
 
     btn.addEventListener('click', () => {
       panel.classList.toggle('open');
+      btn.classList.toggle('open', panel.classList.contains('open'));
       if (panel.classList.contains('open')) input.focus();
     });
-    closeBtn.addEventListener('click', () => panel.classList.remove('open'));
+    closeBtn.addEventListener('click', () => {
+      panel.classList.remove('open');
+      btn.classList.remove('open');
+    });
 
     function addMessage(text, isUser) {
       const d = document.createElement('div');
