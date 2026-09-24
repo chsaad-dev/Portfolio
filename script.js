@@ -46,11 +46,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 5. Intersection Observer — reveal animations
+    // 5. Intersection Observer — reveal animations with depth & child staggering
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
+
+                // Stagger child elements (badges, pills, cards, stat counters)
+                if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    const staggerChildren = entry.target.querySelectorAll('.badge, .pill, .service-card, .stat-counter-box, .stat-box, .cert-item, .blog-card');
+                    staggerChildren.forEach((child, idx) => {
+                        child.style.transitionDelay = `${idx * 60}ms`;
+                    });
+                }
+
+                revealObserver.unobserve(entry.target);
             }
         });
     }, { threshold: 0.15 });
@@ -58,22 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
         revealObserver.observe(el);
     });
-
-
-    // 7. Stagger service cards
-    const backendSection = document.getElementById('backend');
-    const cardObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const cards = entry.target.querySelectorAll('.service-card');
-                cards.forEach((card, i) => {
-                    setTimeout(() => card.classList.add('is-visible'), i * 100);
-                });
-                cardObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.2 });
-    if (backendSection) cardObserver.observe(backendSection);
 
     // 8. Typing animation
     const roles = ['Android Developer', 'Kotlin Specialist', 'Firebase Expert'];
@@ -375,5 +369,93 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // 17. 3D Card tilt-on-hover (subtle, restrained, professional)
+    function initCardTilt() {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (window.matchMedia('(pointer: coarse)').matches) return; // Touch devices
+
+        const cards = document.querySelectorAll('.project-item, .service-card, .testimonial-card, .edu-card');
+        const MAX_ROTATION = 5; // ±5deg subtle clamp
+
+        cards.forEach(card => {
+            let rafId = null;
+
+            card.addEventListener('mouseenter', () => {
+                card.style.willChange = 'transform, box-shadow';
+                card.style.transition = 'transform 0.12s ease-out, box-shadow 0.12s ease-out, border-color 0.2s ease';
+            });
+
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const percentX = (x - centerX) / centerX;
+                const percentY = (y - centerY) / centerY;
+
+                const rotateX = Math.max(-MAX_ROTATION, Math.min(MAX_ROTATION, -percentY * MAX_ROTATION));
+                const rotateY = Math.max(-MAX_ROTATION, Math.min(MAX_ROTATION, percentX * MAX_ROTATION));
+
+                const shadowX = (-rotateY * 1.5).toFixed(1);
+                const shadowY = (Math.abs(rotateX) * 2 + 6).toFixed(1);
+                const shadowBlur = (18 + Math.abs(rotateX) * 2).toFixed(1);
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateZ(0)`;
+                card.style.boxShadow = `${shadowX}px ${shadowY}px ${shadowBlur}px rgba(0, 0, 0, 0.22)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                if (rafId) cancelAnimationFrame(rafId);
+                card.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease';
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0)';
+                card.style.boxShadow = '';
+
+                setTimeout(() => {
+                    card.style.willChange = '';
+                    card.style.transition = '';
+                }, 400);
+            });
+        });
+    }
+
+    // 18. Hero subtle parallax
+    function initHeroParallax() {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (window.matchMedia('(pointer: coarse)').matches) return;
+
+        const hero = document.getElementById('hero');
+        const blob1 = document.querySelector('.hero-blob-1');
+        const blob2 = document.querySelector('.hero-blob-2');
+        if (!hero || (!blob1 && !blob2)) return;
+
+        let rafId = null;
+        hero.addEventListener('mousemove', (e) => {
+            if (rafId) cancelAnimationFrame(rafId);
+            rafId = requestAnimationFrame(() => {
+                const rect = hero.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+                if (blob1) {
+                    blob1.style.transform = `translate3d(${(-x * 12).toFixed(1)}px, ${(-y * 12).toFixed(1)}px, 0)`;
+                }
+                if (blob2) {
+                    blob2.style.transform = `translate3d(${(x * 16).toFixed(1)}px, ${(y * 16).toFixed(1)}px, 0)`;
+                }
+            });
+        });
+
+        hero.addEventListener('mouseleave', () => {
+            if (rafId) cancelAnimationFrame(rafId);
+            if (blob1) blob1.style.transform = 'translate3d(0, 0, 0)';
+            if (blob2) blob2.style.transform = 'translate3d(0, 0, 0)';
+        });
+    }
+
+    initCardTilt();
+    initHeroParallax();
 });
 
