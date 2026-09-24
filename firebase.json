@@ -53,10 +53,6 @@
       {
         "source": "/privacy",
         "destination": "/privacy.html"
-      },
-      {
-        "source": "**",
-        "destination": "/index.html"
       }
     ]
   }
