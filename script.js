@@ -59,21 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
         revealObserver.observe(el);
     });
 
-    // 6. Skill progress bars — animate on scroll
-    const stackSection = document.getElementById('stack');
-    const progressObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const bars = entry.target.querySelectorAll('.skill-bar-fill');
-                bars.forEach(bar => {
-                    const percent = bar.getAttribute('data-percent');
-                    bar.style.width = percent + '%';
-                });
-                progressObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.15 });
-    if (stackSection) progressObserver.observe(stackSection);
 
     // 7. Stagger service cards
     const backendSection = document.getElementById('backend');

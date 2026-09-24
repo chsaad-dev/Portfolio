@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <script>if(localStorage.getItem('portfolio-theme')==='light')document.documentElement.classList.add('light-mode');</script>
     <title>Muhammad Saad | Android Developer Portfolio | Kotlin & Firebase Expert</title>
     
     <!-- Meta Tags for SEO -->
     <meta name="google-site-verification" content="google2918549faa03e77e">
     <meta name="description" content="Hire Muhammad Saad, an Android developer specializing in Kotlin, Jetpack Compose, Firebase, and MVVM architecture. View 5+ real-world projects including donation apps, expense trackers, and lost & found platforms. Open to freelance and full-time opportunities.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <meta name="theme-color" content="#060608">
+    <meta name="theme-color" content="#0e0e10">
     <meta name="author" content="Muhammad Saad">
     <meta name="keywords" content="Android developer portfolio, Kotlin developer, Firebase developer, hire Android developer, Jetpack Compose, MVVM architecture, Room Database, Android Studio, mobile app development, Comsats Sahiwal">
     
@@ -56,98 +57,34 @@
     <!-- Preconnect / Preload LCP Assets -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="preload" href="/assets/muhammad-saad-android-developer.avif" as="image" type="image/avif" fetchpriority="high">
     <link rel="preload" href="/assets/muhammad-saad-android-developer-2x.avif" as="image" type="image/avif" fetchpriority="high">
 
-    <!-- Inlined Critical Above-the-Fold CSS (<20KB) -->
+    <!-- Inlined Critical Above-the-Fold CSS -->
     <style>
-        :root {
-            --bg: #060608;
-            --surface: #0d0d10;
-            --surface2: #13131a;
-            --border: #1a1a24;
-            --border-glow: rgba(61,220,132,0.2);
-            --text: #EDEDED;
-            --muted: #52525b;
-            --android: #3DDC84;
-            --android-dim: #1a6640;
-            --firebase: #FFCA28;
-            --firebase-org: #FF8F00;
-            --white: #FFFFFF;
-            --font-display: 'Bebas Neue', sans-serif;
-            --font-ui: 'Syne', sans-serif;
-            --font-body: 'DM Sans', sans-serif;
-            --font-mono: 'Space Mono', monospace;
-        }
-        * { margin:0; padding:0; box-sizing:border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: var(--font-body);
-            font-weight: 300;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        body::before {
-            content: '';
-            position: fixed; top:0; left:0; width:100%; height:100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
-            pointer-events: none; z-index: 9999;
-        }
-        body::after {
-            content: '';
-            position: fixed; top:0; left:0; width:100%; height:100%;
-            background-image: radial-gradient(var(--border) 1px, transparent 1px);
-            background-size: 28px 28px;
-            opacity: 0.4;
-            pointer-events: none; z-index: -1;
-        }
-        a { text-decoration:none; color:inherit; transition: all 0.3s ease; }
-        img { max-width:100%; display:block; }
-        .container { max-width:1200px; margin:0 auto; padding:0 2rem; }
-        .section-padding { padding: 7rem 0; }
-        .navbar {
-            position:fixed; top:0; left:0; width:100%; z-index:1000;
-            padding:1.2rem 0; transition: all 0.3s ease;
-        }
-        .navbar.scrolled {
-            padding:0.8rem 0;
-            background: rgba(6,6,8,0.9);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-        }
-        .nav-container {
-            max-width:1200px; margin:0 auto; padding:0 2rem;
-            display:flex; justify-content:space-between; align-items:center;
-        }
-        .logo { font-family:var(--font-mono); color:var(--android); font-size:1.1rem; }
-        .nav-links { display:flex; gap:2rem; }
-        .nav-links a {
-            font-family:var(--font-mono); font-size:0.75rem;
-            text-transform:uppercase; letter-spacing:2px;
-            color:var(--muted); position:relative;
-        }
-        .hero {
-            min-height:100vh; display:flex; align-items:center;
-            position:relative; padding:0 2rem; overflow:hidden;
-        }
-        .hero-content { max-width:1200px; margin:0 auto; width:100%; position:relative; z-index:2; }
-        .hero-title {
-            font-family:var(--font-display);
-            font-size:clamp(2.5rem,10vw,9rem);
-            line-height:0.95; margin-bottom:1.5rem;
-        }
-        .hero-line-1 { display:block; color:var(--white); }
-        .hero-line-2 {
-        :root{--bg:#060608;--surface:#0d0d10;--text:#EDEDED;--android:#3DDC84;--firebase:#FFCA28;--font-display:'Bebas Neue',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'Space Mono',monospace;}
-        body{background:var(--bg);color:var(--text);font-family:var(--font-body);margin:0;padding:0;overflow-x:hidden;}
-        .navbar{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:1.2rem 0;}
-        .hero{min-height:100vh;display:flex;align-items:center;padding:7rem 2rem 4rem 2rem;position:relative;}
-        .hero-title{font-family:var(--font-display);font-size:clamp(2.5rem,10vw,9rem);line-height:0.95;margin-bottom:1.5rem;}
-        .hero-line-1{color:#FFF;display:block;}
-        .hero-line-2{color:transparent;-webkit-text-stroke:2px var(--firebase);display:block;}
-        .btn-primary{background:var(--android);color:#000;padding:0.85rem 2rem;font-family:var(--font-mono);font-weight:700;text-decoration:none;display:inline-block;}
+        :root{--bg:#0e0e10;--surface:#17171a;--surface2:#1e1e22;--border:#2a2a2e;--text:#ededed;--muted:#8a8a92;--accent:#2563eb;--accent-hover:#1d4ed8;--white:#ffffff;--font-display:'Inter',sans-serif;--font-ui:'Inter',sans-serif;--font-body:'Inter',sans-serif;--font-mono:'JetBrains Mono',monospace;}
+        *{margin:0;padding:0;box-sizing:border-box;}
+        html{scroll-behavior:smooth;}
+        body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-weight:300;line-height:1.6;overflow-x:hidden;}
+        body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
+        body::after{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background-image:radial-gradient(var(--border) 1px,transparent 1px);background-size:28px 28px;opacity:0.4;pointer-events:none;z-index:-1;}
+        a{text-decoration:none;color:inherit;transition:all 0.3s ease;}
+        img{max-width:100%;display:block;}
+        .container{max-width:1200px;margin:0 auto;padding:0 2rem;}
+        .section-padding{padding:7rem 0;}
+        .navbar{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:1.2rem 0;transition:all 0.3s ease;}
+        .navbar.scrolled{padding:0.8rem 0;background:rgba(14,14,16,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+        .nav-container{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center;}
+        .logo{font-family:var(--font-mono);color:var(--accent);font-size:1.1rem;}
+        .nav-links{display:flex;gap:2rem;}
+        .nav-links a{font-family:var(--font-body);font-size:0.75rem;font-weight:500;text-transform:uppercase;letter-spacing:2px;color:var(--muted);position:relative;}
+        .hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:7rem 2rem 4rem 2rem;overflow:hidden;}
+        .hero-content{max-width:1200px;margin:0 auto;width:100%;position:relative;z-index:2;}
+        .hero-title{font-family:var(--font-display);font-size:clamp(2.5rem,10vw,9rem);font-weight:800;letter-spacing:-0.04em;line-height:0.95;margin-bottom:1.5rem;}
+        .hero-line-1{display:block;color:var(--white);}
+        .hero-line-2{display:block;color:var(--text);}
+        .btn-primary{background:var(--accent);color:#fff;padding:0.85rem 2rem;font-family:var(--font-body);font-weight:600;text-decoration:none;display:inline-block;border:2px solid var(--accent);}
     </style>
 
     <!-- Main Stylesheet -->
@@ -384,7 +321,7 @@
         <h1 class="hero-title">
             <span class="hero-line-1">MUHAMMAD SAAD</span>
             <span class="hero-line-2">ANDROID DEVELOPER</span>
-            <span class="hero-line-3" style="font-size: clamp(1.2rem, 3vw, 2.5rem); -webkit-text-stroke: none;">BUILDING SCALABLE APPS WITH KOTLIN &amp; FIREBASE</span>
+            <span class="hero-line-3">BUILDING SCALABLE APPS WITH KOTLIN &amp; FIREBASE</span>
         </h1>
         <div class="hero-rule"></div>
         <p class="hero-subtitle">I'm Muhammad Saad, an Android developer specializing in Kotlin, Jetpack Compose, and Firebase backend development. With 5+ published projects using MVVM architecture and clean code principles, I build scalable mobile applications that solve real-world problems. Currently open to freelance and full-time opportunities.</p>
@@ -423,7 +360,7 @@
                     <div class="avatar-border"></div>
                 </div>
                 <p class="about-text-p">I'm an Android developer who builds real-world mobile applications using Kotlin, Jetpack Compose, and Firebase backends. I focus on implementing clean architecture guidelines (MVVM), local SQLite databases (Room), and secure user authentication flows.</p>
-                <p class="about-text-p">As a Software Engineering graduate from <a href="https://sahiwal.comsats.edu.pk/" target="_blank" rel="noopener noreferrer" style="color: var(--android); border-bottom: 1px dashed var(--android);">COMSATS University Islamabad, Sahiwal Campus</a>, I balance technical logic with user-centered interface principles, backed by my certifications in UI design and app development.</p>
+                <p class="about-text-p">As a Software Engineering graduate from <a href="https://sahiwal.comsats.edu.pk/" target="_blank" rel="noopener noreferrer" style="color: var(--accent); border-bottom: 1px dashed var(--accent);">COMSATS University Islamabad, Sahiwal Campus</a>, I balance technical logic with user-centered interface principles, backed by my certifications in UI design and app development.</p>
                 <div class="stat-row">
                     <div class="stat-box">
                         <div class="stat-val">5+</div>
@@ -442,9 +379,6 @@
             <div class="reveal-right">
                 <div class="terminal">
                     <div class="terminal-bar">
-                        <span class="terminal-dot r"></span>
-                        <span class="terminal-dot y"></span>
-                        <span class="terminal-dot g"></span>
                         <span class="terminal-path">~/portfolio</span>
                     </div>
                     <div class="terminal-body">
@@ -461,7 +395,7 @@
                         <p><span class="out">&rarr; shipped v1.0</span></p>
                         <br>
                         <p><span class="cmd">$ status</span></p>
-                        <p><span class="out">&rarr; Open to opportunities<span class="terminal-cursor"></span></span></p>
+                        <p><span class="out">&rarr; Open to opportunities</span></p>
                     </div>
                 </div>
             </div>
@@ -509,16 +443,6 @@
                     <span class="pill lang-pill">Java</span>
                     <span class="pill lang-pill">SQL</span>
                 </div>
-                <div class="skills-progress-container">
-                    <div class="skill-progress-item">
-                        <div class="skill-info"><span>Kotlin</span><span>95%</span></div>
-                        <div class="skill-bar-track"><div class="skill-bar-fill" data-percent="95"></div></div>
-                    </div>
-                    <div class="skill-progress-item">
-                        <div class="skill-info"><span>Java</span><span>80%</span></div>
-                        <div class="skill-bar-track"><div class="skill-bar-fill" data-percent="80"></div></div>
-                    </div>
-                </div>
             </div>
             <!-- Android -->
             <div class="skill-group-card reveal">
@@ -533,24 +457,6 @@
                     <span class="pill android-pill">Retrofit</span>
                     <span class="pill android-pill">Coroutines</span>
                 </div>
-                <div class="skills-progress-container">
-                    <div class="skill-progress-item">
-                        <div class="skill-info"><span>Jetpack Compose</span><span>90%</span></div>
-                        <div class="skill-bar-track"><div class="skill-bar-fill" data-percent="90"></div></div>
-                    </div>
-                    <div class="skill-progress-item">
-                        <div class="skill-info"><span>MVVM Architecture</span><span>90%</span></div>
-                        <div class="skill-bar-track"><div class="skill-bar-fill" data-percent="90"></div></div>
-                    </div>
-                    <div class="skill-progress-item">
-                        <div class="skill-info"><span>Room Database</span><span>80%</span></div>
-                        <div class="skill-bar-track"><div class="skill-bar-fill" data-percent="80"></div></div>
-                    </div>
-                    <div class="skill-progress-item">
-                        <div class="skill-info"><span>Coroutines</span><span>85%</span></div>
-                        <div class="skill-bar-track"><div class="skill-bar-fill" data-percent="85"></div></div>
-                    </div>
-                </div>
             </div>
             <!-- Tools -->
             <div class="skill-group-card reveal">
@@ -563,16 +469,6 @@
                     <span class="pill tool-pill">GitHub</span>
                     <span class="pill tool-pill">Firebase</span>
                     <span class="pill tool-pill">Figma</span>
-                </div>
-                <div class="skills-progress-container">
-                    <div class="skill-progress-item">
-                        <div class="skill-info"><span>Firebase Platform</span><span>85%</span></div>
-                        <div class="skill-bar-track"><div class="skill-bar-fill" data-percent="85"></div></div>
-                    </div>
-                    <div class="skill-progress-item">
-                        <div class="skill-info"><span>Android Studio</span><span>95%</span></div>
-                        <div class="skill-bar-track"><div class="skill-bar-fill" data-percent="95"></div></div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -589,7 +485,7 @@
             <div>
                 <div class="project-number">01</div>
                 <h3 class="project-name">GiveEase — Verified Donation Platform</h3>
-                <p class="project-desc">GiveEase is a verified donation platform connecting donors with trusted NGOs. It facilitates seamless, transparent contributions ranging from monetary funds to blood donations and essential goods, all while providing real-time impact tracking. Read the full <a href="/blog/giveease-case-study" style="color: var(--android); text-decoration: underline;">GiveEase Android app development case study</a> for details on the architecture.</p>
+                <p class="project-desc">GiveEase is a verified donation platform connecting donors with trusted NGOs. It facilitates seamless, transparent contributions ranging from monetary funds to blood donations and essential goods, all while providing real-time impact tracking. Read the full <a href="/blog/giveease-case-study" style="color: var(--accent); text-decoration: underline;">GiveEase Android app development case study</a> for details on the architecture.</p>
                 <div class="project-challenge">
                     <span class="challenge-label">&#9889; Problem Solved:</span>
                     Donors today struggle to trust donation campaigns appearing on social media. GiveEase eliminates this trust gap by requiring government-issued ID verification for donors and official NGO registrations reviewed by an admin. Every donation is tracked with real-time impact proof.
@@ -701,7 +597,7 @@
                 <p class="project-desc">CampusConnect is a social campus application built with Kotlin, XML, MVVM Clean Architecture, Hilt dependency injection, Firebase, and Room. It features an integrated AI assistant powered by Gemini 2.5 Flash-Lite via Cloudflare Workers and is paired with a live web admin console for moderation.</p>
                 <div class="project-challenge">
                     <span class="challenge-label">&#9889; Problem Solved:</span>
-                    University campuses lack a unified digital hub for verified announcements, student collaboration, and AI-driven course support. CampusConnect unifies real-time feeds with an admin management console deployed live at <a href="https://campusconnect71x75.web.app/" target="_blank" rel="noopener noreferrer" style="color: var(--android); text-decoration: underline;">campusconnect71x75.web.app</a>.
+                    University campuses lack a unified digital hub for verified announcements, student collaboration, and AI-driven course support. CampusConnect unifies real-time feeds with an admin management console deployed live at <a href="https://campusconnect71x75.web.app/" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: underline;">campusconnect71x75.web.app</a>.
                 </div>
                 <div class="project-meta">ROLE &rarr; <span>Full Stack &amp; Android Lead</span> &nbsp;&nbsp; YEAR &rarr; <span>2025-2026</span></div>
                 <div class="project-tags"><span>Kotlin</span><span>MVVM Clean</span><span>Hilt</span><span>Firebase</span><span>Room</span><span>Gemini AI</span></div>
@@ -977,7 +873,7 @@
         <div class="footer-logo">&lt; Muhammad Saad /&gt;</div>
         <div class="footer-right">Deploy on Firebase Hosting · 2026</div>
     </div>
-    <div class="footer-center"><a href="/privacy" style="color: var(--android); text-decoration: underline;">Privacy Policy</a> · Designed &amp; Developed by Saad</div>
+    <div class="footer-center"><a href="/privacy" style="color: var(--accent); text-decoration: underline;">Privacy Policy</a> · Designed &amp; Developed by Saad</div>
 </footer>
 
 <!-- Dark/Light Mode Toggle -->
@@ -1023,7 +919,7 @@
     font-family: inherit;
   }
   #ai-chat-btn {
-    background: #2563eb;
+    background: var(--accent);
     color: white;
     border: none;
     border-radius: 50%;
@@ -1039,7 +935,7 @@
   }
   #ai-chat-btn:hover {
     transform: scale(1.05);
-    background: #1d4ed8;
+    background: var(--accent-hover);
   }
   #ai-chat-panel {
     display: none;
@@ -1047,8 +943,8 @@
     width: 350px;
     height: min(440px, 70dvh);
     max-height: 70svh;
-    background: #060608;
-    border: 1px solid #333;
+    background: var(--bg);
+    border: 1px solid var(--border);
     border-radius: 12px;
     box-shadow: 0 8px 24px rgba(0,0,0,0.5);
     overflow: hidden;
@@ -1060,27 +956,27 @@
     display: flex;
   }
   #ai-chat-header {
-    background: #1a1a1f;
+    background: var(--surface);
     padding: 15px;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
   #ai-chat-header span {
     font-weight: 600;
-    color: #fff;
+    color: var(--text);
     font-size: 16px;
   }
   #ai-chat-close {
     background: transparent;
     border: none;
-    color: #aaa;
+    color: var(--muted);
     cursor: pointer;
     font-size: 20px;
   }
   #ai-chat-close:hover {
-    color: #fff;
+    color: var(--text);
   }
   #ai-chat-messages {
     flex: 1;
@@ -1100,31 +996,31 @@
   }
   .user-msg {
     align-self: flex-end;
-    background: #2563eb;
+    background: var(--accent);
     color: white;
     border-bottom-right-radius: 2px;
   }
   .ai-msg {
     align-self: flex-start;
-    background: #1a1a1f;
-    color: #eee;
-    border: 1px solid #333;
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
     border-bottom-left-radius: 2px;
   }
   #ai-chat-input-area {
     display: flex;
     padding: 12px;
-    background: #1a1a1f;
-    border-top: 1px solid #333;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
     gap: 8px;
     position: sticky;
     bottom: 0;
   }
   #ai-chat-input {
     flex: 1;
-    background: #060608;
-    border: 1px solid #444;
-    color: white;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
     padding: 10px 14px;
     border-radius: 20px;
     outline: none;
@@ -1132,10 +1028,10 @@
     font-size: 14px;
   }
   #ai-chat-input:focus {
-    border-color: #2563eb;
+    border-color: var(--accent);
   }
   #ai-chat-send {
-    background: #2563eb;
+    background: var(--accent);
     color: white;
     border: none;
     border-radius: 50%;
@@ -1147,20 +1043,20 @@
     justify-content: center;
   }
   #ai-chat-send:disabled {
-    background: #444;
+    background: var(--border);
     cursor: not-allowed;
   }
   #ai-chat-typing {
     display: none;
     font-size: 12px;
-    color: #888;
+    color: var(--muted);
     padding-left: 5px;
   }
-  @media (max-width: 480px) {
+  @media (max-width: 768px) {
     #ai-chat-widget {
       bottom: calc(75px + env(safe-area-inset-bottom));
       right: 1rem;
-      z-index: 99999;
+      z-index: 9999;
     }
     #ai-chat-panel {
       width: 320px;
