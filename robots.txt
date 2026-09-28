@@ -3,4 +3,4 @@ Allow: /
 Allow: /blog/
 Allow: /privacy
 Allow: /llms.txt
-Sitemap: https://muhammadsaad-portfolio.web.app/sitemap.xml
+Sitemap: https://saadev.site/sitemap.xml

@@ -9,14 +9,14 @@
 - **Certifications**: Meta Android Developer Certificate, Google UX Design Professional Certificate
 
 ## Portfolio Projects & Technical Case Studies
-- [GiveEase Case Study](https://muhammadsaad-portfolio.web.app/blog/giveease-case-study): Engineering breakdown of a verified Android donation platform using Kotlin, Firebase Firestore, and MVVM architecture.
-- [SpendWise Case Study](https://muhammadsaad-portfolio.web.app/blog/spendwise-case-study): Technical architecture guide for an offline-first Android expense tracker using Room SQLite database and Jetpack Compose.
-- [Jetpack Compose vs XML Article](https://muhammadsaad-portfolio.web.app/blog/jetpack-compose-vs-xml): Performance and syntax comparison between declarative compose layouts and imperative XML view hierarchies.
+- [GiveEase Case Study](https://saadev.site/blog/giveease-case-study): Engineering breakdown of a verified Android donation platform using Kotlin, Firebase Firestore, and MVVM architecture.
+- [SpendWise Case Study](https://saadev.site/blog/spendwise-case-study): Technical architecture guide for an offline-first Android expense tracker using Room SQLite database and Jetpack Compose.
+- [Jetpack Compose vs XML Article](https://saadev.site/blog/jetpack-compose-vs-xml): Performance and syntax comparison between declarative compose layouts and imperative XML view hierarchies.
 - [CampusConnect Admin Console](https://campusconnect71x75.web.app/): Social campus application featuring Gemini 2.5 Flash-Lite AI integration via Cloudflare Workers and a React admin moderation panel.
 - [NoteSync Repository](https://github.com/chsaad-dev/NoteSync): Offline-first encrypted notes application built with Flutter, Riverpod, Isar DB, and AES biometrics.
 
 ## Contact & Links
-- **Portfolio Website**: https://muhammadsaad-portfolio.web.app/
+- **Portfolio Website**: https://saadev.site/
 - **GitHub Profile**: https://github.com/chsaad-dev/
 - **LinkedIn Profile**: https://www.linkedin.com/in/muhammad-saad075/
 - **Email Contact**: saaddevlabs@gmail.com

@@ -27,7 +27,7 @@ export const PROFILE = {
     github: "github.com/chsaad-dev",
     linkedin: "linkedin.com/in/muhammad-saad075",
     email: "saaddevlabs@gmail.com",
-    resume: "muhammadsaad-portfolio.web.app/muhammad-saad-android-developer-resume.pdf"
+    resume: "saadev.site/muhammad-saad-android-developer-resume.pdf"
   },
   availability: "Open to freelance and full-time Android roles"
 };
