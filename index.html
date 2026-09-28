@@ -34,9 +34,14 @@
     <meta name="twitter:description" content="Kotlin & Firebase expert. View my portfolio of 5+ Android apps.">
     <meta name="twitter:image" content="https://saadev.site/assets/og-image.jpg">
 
-    <!-- Favicons -->
+    <!-- Favicons & PWA -->
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Saad Portfolio">
 
     <!-- Google Analytics (gtag.js) Deferred for Maximum Mobile Speed -->
     <script>
@@ -305,6 +310,10 @@
             <a href="#education">Education</a>
             <a href="#contact">Contact</a>
         </div>
+        <button class="pwa-install-btn" id="pwa-install-btn" aria-label="Install Portfolio App" type="button" style="display: none;">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <span>Install App</span>
+        </button>
         <button class="hamburger" aria-label="Toggle Navigation Menu" type="button">
             <span></span><span></span><span></span>
         </button>
@@ -705,19 +714,49 @@
     </div>
 </section>
 
-<!-- GitHub Activity Heatmap -->
+<!-- GitHub Activity & Open Source -->
 <section class="github-section section-padding" id="github-activity" aria-label="Open Source GitHub Activity">
     <div class="container">
         <div class="section-label reveal">// OPEN SOURCE</div>
-        <h2 class="section-heading reveal">GitHub Activity</h2>
-        <div class="github-heatmap-wrapper reveal">
-            <div class="github-heatmap" role="img" aria-label="GitHub contribution heatmap showing coding activity over the past year"></div>
-            <div class="github-stats-row">
-                <div class="github-stat"><strong>10+</strong> Public Repos</div>
-                <div class="github-stat"><strong>5+</strong> Projects Shipped</div>
-                <div class="github-stat"><strong>Kotlin</strong> Primary Language</div>
+        <div class="github-header-row reveal">
+            <div>
+                <h2 class="section-heading">Live GitHub Activity</h2>
+                <p class="github-sub">Real-time open source updates and contribution metrics from <a href="https://github.com/chsaad-dev" target="_blank" rel="noopener noreferrer" class="gh-user-link">@chsaad-dev</a></p>
             </div>
-            <a href="https://github.com/chsaad-dev/" target="_blank" rel="noopener noreferrer" class="github-link-btn">View Full Profile on GitHub &rarr;</a>
+            <div class="gh-live-status-pill">
+                <span class="gh-live-dot"></span>
+                <span>Live Feed</span>
+            </div>
+        </div>
+
+        <div class="github-heatmap-wrapper reveal">
+            <!-- Live Recent Repository Banner -->
+            <div class="github-live-card" id="github-live-card">
+                <div class="gh-card-header">
+                    <span class="gh-card-tag"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"/></svg> Latest Activity</span>
+                    <span class="gh-card-time" id="gh-card-time">Recently active</span>
+                </div>
+                <div class="gh-card-body">
+                    <a href="https://github.com/chsaad-dev/Portfolio" target="_blank" rel="noopener noreferrer" class="gh-repo-title" id="gh-repo-title">chsaad-dev/Portfolio</a>
+                    <p class="gh-repo-desc" id="gh-repo-desc">Production Android &amp; Web Developer Portfolio with offline PWA, Kotlin showcase, and modern architecture.</p>
+                </div>
+                <div class="gh-card-footer">
+                    <span class="gh-lang-pill"><span class="gh-lang-dot"></span> <span id="gh-repo-lang">Kotlin / Web</span></span>
+                    <a href="https://github.com/chsaad-dev/Portfolio" target="_blank" rel="noopener noreferrer" class="gh-card-link" id="gh-card-link">View Repository &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Heatmap header label -->
+            <div class="gh-heatmap-title">Contribution Graph &middot; Past 365 Days</div>
+            <div class="github-heatmap" role="img" aria-label="GitHub contribution heatmap showing coding activity over the past year"></div>
+            
+            <div class="github-stats-row">
+                <div class="github-stat"><strong id="gh-stat-repos">9+</strong> Public Repos</div>
+                <div class="github-stat"><strong id="gh-stat-shipped">5+</strong> Projects Shipped</div>
+                <div class="github-stat"><strong>Kotlin</strong> Core Language</div>
+                <div class="github-stat"><strong>Jetpack Compose</strong> UI Stack</div>
+            </div>
+            <a href="https://github.com/chsaad-dev/" target="_blank" rel="noopener noreferrer" class="github-link-btn" id="gh-profile-btn">Explore Repos on GitHub &rarr;</a>
         </div>
     </div>
 </section>

@@ -263,24 +263,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 13. GitHub Contribution Heatmap (simulated from real activity patterns)
+    // 13. Live GitHub Activity & Contribution Heatmap
     const heatmapContainer = document.querySelector('.github-heatmap');
     if (heatmapContainer) {
-        // Generate 364 cells (52 weeks x 7 days) with realistic activity distribution
-        const activityWeights = [0, 0, 0, 0, 1, 1, 1, 2, 2, 3, 4]; // weighted toward lower activity
+        const activityWeights = [0, 0, 0, 0, 1, 1, 1, 2, 2, 3, 4];
         for (let i = 0; i < 364; i++) {
             const cell = document.createElement('div');
             cell.classList.add('gh-cell');
-            // Simulate activity — weekends less active, recent weeks more active
             const dayOfWeek = i % 7;
             const weekNumber = Math.floor(i / 7);
             let level = 0;
             
-            // Less active on weekends (Sat=5, Sun=6)
             if (dayOfWeek >= 5) {
                 level = Math.random() > 0.75 ? activityWeights[Math.floor(Math.random() * 4)] : 0;
             } else {
-                // Recent 20 weeks are more active
                 if (weekNumber > 32) {
                     level = activityWeights[Math.floor(Math.random() * activityWeights.length)];
                 } else {
@@ -291,6 +287,96 @@ document.addEventListener('DOMContentLoaded', () => {
             heatmapContainer.appendChild(cell);
         }
     }
+
+    // Live GitHub Data Fetcher with LocalStorage Caching (20 min TTL)
+    async function initLiveGitHub() {
+        const repoTitleEl = document.getElementById('gh-repo-title');
+        const repoDescEl = document.getElementById('gh-repo-desc');
+        const repoLangEl = document.getElementById('gh-repo-lang');
+        const repoLinkEl = document.getElementById('gh-card-link');
+        const repoTimeEl = document.getElementById('gh-card-time');
+        const statReposEl = document.getElementById('gh-stat-repos');
+        const profileBtnEl = document.getElementById('gh-profile-btn');
+
+        if (!repoTitleEl) return;
+
+        function formatRelativeTime(dateStr) {
+            if (!dateStr) return 'Recently';
+            const diffMs = Date.now() - new Date(dateStr).getTime();
+            const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+            const diffDays = Math.floor(diffHours / 24);
+            if (diffHours < 1) return 'Just now';
+            if (diffHours < 24) return `${diffHours}h ago`;
+            if (diffDays === 1) return 'Yesterday';
+            if (diffDays < 30) return `${diffDays}d ago`;
+            return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        }
+
+        function applyGitHubData(data) {
+            if (data.reposCount && statReposEl) {
+                statReposEl.textContent = `${data.reposCount}`;
+                if (profileBtnEl) profileBtnEl.textContent = `Explore ${data.reposCount} Repos on GitHub →`;
+            }
+            if (data.latestRepo) {
+                repoTitleEl.textContent = data.latestRepo.fullName;
+                repoTitleEl.href = data.latestRepo.url;
+                if (data.latestRepo.desc) repoDescEl.textContent = data.latestRepo.desc;
+                if (data.latestRepo.lang) repoLangEl.textContent = data.latestRepo.lang;
+                if (repoLinkEl) repoLinkEl.href = data.latestRepo.url;
+                if (repoTimeEl) repoTimeEl.textContent = `Updated ${formatRelativeTime(data.latestRepo.pushedAt)}`;
+            }
+        }
+
+        const CACHE_KEY = 'saad_gh_activity_v1';
+        const CACHE_TTL = 20 * 60 * 1000;
+        try {
+            const cached = localStorage.getItem(CACHE_KEY);
+            if (cached) {
+                const parsed = JSON.parse(cached);
+                if (Date.now() - parsed.timestamp < CACHE_TTL) {
+                    applyGitHubData(parsed.data);
+                    return;
+                }
+            }
+        } catch (e) {}
+
+        try {
+            const [userRes, reposRes] = await Promise.all([
+                fetch('https://api.github.com/users/chsaad-dev'),
+                fetch('https://api.github.com/users/chsaad-dev/repos?sort=pushed&per_page=5')
+            ]);
+
+            if (userRes.ok && reposRes.ok) {
+                const userData = await userRes.json();
+                const reposData = await reposRes.json();
+
+                let latestRepo = null;
+                if (Array.isArray(reposData) && reposData.length > 0) {
+                    const primary = reposData.find(r => !r.fork) || reposData[0];
+                    latestRepo = {
+                        fullName: primary.full_name,
+                        url: primary.html_url,
+                        desc: primary.description || 'Android application and open source development.',
+                        lang: primary.language || 'Kotlin',
+                        pushedAt: primary.pushed_at
+                    };
+                }
+
+                const payload = {
+                    reposCount: userData.public_repos || 9,
+                    latestRepo
+                };
+
+                applyGitHubData(payload);
+                try {
+                    localStorage.setItem(CACHE_KEY, JSON.stringify({ timestamp: Date.now(), data: payload }));
+                } catch (e) {}
+            }
+        } catch (err) {
+            console.debug('GitHub live sync deferred:', err);
+        }
+    }
+    initLiveGitHub();
 
     // 14. Resume Preview Modal
     const resumePreviewBtn = document.getElementById('resume-preview-btn');
@@ -454,6 +540,48 @@ document.addEventListener('DOMContentLoaded', () => {
             if (blob2) blob2.style.transform = 'translate3d(0, 0, 0)';
         });
     }
+
+    // 19. Progressive Web App (PWA) — Service Worker Registration & Install Prompt
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js').then((reg) => {
+                console.log('PWA ServiceWorker ready with scope:', reg.scope);
+            }).catch((err) => {
+                console.debug('PWA ServiceWorker notice:', err);
+            });
+        });
+    }
+
+    let deferredInstallPrompt = null;
+    const pwaInstallBtn = document.getElementById('pwa-install-btn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredInstallPrompt = e;
+        if (pwaInstallBtn) {
+            pwaInstallBtn.style.display = 'inline-flex';
+        }
+    });
+
+    if (pwaInstallBtn) {
+        pwaInstallBtn.addEventListener('click', async () => {
+            if (!deferredInstallPrompt) return;
+            deferredInstallPrompt.prompt();
+            const { outcome } = await deferredInstallPrompt.userChoice;
+            if (outcome === 'accepted') {
+                pwaInstallBtn.style.display = 'none';
+                if (typeof gtag === 'function') {
+                    gtag('event', 'pwa_installed', { outcome: 'accepted' });
+                }
+            }
+            deferredInstallPrompt = null;
+        });
+    }
+
+    window.addEventListener('appinstalled', () => {
+        if (pwaInstallBtn) pwaInstallBtn.style.display = 'none';
+        deferredInstallPrompt = null;
+    });
 
     initCardTilt();
     initHeroParallax();

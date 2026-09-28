@@ -1,0 +1,63 @@
+{
+  "id": "/?source=pwa",
+  "name": "Muhammad Saad | Android Developer",
+  "short_name": "Saad Portfolio",
+  "description": "Portfolio of Muhammad Saad — Android Developer specializing in Kotlin, Jetpack Compose, MVVM Architecture, and Firebase.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#060608",
+  "theme_color": "#060608",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icon-maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Featured Projects",
+      "short_name": "Projects",
+      "description": "View Android projects built with Kotlin and Jetpack Compose",
+      "url": "/#projects",
+      "icons": [{ "src": "/assets/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Technical Articles",
+      "short_name": "Blog",
+      "description": "Read Android case studies and architecture guides",
+      "url": "/#blog",
+      "icons": [{ "src": "/assets/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Get in Touch",
+      "short_name": "Contact",
+      "description": "Contact Muhammad Saad for Android development roles",
+      "url": "/#contact",
+      "icons": [{ "src": "/assets/icon-192.png", "sizes": "192x192" }]
+    }
+  ],
+  "categories": ["portfolio", "productivity", "utilities"],
+  "prefer_related_applications": false
+}
