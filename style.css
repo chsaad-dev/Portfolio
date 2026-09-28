@@ -406,14 +406,14 @@ img { max-width:100%; display:block; }
 }
 
 /* ===== PROJECTS ===== */
-#projects .container {
-    perspective: 1000px;
-}
 .project-item {
     display:grid; grid-template-columns:1fr 1fr; gap:3rem;
     align-items:center; padding:4rem 0;
     border-bottom:1px solid var(--border);
-    transform-style: preserve-3d;
+    transition: border-color 0.35s ease;
+}
+.project-item:hover {
+    border-bottom-color: rgba(37, 99, 235, 0.35);
 }
 .project-item.reverse { direction:rtl; }
 .project-item.reverse > * { direction:ltr; }
@@ -422,6 +422,12 @@ img { max-width:100%; display:block; }
     font-family:var(--font-display); font-size:8rem; font-weight:800;
     color:var(--surface2); line-height:1; margin-bottom:-1rem;
     position:relative; z-index:0;
+    transition: color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    user-select: none;
+}
+.project-item:hover .project-number {
+    color: rgba(37, 99, 235, 0.16);
+    transform: translateY(-3px);
 }
 .project-name {
     font-family:var(--font-ui); font-size:2rem; font-weight:800;
@@ -448,6 +454,11 @@ img { max-width:100%; display:block; }
     background:var(--surface); border-left:2px solid var(--accent);
     padding:0.8rem 1rem; margin-bottom:1rem;
     font-size:0.9rem; color:var(--muted); line-height:1.6;
+    transition: background 0.3s ease, border-left-color 0.3s ease;
+}
+.project-item:hover .project-challenge {
+    background: var(--surface2);
+    border-left-color: var(--accent-hover);
 }
 .challenge-label {
     color:var(--accent); font-family:var(--font-mono);
@@ -460,7 +471,14 @@ img { max-width:100%; display:block; }
 
 .project-link {
     font-family:var(--font-body); font-size:0.85rem; font-weight:500;
-    color:var(--accent); position:relative; display:inline-block;
+    color:var(--accent); position:relative; display:inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+.project-link:hover {
+    color: var(--accent-hover);
+    transform: translateX(3px);
 }
 .project-link::after {
     content:''; position:absolute; bottom:-2px; left:0;
@@ -481,14 +499,28 @@ img { max-width:100%; display:block; }
 
 .project-mockup {
     background:var(--surface); border:1px solid var(--border);
-    border-radius:20px; max-width:260px; padding: 10px;
+    border-radius:22px; max-width:260px; padding: 10px;
     margin:0 auto; display:block; position:relative;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    box-shadow: 0 16px 45px rgba(0,0,0,0.35);
+    cursor: pointer;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.3s ease;
+}
+.project-mockup:hover {
+    transform: translateY(-8px);
+    border-color: rgba(37, 99, 235, 0.55);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45), 0 0 30px rgba(37, 99, 235, 0.16);
 }
 .project-mockup .mockup-inner {
-    width:100%; border-radius:12px; overflow:hidden;
+    width:100%; border-radius:14px; overflow:hidden;
     background: linear-gradient(135deg, var(--surface2), var(--border));
     font-family:var(--font-mono); font-size:0.8rem; color:var(--muted);
+}
+.project-mockup .mockup-inner img {
+    width: 100%; height: auto; display: block;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.project-mockup:hover .mockup-inner img {
+    transform: scale(1.03);
 }
 
 /* ===== FIREBASE SHOWCASE ===== */
@@ -1519,15 +1551,6 @@ html.light-mode ::selection { background: var(--accent); color: #fff; }
 }
 
 /* ===== MOCKUP INTERACTION HINTS ===== */
-.project-mockup {
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-}
-.project-mockup:hover {
-    transform: translateY(-4px) scale(1.02);
-    border-color: var(--accent);
-    box-shadow: 0 25px 70px rgba(37, 99, 235, 0.25);
-}
 .mockup-zoom-hint {
     position: absolute;
     bottom: 18px;

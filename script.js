@@ -530,7 +530,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         if (window.matchMedia('(pointer: coarse)').matches) return; // Touch devices
 
-        const cards = document.querySelectorAll('.project-item, .service-card, .testimonial-card, .edu-card');
+        // Exclude project-item from 3D tilt (kept clean and grounded)
+        const cards = document.querySelectorAll('.service-card, .testimonial-card, .edu-card');
         const MAX_ROTATION = 5; // ±5deg subtle clamp
 
         cards.forEach(card => {
