@@ -141,14 +141,83 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 9.4. Form Submission Tracking
-    const contactForm = document.querySelector('.contact-form');
+    // 9.4. Asynchronous AJAX Contact Form Submission with Web3Forms & Analytics
+    const contactForm = document.getElementById('contact-form') || document.querySelector('.contact-form');
+    const formStatus = document.getElementById('form-status');
+    const submitBtn = document.getElementById('btn-submit');
+    const submitBtnSpinner = document.getElementById('btn-spinner');
+    const submitBtnText = document.getElementById('btn-text');
+
     if (contactForm) {
-        contactForm.addEventListener('submit', () => {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Track submission attempt
             if (typeof gtag === 'function') {
                 gtag('event', 'contact_form_submit', {
                     'contact_type': 'Portfolio Contact Form'
                 });
+            }
+
+            // Reset status
+            if (formStatus) {
+                formStatus.className = 'form-status';
+                formStatus.style.display = 'none';
+                formStatus.innerHTML = '';
+            }
+
+            // Button loading state
+            if (submitBtn) submitBtn.disabled = true;
+            if (submitBtnSpinner) submitBtnSpinner.style.display = 'inline-block';
+            if (submitBtnText) submitBtnText.textContent = 'SENDING...';
+
+            const formData = new FormData(contactForm);
+            const object = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(object)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    if (formStatus) {
+                        formStatus.className = 'form-status success';
+                        formStatus.innerHTML = '<span>&#10003; <strong>Message Sent!</strong> Thanks for reaching out. Saad will get back to you shortly.</span>';
+                        formStatus.style.display = 'flex';
+                    }
+                    contactForm.reset();
+
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'contact_form_success', {
+                            'contact_type': 'Portfolio Contact Form'
+                        });
+                    }
+                } else {
+                    throw new Error(result.message || 'Submission failed');
+                }
+            } catch (err) {
+                if (formStatus) {
+                    formStatus.className = 'form-status error';
+                    formStatus.innerHTML = '<span>&#9888; <strong>Error sending message.</strong> Please email directly at <a href="mailto:saaddevlabs@gmail.com" style="color: inherit; text-decoration: underline;">saaddevlabs@gmail.com</a></span>';
+                    formStatus.style.display = 'flex';
+                }
+
+                if (typeof gtag === 'function') {
+                    gtag('event', 'contact_form_error', {
+                        'error_message': err.message || 'Network error'
+                    });
+                }
+            } finally {
+                if (submitBtn) submitBtn.disabled = false;
+                if (submitBtnSpinner) submitBtnSpinner.style.display = 'none';
+                if (submitBtnText) submitBtnText.innerHTML = 'SEND MESSAGE &rarr;';
             }
         });
     }
@@ -581,6 +650,190 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('appinstalled', () => {
         if (pwaInstallBtn) pwaInstallBtn.style.display = 'none';
         deferredInstallPrompt = null;
+    });
+
+    // 20. Project Screenshot Mobile Lightbox Gallery
+    const lightboxModal = document.getElementById('lightbox-modal');
+    const lightboxCloseBtn = document.getElementById('lightbox-close-btn');
+    const lightboxPrevBtn = document.getElementById('lightbox-prev-btn');
+    const lightboxNextBtn = document.getElementById('lightbox-next-btn');
+    const lightboxBadge = document.getElementById('lightbox-badge');
+    const lightboxTitle = document.getElementById('lightbox-title');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxRepoLink = document.getElementById('lightbox-repo-link');
+    const lightboxApkLink = document.getElementById('lightbox-apk-link');
+    const lightboxDots = document.querySelectorAll('.lightbox-dot');
+
+    const projectScreenshots = [
+        {
+            badge: "PROJECT 01 · TEAM LEAD FYP",
+            title: "GiveEase — Verified Donation Platform",
+            img: "/assets/giveease.jpeg",
+            alt: "GiveEase Android donation app high resolution interface",
+            caption: "Multi-role verified donation ecosystem built with Kotlin, Firebase Auth, Cloud Firestore, and real-time impact proofs.",
+            github: "https://github.com/chsaad-dev/GiveEase",
+            apk: "https://github.com/chsaad-dev/GiveEase/releases/download/v1.0/GiveEase.apk",
+            apkLabel: "Download APK ↓"
+        },
+        {
+            badge: "PROJECT 02 · PERSONAL PROJECT",
+            title: "SpendWise — Offline Expense Tracker",
+            img: "/assets/spendwise.jpeg",
+            alt: "SpendWise Android expense tracker high resolution interface",
+            caption: "Modern offline-first fintech expense tracker built with Jetpack Compose, Material 3, Room SQLite, and local PDF reports.",
+            github: "https://github.com/chsaad-dev/SpendWise",
+            apk: "https://github.com/chsaad-dev/SpendWise/releases/download/v1.0/SpendWise.apk",
+            apkLabel: "Download APK ↓"
+        },
+        {
+            badge: "PROJECT 03 · PERSONAL PROJECT",
+            title: "FindCircle — Lost & Found Community App",
+            img: "/assets/lostandfound.jpeg",
+            alt: "FindCircle Lost & Found mobile app high resolution interface",
+            caption: "Community lost & found platform featuring real-time location mapping, photo uploads, Coroutines, and Firebase Cloud Messaging.",
+            github: "https://github.com/chsaad-dev/FindCircle",
+            apk: "https://github.com/chsaad-dev/FindCircle/releases/download/v1.0/FindCircle.apk",
+            apkLabel: "Download APK ↓"
+        },
+        {
+            badge: "PROJECT 04 · FULL STACK & ANDROID LEAD",
+            title: "CampusConnect — Social Campus Platform & AI",
+            img: "/assets/campusconnect.jpeg",
+            alt: "CampusConnect Android social app high resolution interface",
+            caption: "Social campus platform with integrated Gemini 2.5 Flash-Lite AI assistant, Hilt DI, Room DB, and live web admin console.",
+            github: "https://github.com/chsaad-dev/CampusConnect",
+            apk: "https://campusconnect71x75.web.app/",
+            apkLabel: "Admin Console →"
+        },
+        {
+            badge: "PROJECT 05 · CROSS-PLATFORM ENGINEER",
+            title: "NoteSync — Encrypted Cloud Sync Notes",
+            img: "/assets/notesync.jpeg",
+            alt: "NoteSync Flutter encrypted notes app high resolution interface",
+            caption: "Offline-first notes application with biometric authentication, AES encryption, Isar local database, and Firebase sync.",
+            github: "https://github.com/chsaad-dev/NoteSync",
+            apk: null,
+            apkLabel: null
+        }
+    ];
+
+    let currentProjectIndex = 0;
+
+    function renderLightboxSlide(index) {
+        if (index < 0 || index >= projectScreenshots.length) return;
+        currentProjectIndex = index;
+        const data = projectScreenshots[index];
+
+        if (lightboxBadge) lightboxBadge.textContent = data.badge;
+        if (lightboxTitle) lightboxTitle.textContent = data.title;
+        if (lightboxCaption) lightboxCaption.textContent = data.caption;
+        if (lightboxRepoLink) {
+            lightboxRepoLink.href = data.github;
+        }
+
+        if (lightboxApkLink) {
+            if (data.apk) {
+                lightboxApkLink.href = data.apk;
+                lightboxApkLink.textContent = data.apkLabel || "View →";
+                lightboxApkLink.style.display = 'inline-flex';
+                if (data.apk.endsWith('.apk')) {
+                    lightboxApkLink.setAttribute('download', '');
+                    lightboxApkLink.removeAttribute('target');
+                } else {
+                    lightboxApkLink.removeAttribute('download');
+                    lightboxApkLink.setAttribute('target', '_blank');
+                    lightboxApkLink.setAttribute('rel', 'noopener noreferrer');
+                }
+            } else {
+                lightboxApkLink.style.display = 'none';
+            }
+        }
+
+        if (lightboxImg) {
+            lightboxImg.style.opacity = '0';
+            setTimeout(() => {
+                lightboxImg.src = data.img;
+                lightboxImg.alt = data.alt;
+                lightboxImg.style.opacity = '1';
+            }, 100);
+        }
+
+        lightboxDots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+
+        if (typeof gtag === 'function') {
+            gtag('event', 'lightbox_view_project', {
+                project_name: data.title,
+                slide_index: index
+            });
+        }
+    }
+
+    function openLightbox(index) {
+        if (!lightboxModal) return;
+        renderLightboxSlide(index);
+        lightboxModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        if (!lightboxModal) return;
+        lightboxModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Attach trigger clicks to Preview buttons and Mockups
+    document.querySelectorAll('.btn-preview-screens, .project-mockup').forEach(el => {
+        el.addEventListener('click', (e) => {
+            if (e.target.tagName.toLowerCase() === 'a') return;
+            const projectIdx = parseInt(el.getAttribute('data-project'), 10);
+            if (!isNaN(projectIdx)) {
+                openLightbox(projectIdx);
+            }
+        });
+
+        el.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const projectIdx = parseInt(el.getAttribute('data-project'), 10);
+                if (!isNaN(projectIdx)) {
+                    openLightbox(projectIdx);
+                }
+            }
+        });
+    });
+
+    if (lightboxCloseBtn) lightboxCloseBtn.addEventListener('click', closeLightbox);
+    if (lightboxPrevBtn) lightboxPrevBtn.addEventListener('click', () => {
+        renderLightboxSlide((currentProjectIndex - 1 + projectScreenshots.length) % projectScreenshots.length);
+    });
+    if (lightboxNextBtn) lightboxNextBtn.addEventListener('click', () => {
+        renderLightboxSlide((currentProjectIndex + 1) % projectScreenshots.length);
+    });
+
+    lightboxDots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => renderLightboxSlide(idx));
+    });
+
+    if (lightboxModal) {
+        lightboxModal.addEventListener('click', (e) => {
+            if (e.target === lightboxModal) {
+                closeLightbox();
+            }
+        });
+    }
+
+    window.addEventListener('keydown', (e) => {
+        if (!lightboxModal || !lightboxModal.classList.contains('active')) return;
+        if (e.key === 'Escape') {
+            closeLightbox();
+        } else if (e.key === 'ArrowLeft') {
+            renderLightboxSlide((currentProjectIndex - 1 + projectScreenshots.length) % projectScreenshots.length);
+        } else if (e.key === 'ArrowRight') {
+            renderLightboxSlide((currentProjectIndex + 1) % projectScreenshots.length);
+        }
     });
 
     initCardTilt();
