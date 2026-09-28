@@ -1,74 +1,98 @@
 {
-  "hosting": {
-    "public": ".",
-    "cleanUrls": true,
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      ".git/**",
-      "**/node_modules/**",
-      "scratch/**",
-      "package.json",
-      "package-lock.json"
-    ],
-    "headers": [
-      {
-        "source": "/sitemap.xml",
-        "headers": [
-          {"key": "Content-Type", "value": "application/xml"},
-          {"key": "Cache-Control", "value": "no-cache, no-store, must-revalidate"}
-        ]
-      },
-      {
-        "source": "/robots.txt",
-        "headers": [
-          {"key": "Content-Type", "value": "text/plain; charset=utf-8"},
-          {"key": "Cache-Control", "value": "no-cache, no-store, must-revalidate"}
-        ]
-      },
-      {
-        "source": "/llms.txt",
-        "headers": [
-          {"key": "Content-Type", "value": "text/plain; charset=utf-8"},
-          {"key": "Cache-Control", "value": "no-cache, no-store, must-revalidate"}
-        ]
-      },
-      {
-        "source": "**/*.@(jpg|jpeg|png|gif|webp|svg|avif)",
-        "headers": [
-          {"key": "Cache-Control", "value": "max-age=31536000"}
-        ]
-      },
-      {
-        "source": "**/*.@(js|css)",
-        "headers": [
-          {"key": "Cache-Control", "value": "no-cache"}
-        ]
-      },
-      {
-        "source": "**/*.pdf",
-        "headers": [
-          {"key": "Cache-Control", "value": "no-cache"}
-        ]
-      }
-    ],
-    "rewrites": [
-      {
-        "source": "/blog/giveease-case-study",
-        "destination": "/blog/giveease-case-study.html"
-      },
-      {
-        "source": "/blog/spendwise-case-study",
-        "destination": "/blog/spendwise-case-study.html"
-      },
-      {
-        "source": "/blog/jetpack-compose-vs-xml",
-        "destination": "/blog/jetpack-compose-vs-xml.html"
-      },
-      {
-        "source": "/privacy",
-        "destination": "/privacy.html"
-      }
-    ]
-  }
+  "hosting": [
+    {
+      "target": "saadev-portfolio",
+      "public": ".",
+      "cleanUrls": true,
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        ".git/**",
+        "**/node_modules/**",
+        "scratch/**",
+        "redirect-only/**",
+        "package.json",
+        "package-lock.json"
+      ],
+      "headers": [
+        {
+          "source": "/sitemap.xml",
+          "headers": [
+            {"key": "Content-Type", "value": "application/xml"},
+            {"key": "Cache-Control", "value": "no-cache, no-store, must-revalidate"}
+          ]
+        },
+        {
+          "source": "/robots.txt",
+          "headers": [
+            {"key": "Content-Type", "value": "text/plain; charset=utf-8"},
+            {"key": "Cache-Control", "value": "no-cache, no-store, must-revalidate"}
+          ]
+        },
+        {
+          "source": "/llms.txt",
+          "headers": [
+            {"key": "Content-Type", "value": "text/plain; charset=utf-8"},
+            {"key": "Cache-Control", "value": "no-cache, no-store, must-revalidate"}
+          ]
+        },
+        {
+          "source": "**/*.@(jpg|jpeg|png|gif|webp|svg|avif)",
+          "headers": [
+            {"key": "Cache-Control", "value": "max-age=31536000"}
+          ]
+        },
+        {
+          "source": "**/*.@(js|css)",
+          "headers": [
+            {"key": "Cache-Control", "value": "no-cache"}
+          ]
+        },
+        {
+          "source": "**/*.pdf",
+          "headers": [
+            {"key": "Cache-Control", "value": "no-cache"}
+          ]
+        }
+      ],
+      "rewrites": [
+        {
+          "source": "/blog/giveease-case-study",
+          "destination": "/blog/giveease-case-study.html"
+        },
+        {
+          "source": "/blog/spendwise-case-study",
+          "destination": "/blog/spendwise-case-study.html"
+        },
+        {
+          "source": "/blog/jetpack-compose-vs-xml",
+          "destination": "/blog/jetpack-compose-vs-xml.html"
+        },
+        {
+          "source": "/privacy",
+          "destination": "/privacy.html"
+        }
+      ]
+    },
+    {
+      "target": "muhammadsaad-portfolio",
+      "public": "redirect-only",
+      "ignore": [
+        "firebase.json",
+        "**/.*"
+      ],
+      "redirects": [
+        {
+          "source": "/",
+          "destination": "https://saadev.site/",
+          "type": 301
+        },
+        {
+          "source": "/:path*",
+          "destination": "https://saadev.site/:path",
+          "type": 301
+        }
+      ]
+    }
+  ]
 }

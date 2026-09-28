@@ -1,5 +1,18 @@
 {
   "projects": {
     "default": "muhammadsaad-portfolio"
-  }
+  },
+  "targets": {
+    "muhammadsaad-portfolio": {
+      "hosting": {
+        "saadev-portfolio": [
+          "saadev-portfolio"
+        ],
+        "muhammadsaad-portfolio": [
+          "muhammadsaad-portfolio"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
