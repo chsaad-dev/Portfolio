@@ -1162,17 +1162,17 @@
     gap: 12px;
   }
   .ai-msg, .user-msg {
-    max-width: 80%;
+    max-width: 88%;
     padding: 10px 14px;
     border-radius: 12px;
-    font-size: 14px;
-    line-height: 1.4;
+    font-size: 13.5px;
+    line-height: 1.48;
     word-wrap: break-word;
   }
   .user-msg {
     align-self: flex-end;
     background: var(--accent);
-    color: white;
+    color: #ffffff;
     border-bottom-right-radius: 2px;
   }
   .ai-msg {
@@ -1181,6 +1181,61 @@
     color: var(--text);
     border: 1px solid var(--border);
     border-bottom-left-radius: 2px;
+  }
+  .ai-msg p {
+    margin: 0.35rem 0;
+  }
+  .ai-msg p:first-child {
+    margin-top: 0;
+  }
+  .ai-msg p:last-child {
+    margin-bottom: 0;
+  }
+  .ai-msg strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .ai-msg a {
+    color: var(--accent);
+    text-decoration: underline;
+    font-weight: 500;
+    transition: opacity 0.2s ease;
+  }
+  .ai-msg a:hover {
+    opacity: 0.85;
+  }
+  .ai-msg ul {
+    margin: 0.35rem 0;
+    padding-left: 1.25rem;
+  }
+  .ai-msg li {
+    margin-bottom: 0.25rem;
+  }
+  .ai-chat-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+    transition: all 0.3s ease;
+  }
+  .ai-chip-btn {
+    background: rgba(37, 99, 235, 0.08);
+    border: 1px solid rgba(37, 99, 235, 0.3);
+    color: var(--text);
+    padding: 6px 11px;
+    border-radius: 14px;
+    font-size: 11.5px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    line-height: 1.25;
+  }
+  .ai-chip-btn:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    transform: translateY(-1px);
   }
   #ai-chat-input-area {
     display: flex;
@@ -1264,7 +1319,13 @@
       <button id="ai-chat-close" title="Close chat">&times;</button>
     </div>
     <div id="ai-chat-messages">
-      <div class="ai-msg">Hi! I'm Saad's AI assistant. Ask me anything about his skills, projects, or background!</div>
+      <div class="ai-msg">Hi! I'm Saad's AI assistant. Ask me anything about his skills, Android projects, architecture, or published articles!</div>
+      <div class="ai-chat-chips" id="ai-chat-chips">
+        <button type="button" class="ai-chip-btn" data-query="What is Saad's core Android tech stack and architecture experience?">💡 Tech Stack</button>
+        <button type="button" class="ai-chip-btn" data-query="Tell me about his top Android projects like GiveEase and SpendWise.">📱 Projects &amp; APKs</button>
+        <button type="button" class="ai-chip-btn" data-query="What technical articles has Saad published on his portfolio?">✍️ Articles</button>
+        <button type="button" class="ai-chip-btn" data-query="How can I get Saad's resume and contact him for hiring?">📄 Resume &amp; Hire</button>
+      </div>
     </div>
     <div id="ai-chat-typing">AI is typing...</div>
     <form id="ai-chat-input-area" onsubmit="return false;">
@@ -1313,21 +1374,70 @@
       btn.classList.remove('open');
     });
 
+    const chipsContainer = document.getElementById('ai-chat-chips');
+
+    function formatMarkdown(text) {
+      if (!text) return '';
+      let safe = text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+
+      safe = safe.replace(/\[([^\]]+)\]\((https?:\/\/[^\s\)]+|mailto:[^\s\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+      safe = safe.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      safe = safe.replace(/`([^`]+)`/g, '<code style="background:rgba(255,255,255,0.08);padding:1px 5px;border-radius:4px;font-family:var(--font-mono);font-size:0.85em;">$1</code>');
+
+      const lines = safe.split('\n');
+      let inList = false;
+      let result = [];
+
+      for (let line of lines) {
+        const trimmed = line.trim();
+        if (trimmed.startsWith('* ') || trimmed.startsWith('- ')) {
+          if (!inList) {
+            result.push('<ul>');
+            inList = true;
+          }
+          result.push('<li>' + trimmed.slice(2) + '</li>');
+        } else {
+          if (inList) {
+            result.push('</ul>');
+            inList = false;
+          }
+          if (trimmed.length > 0) {
+            result.push('<p>' + trimmed + '</p>');
+          }
+        }
+      }
+      if (inList) result.push('</ul>');
+      return result.join('');
+    }
+
     function addMessage(text, isUser) {
       const d = document.createElement('div');
       d.className = isUser ? 'user-msg' : 'ai-msg';
-      d.textContent = text;
+      if (isUser) {
+        d.textContent = text;
+      } else {
+        d.innerHTML = formatMarkdown(text);
+      }
       msgs.appendChild(d);
       msgs.scrollTop = msgs.scrollHeight;
     }
 
-    form.addEventListener('submit', async () => {
+    async function sendMessage() {
       const text = input.value.trim();
       if (!text) return;
-      
+
+      if (chipsContainer) {
+        chipsContainer.style.display = 'none';
+      }
+
       input.value = '';
       addMessage(text, true);
-      
+
       input.disabled = true;
       sendBtn.disabled = true;
       typing.style.display = 'block';
@@ -1338,13 +1448,13 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ message: text, history })
         });
-        
+
         if (!res.ok) throw new Error('Network error');
-        
+
         const data = await res.json();
         const reply = data.reply || "Sorry, I couldn't get a response.";
         addMessage(reply, false);
-        
+
         history.push({ role: 'user', text });
         history.push({ role: 'assistant', text: reply });
         if (history.length > 20) history = history.slice(-20);
@@ -1356,7 +1466,18 @@
         typing.style.display = 'none';
         input.focus();
       }
-    });
+    }
+
+    form.addEventListener('submit', sendMessage);
+
+    if (chipsContainer) {
+      chipsContainer.querySelectorAll('.ai-chip-btn').forEach(chip => {
+        chip.addEventListener('click', () => {
+          input.value = chip.getAttribute('data-query');
+          sendMessage();
+        });
+      });
+    }
   })();
 </script>
 </body>
