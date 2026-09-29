@@ -1195,6 +1195,13 @@
     color: var(--text);
     font-weight: 600;
   }
+  .ai-msg h3, .ai-msg h4 {
+    margin: 0.6rem 0 0.25rem 0;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+  }
   .ai-msg a {
     color: var(--accent);
     text-decoration: underline;
@@ -1385,6 +1392,9 @@
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#039;');
 
+      // Strip incomplete trailing markdown link if cut off mid-token
+      safe = safe.replace(/(\*{0,2}\[[^\]]*(\](?:\([^\)]*)?)?)$/, '');
+
       safe = safe.replace(/\[([^\]]+)\]\((https?:\/\/[^\s\)]+|mailto:[^\s\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
       safe = safe.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
       safe = safe.replace(/`([^`]+)`/g, '<code style="background:rgba(255,255,255,0.08);padding:1px 5px;border-radius:4px;font-family:var(--font-mono);font-size:0.85em;">$1</code>');
@@ -1395,7 +1405,14 @@
 
       for (let line of lines) {
         const trimmed = line.trim();
-        if (trimmed.startsWith('* ') || trimmed.startsWith('- ')) {
+        if (trimmed === '---') {
+          if (inList) { result.push('</ul>'); inList = false; }
+          result.push('<hr style="border:none;border-top:1px solid var(--border);margin:0.5rem 0;">');
+        } else if (/^#+\s*/.test(trimmed)) {
+          if (inList) { result.push('</ul>'); inList = false; }
+          const title = trimmed.replace(/^#+\s*(?:#+\s*)?/, '');
+          result.push('<h4>' + title + '</h4>');
+        } else if (trimmed.startsWith('* ') || trimmed.startsWith('- ')) {
           if (!inList) {
             result.push('<ul>');
             inList = true;

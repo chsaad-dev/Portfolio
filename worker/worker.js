@@ -28,7 +28,7 @@ export default {
           body: JSON.stringify({
             system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
             contents,
-            generationConfig: { temperature: 0.6, maxOutputTokens: 600 },
+            generationConfig: { temperature: 0.6, maxOutputTokens: 2048 },
           }),
         }
       );
