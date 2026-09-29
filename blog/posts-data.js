@@ -6,6 +6,18 @@
 
 export const POSTS = [
   {
+    slug: "why-you-shouldnt-put-secret-api-keys-in-your-android-app",
+    title: "Why You Shouldn't Put Secret API Keys Directly in Your Android App",
+    excerpt: "Any API key you put inside an Android app can be pulled out in minutes. Here is what I learned building a proxy with Cloudflare Workers instead.",
+    category: "Developer Notes",
+    tags: ["Android", "Security", "Cloudflare Workers", "API Design"],
+    datePublished: "2026-09-29",
+    dateModified: "2026-09-29",
+    readTimeMinutes: 5,
+    featured: true,
+    coverImage: "/assets/og-image.jpg"
+  },
+  {
     slug: "giveease-case-study",
     title: "How I Built GiveEase: A Verified Donation Platform Using Kotlin & Firebase",
     excerpt: "Technical deep dive into GiveEase, a verified Android donation platform built with Kotlin, Firebase Auth, Cloud Firestore, and clean MVVM architecture patterns.",
