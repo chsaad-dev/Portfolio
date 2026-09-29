@@ -1,4 +1,4 @@
-const CACHE_NAME = 'saad-portfolio-v1';
+const CACHE_NAME = 'saad-portfolio-v2';
 
 const PRECACHE_ASSETS = [
   '/',
