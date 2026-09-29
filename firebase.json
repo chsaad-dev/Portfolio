@@ -92,6 +92,10 @@
           "destination": "/blog/jetpack-compose-vs-xml.html"
         },
         {
+          "source": "/blog",
+          "destination": "/blog/index.html"
+        },
+        {
           "source": "/privacy",
           "destination": "/privacy.html"
         }

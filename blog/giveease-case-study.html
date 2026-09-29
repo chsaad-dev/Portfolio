@@ -25,18 +25,18 @@
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
     <link rel="manifest" href="/manifest.json">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/style.css?v=10">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "TechArticle",
+      "@type": "BlogPosting",
       "headline": "How I Built GiveEase: A Verified Donation Platform Using Kotlin & Firebase",
-      "description": "A comprehensive deep dive into the engineering, architecture, and development of GiveEase, a verified Android donation application utilizing Kotlin, Firebase Firestore, and MVVM architecture.",
+      "description": "Technical deep dive into GiveEase, a verified Android donation platform built with Kotlin, Firebase Auth, Cloud Firestore, and clean MVVM architecture patterns.",
       "image": "https://saadev.site/assets/giveease-og.jpg",
       "author": {
         "@type": "Person",
         "name": "Muhammad Saad",
-        "url": "https://saadev.site"
+        "url": "https://saadev.site/"
       },
       "publisher": {
         "@type": "Person",
@@ -59,7 +59,7 @@
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://saadev.site/" },
-        { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://saadev.site/#blog" },
+        { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://saadev.site/blog/" },
         { "@type": "ListItem", "position": 3, "name": "GiveEase Case Study", "item": "https://saadev.site/blog/giveease-case-study" }
       ]
     }
@@ -75,25 +75,48 @@
             <a href="/#about">ABOUT</a>
             <a href="/#stack">STACK</a>
             <a href="/#projects">PROJECTS</a>
+            <a href="/blog/" class="active">ARTICLES</a>
+            <a href="/#backend">BACKEND</a>
             <a href="/#education">EDUCATION</a>
             <a href="/#contact">CONTACT</a>
         </div>
+        <button class="hamburger" aria-label="Toggle Navigation Menu" type="button">
+            <span></span><span></span><span></span>
+        </button>
     </div>
 </nav>
 
-<main class="container section-padding" style="margin-top: 4rem; max-width: 850px;">
-    <article class="blog-post" style="color: var(--text); line-height: 1.8;">
-        <header class="post-header" style="margin-bottom: 3rem;">
-            <div class="section-label">// CASE STUDY — ANDROID DONATION APP</div>
-            <h1 class="post-title" style="font-family: var(--font-ui); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin: 1rem 0; font-weight: 800;">
+<main class="article-container section-padding" style="margin-top: 3.5rem;">
+    <!-- Breadcrumb Trail -->
+    <div class="article-breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <a href="/blog/">Articles</a>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-current">GiveEase Case Study</span>
+    </div>
+
+    <article class="blog-post">
+        <header class="article-header">
+            <div class="article-badge-row">
+                <span class="badge" style="color: var(--accent); border-color: rgba(37, 99, 235, 0.35);">Case Study</span>
+                <span class="badge" style="color: var(--muted); border-color: var(--border);">Kotlin &amp; Firebase</span>
+            </div>
+            <h1 class="article-title">
                 How I Built GiveEase: A Verified Donation Platform Using Kotlin &amp; Firebase
             </h1>
-            <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(61, 220, 132, 0.1); border: 1px solid var(--android-dim); padding: 0.4rem 0.8rem; border-radius: 4px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--android); margin-top: 0.5rem;">
-                <span>📅 Published: July 19, 2026</span> · <span style="color: var(--firebase);">⚡ Last Updated: July 30, 2026</span> · <span>👨‍💻 Author: Muhammad Saad</span>
+            <div class="article-meta-bar">
+                <span>📅 Published: July 19, 2026</span>
+                <span class="meta-divider">·</span>
+                <span style="color: var(--accent);">⚡ Updated: July 30, 2026</span>
+                <span class="meta-divider">·</span>
+                <span>⏱️ 8 min read</span>
+                <span class="meta-divider">·</span>
+                <span>👨‍💻 Muhammad Saad</span>
             </div>
         </header>
 
-        <section class="post-body">
+        <section class="article-body">
             <h2 style="font-family: var(--font-ui); color: var(--android); font-size: 1.8rem; margin: 2rem 0 1rem;">1. How does GiveEase solve the online donation trust gap?</h2>
             <p style="margin-bottom: 1.5rem; opacity: 0.85;">
                 <strong>GiveEase is an Android donation application built with Kotlin, Jetpack Compose, and Firebase that connects individual donors directly with verified NGOs to provide transparent crowdsourced relief.</strong> In the digital era, crowdsourced charity and online donations have become the primary method for individuals to seek help. However, this ease of fund generation has brought a critical challenge: <strong>a trust gap</strong>. Donation appeals regularly flood social media platforms like Twitter, Instagram, and WhatsApp, with door-to-door solicitation remaining common. For the average donor, distinguishing between a valid humanitarian emergency and a fraudulent profile is nearly impossible.
@@ -248,25 +271,109 @@ class GiveEaseFCMService : FirebaseMessagingService() {
                 Building GiveEase verified that combining Kotlin's concise language features with Firebase's scalable real-time integrations provides a high-fidelity mobile experience. By establishing strict role authorization structures, Firestore security limits, and reliable background notification queues, the platform addresses the crucial trust gap in digital charity apps.
             </p>
             <p style="margin-bottom: 1.5rem; opacity: 0.85;">
-                If you are looking to build a clean Android app or implement robust Firebase backend architectures, please explore my featured projects on the <a href="/" style="color: var(--android); border-bottom: 1px solid var(--android);">Muhammad Saad portfolio home page</a>, or submit an inquiry directly through the <a href="/#contact" style="color: var(--android); border-bottom: 1px solid var(--android);">contact form</a> to discuss your mobile application ideas.
+                If you are looking to build a clean Android app or implement robust Firebase backend architectures, please explore my featured projects on the <a href="/#projects" style="color: var(--accent); border-bottom: 1px solid var(--accent);">Muhammad Saad portfolio projects showcase</a>, or submit an inquiry directly through the <a href="/#contact" style="color: var(--accent); border-bottom: 1px solid var(--accent);">contact form</a> to discuss your mobile application ideas.
             </p>
         </section>
 
-        <hr style="border: none; border-top: 1px solid var(--border); margin: 3rem 0;">
-        
         <!-- Outbound Citations & Internal Links (EEAT) -->
-        <section class="eeat-citations" style="font-size: 0.95rem; color: var(--muted);">
-            <h4 style="color: var(--text); font-family: var(--font-ui); margin-bottom: 1rem;">References & Resources:</h4>
+        <section class="eeat-citations" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); font-size: 0.95rem; color: var(--muted);">
+            <h4 style="color: var(--text); font-family: var(--font-ui); margin-bottom: 1rem;">References &amp; Resources:</h4>
             <ul style="list-style: none; padding: 0;">
-                <li style="margin-bottom: 0.5rem;">📖 official Kotlin Guides: <a href="https://kotlinlang.org/docs/home.html" target="_blank" rel="noopener noreferrer" style="color: var(--firebase);">Kotlin Official Documentation</a></li>
-                <li style="margin-bottom: 0.5rem;">📖 Firebase Services Guide: <a href="https://firebase.google.com/docs" target="_blank" rel="noopener noreferrer" style="color: var(--firebase);">Firebase Documentation</a></li>
-                <li style="margin-bottom: 0.5rem;">📖 Comsats University Engineering Programs: <a href="https://sahiwal.comsats.edu.pk/" target="_blank" rel="noopener noreferrer" style="color: var(--firebase);">COMSATS University Islamabad, Sahiwal Campus</a></li>
-                <li style="margin-bottom: 0.5rem;">🔗 Explore my other works: <a href="/blog/spendwise-case-study" style="color: var(--android);">SpendWise Offline-First Expense Tracker Design Case Study</a></li>
-                <li style="margin-bottom: 0.5rem;">🔗 Learn about my UI choices: <a href="/blog/jetpack-compose-vs-xml" style="color: var(--android);">Declarative Jetpack Compose vs XML Layouts Comparison Analysis</a></li>
+                <li style="margin-bottom: 0.5rem;">📖 Official Kotlin Guides: <a href="https://kotlinlang.org/docs/home.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent);">Kotlin Official Documentation</a></li>
+                <li style="margin-bottom: 0.5rem;">📖 Firebase Services Guide: <a href="https://firebase.google.com/docs" target="_blank" rel="noopener noreferrer" style="color: var(--accent);">Firebase Documentation</a></li>
+                <li style="margin-bottom: 0.5rem;">📖 Comsats University Engineering Programs: <a href="https://sahiwal.comsats.edu.pk/" target="_blank" rel="noopener noreferrer" style="color: var(--accent);">COMSATS University Islamabad, Sahiwal Campus</a></li>
+                <li style="margin-bottom: 0.5rem;">🔗 Explore my other works: <a href="/blog/spendwise-case-study" style="color: var(--accent);">SpendWise Offline-First Expense Tracker Design Case Study</a></li>
+                <li style="margin-bottom: 0.5rem;">🔗 Learn about my UI choices: <a href="/blog/jetpack-compose-vs-xml" style="color: var(--accent);">Declarative Jetpack Compose vs XML Layouts Comparison Analysis</a></li>
             </ul>
+        </section>
+
+        <!-- Related Articles Section -->
+        <section class="related-articles-section" aria-label="Related Articles">
+            <h3 class="related-articles-heading">Related Articles</h3>
+            <p class="related-articles-sub">Continue exploring Android system architecture and design patterns:</p>
+            <div class="related-grid" id="related-articles-grid">
+                <!-- SpendWise -->
+                <article class="blog-card is-visible">
+                    <div class="blog-card-content">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.8rem; gap: 0.5rem; flex-wrap: wrap;">
+                            <span class="badge" style="font-size: 0.68rem; padding: 0.2rem 0.55rem; color: var(--accent); border-color: rgba(37, 99, 235, 0.35);">Case Study</span>
+                            <div class="blog-card-meta" style="margin-bottom: 0;">JULY 19, 2026 · 6 MIN READ</div>
+                        </div>
+                        <h4 class="blog-card-title" style="font-size: 1.05rem; margin-bottom: 0.8rem;">SpendWise: Building an Offline-First Expense Tracker with Room Database</h4>
+                        <p class="blog-card-desc">Architecting SpendWise, an offline-first Android expense tracker with Room SQLite database, Jetpack Compose, Material 3, and zero-latency local operations.</p>
+                        <a href="/blog/spendwise-case-study" class="blog-card-link">READ FULL CASE STUDY &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- Jetpack Compose vs XML -->
+                <article class="blog-card is-visible">
+                    <div class="blog-card-content">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.8rem; gap: 0.5rem; flex-wrap: wrap;">
+                            <span class="badge" style="font-size: 0.68rem; padding: 0.2rem 0.55rem; color: var(--accent); border-color: rgba(37, 99, 235, 0.35);">UI Architecture</span>
+                            <div class="blog-card-meta" style="margin-bottom: 0;">JULY 19, 2026 · 6 MIN READ</div>
+                        </div>
+                        <h4 class="blog-card-title" style="font-size: 1.05rem; margin-bottom: 0.8rem;">Jetpack Compose vs XML: Why I Switched for My Latest Projects</h4>
+                        <p class="blog-card-desc">A performance, syntax, and maintainability comparison between declarative Jetpack Compose composables and traditional Android XML view hierarchies.</p>
+                        <a href="/blog/jetpack-compose-vs-xml" class="blog-card-link">READ COMPARISON ANALYSIS &rarr;</a>
+                    </div>
+                </article>
+            </div>
         </section>
     </article>
 </main>
+
+<!-- Dynamic Related Articles Script -->
+<script type="module">
+    import { getRelatedPosts, formatDate } from '/blog/posts-data.js';
+    try {
+        const grid = document.getElementById('related-articles-grid');
+        const related = getRelatedPosts('giveease-case-study', 2);
+        if (grid && related && related.length > 0) {
+            grid.innerHTML = related.map(post => `
+                <article class="blog-card is-visible">
+                    <div class="blog-card-content">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.8rem; gap: 0.5rem; flex-wrap: wrap;">
+                            <span class="badge" style="font-size: 0.68rem; padding: 0.2rem 0.55rem; color: var(--accent); border-color: rgba(37, 99, 235, 0.35);">${post.category}</span>
+                            <div class="blog-card-meta" style="margin-bottom: 0;">${formatDate(post.datePublished).toUpperCase()} · ${post.readTimeMinutes} MIN READ</div>
+                        </div>
+                        <h4 class="blog-card-title" style="font-size: 1.05rem; margin-bottom: 0.8rem;">${post.title}</h4>
+                        <p class="blog-card-desc">${post.excerpt}</p>
+                        <a href="/blog/${post.slug}" class="blog-card-link">READ FULL ARTICLE &rarr;</a>
+                    </div>
+                </article>
+            `).join('');
+        }
+    } catch (e) {
+        console.debug('Static related articles active');
+    }
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+        }
+
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                const isLight = document.documentElement.classList.toggle('light-mode');
+                localStorage.setItem('portfolio-theme', isLight ? 'light' : 'dark');
+            });
+        }
+    });
+</script>
+
+<!-- Dark/Light Mode Toggle -->
+<button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+    <span class="icon-moon">&#127769;</span>
+    <span class="icon-sun">&#9728;&#65039;</span>
+</button>
 
 <!-- Footer -->
 <footer class="footer">
@@ -274,7 +381,7 @@ class GiveEaseFCMService : FirebaseMessagingService() {
         <div class="footer-logo">&lt; Muhammad Saad /&gt;</div>
         <div class="footer-right">Deploy on Firebase Hosting · 2026</div>
     </div>
-    <div class="footer-center"><a href="/privacy" style="color: var(--android); text-decoration: underline;">Privacy Policy</a> · Designed &amp; Developed by Saad</div>
+    <div class="footer-center"><a href="/privacy" style="color: var(--accent); text-decoration: underline;">Privacy Policy</a> · Designed &amp; Developed by Saad</div>
 </footer>
 
 </body>

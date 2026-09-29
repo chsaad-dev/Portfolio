@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SpendWise: Building an Offline-First Expense Tracker with Room Database | Android Developer Blog</title>
-    <meta name="description" content="Deep technical guide on building SpendWise, a modern offline-first Android expense tracker with Room Database, Jetpack Compose, Material 3, and Kotlin Flow.">
+    <meta name="description" content="Deep dive into building SpendWise, an offline-first Android expense tracker using Room SQLite, Jetpack Compose, Material 3, and Kotlin Flow streams.">
     <link rel="canonical" href="https://saadev.site/blog/spendwise-case-study">
     <link rel="alternate" hreflang="en-us" href="https://saadev.site/blog/spendwise-case-study">
     <meta property="og:title" content="SpendWise: Building an Offline-First Expense Tracker with Room Database">
@@ -25,18 +25,18 @@
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
     <link rel="manifest" href="/manifest.json">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/style.css?v=10">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "TechArticle",
+      "@type": "BlogPosting",
       "headline": "SpendWise: Building an Offline-First Expense Tracker with Room Database",
       "description": "Step-by-step engineering article describing the offline data storage pattern, Room Database setup, and Material 3 design layout in an Android application built with Kotlin.",
       "image": "https://saadev.site/assets/spendwise-og.jpg",
       "author": {
         "@type": "Person",
         "name": "Muhammad Saad",
-        "url": "https://saadev.site"
+        "url": "https://saadev.site/"
       },
       "publisher": {
         "@type": "Person",
@@ -46,8 +46,8 @@
           "url": "https://saadev.site/assets/muhammad-saad-android-developer.webp"
         }
       },
-      "datePublished": "2026-07-19",
-      "dateModified": "2026-07-30",
+      "datePublished": "2026-06-15",
+      "dateModified": "2026-07-28",
       "mainEntityOfPage": "https://saadev.site/blog/spendwise-case-study",
       "inLanguage": "en-US",
       "keywords": "offline-first Android app, Android Room database tutorial, Jetpack Compose expense tracker, Material 3 budget manager"
@@ -59,7 +59,7 @@
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://saadev.site/" },
-        { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://saadev.site/#blog" },
+        { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://saadev.site/blog/" },
         { "@type": "ListItem", "position": 3, "name": "SpendWise Case Study", "item": "https://saadev.site/blog/spendwise-case-study" }
       ]
     }
@@ -75,25 +75,48 @@
             <a href="/#about">ABOUT</a>
             <a href="/#stack">STACK</a>
             <a href="/#projects">PROJECTS</a>
+            <a href="/blog/" class="active">ARTICLES</a>
+            <a href="/#backend">BACKEND</a>
             <a href="/#education">EDUCATION</a>
             <a href="/#contact">CONTACT</a>
         </div>
+        <button class="hamburger" aria-label="Toggle Navigation Menu" type="button">
+            <span></span><span></span><span></span>
+        </button>
     </div>
 </nav>
 
-<main class="container section-padding" style="margin-top: 4rem; max-width: 850px;">
-    <article class="blog-post" style="color: var(--text); line-height: 1.8;">
-        <header class="post-header" style="margin-bottom: 3rem;">
-            <div class="section-label">// CASE STUDY — OFFLINE EXPENSE TRACKER</div>
-            <h1 class="post-title" style="font-family: var(--font-ui); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin: 1rem 0; font-weight: 800;">
+<main class="article-container section-padding" style="margin-top: 3.5rem;">
+    <!-- Breadcrumb Trail -->
+    <div class="article-breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <a href="/blog/">Articles</a>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-current">SpendWise Case Study</span>
+    </div>
+
+    <article class="blog-post">
+        <header class="article-header">
+            <div class="article-badge-row">
+                <span class="badge" style="color: var(--accent); border-color: rgba(37, 99, 235, 0.35);">Case Study</span>
+                <span class="badge" style="color: var(--muted); border-color: var(--border);">Room &amp; SQLite</span>
+            </div>
+            <h1 class="article-title">
                 SpendWise: Building an Offline-First Expense Tracker with Room Database
             </h1>
-            <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(61, 220, 132, 0.1); border: 1px solid var(--android-dim); padding: 0.4rem 0.8rem; border-radius: 4px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--android); margin-top: 0.5rem;">
-                <span>📅 Published: July 19, 2026</span> · <span style="color: var(--firebase);">⚡ Last Updated: July 30, 2026</span> · <span>👨‍💻 Author: Muhammad Saad</span>
+            <div class="article-meta-bar">
+                <span>📅 Published: June 15, 2026</span>
+                <span class="meta-divider">·</span>
+                <span style="color: var(--accent);">⚡ Updated: July 28, 2026</span>
+                <span class="meta-divider">·</span>
+                <span>⏱️ 6 min read</span>
+                <span class="meta-divider">·</span>
+                <span>👨‍💻 Muhammad Saad</span>
             </div>
         </header>
 
-        <section class="post-body">
+        <section class="article-body">
             <h2 style="font-family: var(--font-ui); color: var(--android); font-size: 1.8rem; margin: 2rem 0 1rem;">1. Why choose Room SQLite for offline-first expense tracking?</h2>
             <p style="margin-bottom: 1.5rem; opacity: 0.85;">
                 <strong>SpendWise is an offline-first Android expense tracking application built with Kotlin, Jetpack Compose, and Room SQLite database that stores financial data locally without requiring internet connectivity.</strong> In modern mobile app development, relying solely on cloud backend servers poses privacy risks and network latency friction. Financial management apps in particular handle sensitive user transactions where data exposure or network dropped packets can degrade user trust.
@@ -108,7 +131,7 @@
             </p>
             <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem; opacity: 0.85; list-style-type: disc;">
                 <li style="margin-bottom: 0.5rem;"><strong>The Room Database Layer:</strong> Binds SQLite operations directly to Kotlin classes. It utilizes DAOs (Data Access Objects) to execute SQL scripts asynchronously.</li>
-                <li style="margin-bottom: 0.5rem;"><strong>Kotlin Coroutines & Flow:</strong> Handles non-blocking database queries and exposes live transaction streams.</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Kotlin Coroutines &amp; Flow:</strong> Handles non-blocking database queries and exposes live transaction streams.</li>
                 <li style="margin-bottom: 0.5rem;"><strong>Jetpack Compose View Layer:</strong> Observes database changes and updates Material 3 dashboard components automatically.</li>
             </ul>
 
@@ -119,7 +142,7 @@
             <p style="margin-bottom: 1.5rem; opacity: 0.85;">
                 Let's inspect the Kotlin implementation of the Expense entity:
             </p>
-            <div style="background: var(--surface2); border-left: 3px solid var(--android); padding: 1.5rem; margin: 2rem 0; font-family: var(--font-mono); font-size: 0.85rem; overflow-x: auto;">
+            <div style="background: var(--surface2); border-left: 3px solid var(--android); padding: 1.5rem; margin: 2rem 0; font-family: var(--font-mono); font-size: 0.85rem; border-radius: 6px; overflow-x: auto;">
 <pre style="margin: 0; color: #b5c2b1;"><span style="color: #6a9955;">// Room Database entity representing a transaction</span>
 @Entity(
     tableName = "expenses",
@@ -150,7 +173,7 @@ data class Expense(
             <p style="margin-bottom: 1.5rem; opacity: 0.85;">
                 To interact with these tables, we define Data Access Objects. DAOs isolate raw SQL from repository classes. To make the database reactive, we return Kotlin <code>Flow</code> streams. Whenever an expense transaction is added, updated, or removed, Room automatically recalculates the database result and emits the new data to the flow listeners:
             </p>
-            <div style="background: var(--surface2); border-left: 3px solid var(--firebase); padding: 1.5rem; margin: 2rem 0; font-family: var(--font-mono); font-size: 0.85rem; overflow-x: auto;">
+            <div style="background: var(--surface2); border-left: 3px solid var(--accent); padding: 1.5rem; margin: 2rem 0; font-family: var(--font-mono); font-size: 0.85rem; border-radius: 6px; overflow-x: auto;">
 <pre style="margin: 0; color: #d4d4d4;"><span style="color: #6a9955;">// Data Access Object managing SQLite operations</span>
 @Dao
 interface ExpenseDao {
@@ -168,7 +191,7 @@ interface ExpenseDao {
 }</pre>
             </div>
 
-            <h2 style="font-family: var(--font-ui); color: var(--android); font-size: 1.8rem; margin: 2rem 0 1rem;">5. Declarative UI Design with Jetpack Compose & Material 3</h2>
+            <h2 style="font-family: var(--font-ui); color: var(--android); font-size: 1.8rem; margin: 2rem 0 1rem;">5. Declarative UI Design with Jetpack Compose &amp; Material 3</h2>
             <p style="margin-bottom: 1.5rem; opacity: 0.85;">
                 With the database and repository layers configured, we built a modern dashboard layout using <a href="https://developer.android.com/jetpack/compose" target="_blank" rel="noopener noreferrer" style="color: var(--android); border-bottom: 1px solid var(--android);">Jetpack Compose</a>. Compose represents a paradigm shift in Android design, replacing traditional XML files with declarative Kotlin code.
             </p>
@@ -180,7 +203,7 @@ interface ExpenseDao {
             <p style="margin-bottom: 1.5rem; opacity: 0.85;">
                 A key feature of SpendWise is its offline document printing capability. Users can export structured monthly summaries without an active network connection. I achieved this using the Android framework's native <code>PdfDocument</code> class:
             </p>
-            <div style="background: var(--surface2); border-left: 3px solid var(--android); padding: 1.5rem; margin: 2rem 0; font-family: var(--font-mono); font-size: 0.85rem; overflow-x: auto;">
+            <div style="background: var(--surface2); border-left: 3px solid var(--android); padding: 1.5rem; margin: 2rem 0; font-family: var(--font-mono); font-size: 0.85rem; border-radius: 6px; overflow-x: auto;">
 <pre style="margin: 0; color: #b5c2b1;"><span style="color: #6a9955;">// Generate structured PDF document locally</span>
 fun generateMonthlyPdfReport(context: Context, expenses: List&lt;Expense&gt;, fileName: String) {
     val pdfDocument = android.graphics.pdf.PdfDocument()
@@ -214,12 +237,12 @@ fun generateMonthlyPdfReport(context: Context, expenses: List&lt;Expense&gt;, fi
                 This implementation creates an A4 document with complete formatting and saves it locally in the application's file space. The user can print or share it using standard system shares without any cloud processing dependency.
             </p>
 
-            <h2 style="font-family: var(--font-ui); color: var(--android); font-size: 1.8rem; margin: 2rem 0 1rem;">7. Conclusion & Next Steps</h2>
+            <h2 style="font-family: var(--font-ui); color: var(--android); font-size: 1.8rem; margin: 2rem 0 1rem;">7. Conclusion &amp; Next Steps</h2>
             <p style="margin-bottom: 1.5rem; opacity: 0.85;">
                 SpendWise demonstrates that local-first Android architectures using Kotlin, Jetpack Compose, and Room provide a fast, secure, and privacy-respecting alternative to cloud-dependent apps. Isolating database calls behind Repository patterns ensures the code is maintainable, testable, and robust.
             </p>
             <p style="margin-bottom: 1.5rem; opacity: 0.85;">
-                If you are looking to build a clean local database app or modernize your current view layouts using Jetpack Compose, please explore my featured projects on the <a href="/" style="color: var(--android); border-bottom: 1px solid var(--android);">Muhammad Saad portfolio home page</a>, or submit an inquiry directly through the <a href="/#contact" style="color: var(--android); border-bottom: 1px solid var(--android);">contact form</a>.
+                If you are looking to build a clean local database app or modernize your current view layouts using Jetpack Compose, explore my featured projects on the <a href="/#projects" style="color: var(--accent); border-bottom: 1px solid var(--accent);">Muhammad Saad portfolio</a>, or submit an inquiry directly through the <a href="/#contact" style="color: var(--accent); border-bottom: 1px solid var(--accent);">contact form</a>.
             </p>
         </section>
 
@@ -227,17 +250,102 @@ fun generateMonthlyPdfReport(context: Context, expenses: List&lt;Expense&gt;, fi
         
         <!-- Outbound Citations & Internal Links (EEAT) -->
         <section class="eeat-citations" style="font-size: 0.95rem; color: var(--muted);">
-            <h4 style="color: var(--text); font-family: var(--font-ui); margin-bottom: 1rem;">References & Resources:</h4>
+            <h4 style="color: var(--text); font-family: var(--font-ui); margin-bottom: 1rem;">References &amp; Resources:</h4>
             <ul style="list-style: none; padding: 0;">
-                <li style="margin-bottom: 0.5rem;">📖 Android SQLite Guides: <a href="https://developer.android.com/training/data-storage/room" target="_blank" rel="noopener noreferrer" style="color: var(--firebase);">Android Room Persistence Library Documentation</a></li>
-                <li style="margin-bottom: 0.5rem;">📖 Kotlin Coroutines specification: <a href="https://kotlinlang.org/docs/coroutines-overview.html" target="_blank" rel="noopener noreferrer" style="color: var(--firebase);">Kotlin Coroutines Official Guide</a></li>
-                <li style="margin-bottom: 0.5rem;">📖 Comsats University Engineering: <a href="https://sahiwal.comsats.edu.pk/" target="_blank" rel="noopener noreferrer" style="color: var(--firebase);">COMSATS University Islamabad, Sahiwal Campus</a></li>
-                <li style="margin-bottom: 0.5rem;">🔗 Explore cloud databases: <a href="/blog/giveease-case-study" style="color: var(--android);">How I Built GiveEase: A Verified Donation Platform Using Kotlin & Firebase</a></li>
-                <li style="margin-bottom: 0.5rem;">🔗 Review layouts: <a href="/blog/jetpack-compose-vs-xml" style="color: var(--android);">Declarative Jetpack Compose vs XML Layouts Comparison Analysis</a></li>
+                <li style="margin-bottom: 0.5rem;">📖 Android SQLite Guides: <a href="https://developer.android.com/training/data-storage/room" target="_blank" rel="noopener noreferrer" style="color: var(--accent);">Android Room Persistence Library Documentation</a></li>
+                <li style="margin-bottom: 0.5rem;">📖 Kotlin Coroutines specification: <a href="https://kotlinlang.org/docs/coroutines-overview.html" target="_blank" rel="noopener noreferrer" style="color: var(--accent);">Kotlin Coroutines Official Guide</a></li>
+                <li style="margin-bottom: 0.5rem;">📖 COMSATS University Engineering: <a href="https://sahiwal.comsats.edu.pk/" target="_blank" rel="noopener noreferrer" style="color: var(--accent);">COMSATS University Islamabad, Sahiwal Campus</a></li>
+                <li style="margin-bottom: 0.5rem;">🔗 Explore cloud databases: <a href="/blog/giveease-case-study" style="color: var(--android);">How I Built GiveEase: A Verified Donation Platform Using Kotlin &amp; Firebase</a></li>
+                <li style="margin-bottom: 0.5rem;">🔗 Review UI architecture: <a href="/blog/jetpack-compose-vs-xml" style="color: var(--android);">Jetpack Compose vs XML: Why I Switched for My Latest Projects</a></li>
             </ul>
+        </section>
+
+        <!-- Related Articles Section -->
+        <section class="related-articles-section">
+            <h3 class="related-articles-heading">Related Articles</h3>
+            <div class="related-grid" id="related-articles-grid">
+                <!-- GiveEase Case Study -->
+                <article class="blog-card is-visible">
+                    <div class="blog-card-content">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.8rem; gap: 0.5rem; flex-wrap: wrap;">
+                            <span class="badge" style="font-size: 0.68rem; padding: 0.2rem 0.55rem; color: var(--accent); border-color: rgba(37, 99, 235, 0.35);">Case Study</span>
+                            <div class="blog-card-meta" style="margin-bottom: 0;">JULY 19, 2026 · 8 MIN READ</div>
+                        </div>
+                        <h4 class="blog-card-title" style="font-size: 1.05rem; margin-bottom: 0.8rem;">How I Built GiveEase: A Verified Donation Platform Using Kotlin &amp; Firebase</h4>
+                        <p class="blog-card-desc">Architecture and implementation breakdown of GiveEase, a verified Android donation app built with Kotlin, Firebase Auth, Cloud Firestore, and clean MVVM patterns.</p>
+                        <a href="/blog/giveease-case-study" class="blog-card-link">READ FULL CASE STUDY &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- Jetpack Compose vs XML -->
+                <article class="blog-card is-visible">
+                    <div class="blog-card-content">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.8rem; gap: 0.5rem; flex-wrap: wrap;">
+                            <span class="badge" style="font-size: 0.68rem; padding: 0.2rem 0.55rem; color: var(--accent); border-color: rgba(37, 99, 235, 0.35);">UI Architecture</span>
+                            <div class="blog-card-meta" style="margin-bottom: 0;">MAY 10, 2026 · 6 MIN READ</div>
+                        </div>
+                        <h4 class="blog-card-title" style="font-size: 1.05rem; margin-bottom: 0.8rem;">Jetpack Compose vs XML: Why I Switched for My Latest Projects</h4>
+                        <p class="blog-card-desc">A deep architectural comparison between declarative Jetpack Compose composables and traditional Android XML view hierarchies, covering performance and migrations.</p>
+                        <a href="/blog/jetpack-compose-vs-xml" class="blog-card-link">READ COMPARISON ANALYSIS &rarr;</a>
+                    </div>
+                </article>
+            </div>
         </section>
     </article>
 </main>
+
+<!-- Dynamic Related Articles Script -->
+<script type="module">
+    import { getRelatedPosts, formatDate } from '/blog/posts-data.js';
+    try {
+        const grid = document.getElementById('related-articles-grid');
+        const related = getRelatedPosts('spendwise-case-study', 2);
+        if (grid && related && related.length > 0) {
+            grid.innerHTML = related.map(post => `
+                <article class="blog-card is-visible">
+                    <div class="blog-card-content">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.8rem; gap: 0.5rem; flex-wrap: wrap;">
+                            <span class="badge" style="font-size: 0.68rem; padding: 0.2rem 0.55rem; color: var(--accent); border-color: rgba(37, 99, 235, 0.35);">${post.category}</span>
+                            <div class="blog-card-meta" style="margin-bottom: 0;">${formatDate(post.datePublished).toUpperCase()} · ${post.readTimeMinutes} MIN READ</div>
+                        </div>
+                        <h4 class="blog-card-title" style="font-size: 1.05rem; margin-bottom: 0.8rem;">${post.title}</h4>
+                        <p class="blog-card-desc">${post.excerpt}</p>
+                        <a href="/blog/${post.slug}" class="blog-card-link">READ FULL ARTICLE &rarr;</a>
+                    </div>
+                </article>
+            `).join('');
+        }
+    } catch (e) {
+        console.debug('Static related articles active');
+    }
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+        }
+
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                const isLight = document.documentElement.classList.toggle('light-mode');
+                localStorage.setItem('portfolio-theme', isLight ? 'light' : 'dark');
+            });
+        }
+    });
+</script>
+
+<!-- Dark/Light Mode Toggle -->
+<button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+    <span class="icon-moon">&#127769;</span>
+    <span class="icon-sun">&#9728;&#65039;</span>
+</button>
 
 <!-- Footer -->
 <footer class="footer">
@@ -245,7 +353,7 @@ fun generateMonthlyPdfReport(context: Context, expenses: List&lt;Expense&gt;, fi
         <div class="footer-logo">&lt; Muhammad Saad /&gt;</div>
         <div class="footer-right">Deploy on Firebase Hosting · 2026</div>
     </div>
-    <div class="footer-center"><a href="/privacy" style="color: var(--android); text-decoration: underline;">Privacy Policy</a> · Designed &amp; Developed by Saad</div>
+    <div class="footer-center"><a href="/privacy" style="color: var(--accent); text-decoration: underline;">Privacy Policy</a> · Designed &amp; Developed by Saad</div>
 </footer>
 
 </body>

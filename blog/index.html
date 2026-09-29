@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <script>if(localStorage.getItem('portfolio-theme')==='light')document.documentElement.classList.add('light-mode');</script>
+    <title>Android Engineering Articles &amp; Case Studies | Muhammad Saad</title>
+    
+    <!-- Meta Tags for SEO -->
+    <meta name="description" content="Explore technical articles, Android case studies, and engineering breakdowns on Kotlin, Jetpack Compose, Room SQLite, and Firebase backend architectures by Muhammad Saad.">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="theme-color" content="#0e0e10">
+    <meta name="author" content="Muhammad Saad">
+    <meta name="keywords" content="Android developer articles, Kotlin tutorials, Jetpack Compose vs XML, Room Database case study, Firebase Android architecture, mobile app engineering blog">
+    
+    <link rel="canonical" href="https://saadev.site/blog/">
+    <link rel="alternate" hreflang="en-us" href="https://saadev.site/blog/">
+
+    <!-- Open Graph tags for social sharing -->
+    <meta property="og:title" content="Android Engineering Articles &amp; Case Studies | Muhammad Saad">
+    <meta property="og:description" content="In-depth technical articles and case studies exploring Kotlin, Jetpack Compose, Room persistence, and Firebase architectures.">
+    <meta property="og:image" content="https://saadev.site/assets/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://saadev.site/blog/">
+    <meta property="og:type" content="blog">
+
+    <!-- Twitter Card tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Android Engineering Articles | Muhammad Saad">
+    <meta name="twitter:description" content="In-depth technical articles and case studies exploring Kotlin, Jetpack Compose, Room persistence, and Firebase architectures.">
+    <meta name="twitter:image" content="https://saadev.site/assets/og-image.jpg">
+
+    <!-- Favicons & Fonts -->
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css?v=10">
+
+    <!-- Blog & Breadcrumbs Schema (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Muhammad Saad — Android Developer Articles",
+      "description": "Technical articles, system design breakdowns, and case studies on native Android development, Kotlin, Jetpack Compose, and Firebase infrastructure.",
+      "url": "https://saadev.site/blog/",
+      "author": {
+        "@type": "Person",
+        "name": "Muhammad Saad",
+        "url": "https://saadev.site/"
+      },
+      "blogPost": [
+        {
+          "@type": "BlogPosting",
+          "headline": "How I Built GiveEase: A Verified Donation Platform Using Kotlin & Firebase",
+          "url": "https://saadev.site/blog/giveease-case-study",
+          "datePublished": "2026-07-19"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "SpendWise: Building an Offline-First Expense Tracker with Room Database",
+          "url": "https://saadev.site/blog/spendwise-case-study",
+          "datePublished": "2026-06-15"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "Jetpack Compose vs XML: Why I Switched for My Latest Projects",
+          "url": "https://saadev.site/blog/jetpack-compose-vs-xml",
+          "datePublished": "2026-05-10"
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://saadev.site/" },
+        { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://saadev.site/blog/" }
+      ]
+    }
+    </script>
+</head>
+<body class="blog-listing-page">
+
+<!-- Navbar -->
+<nav class="navbar scrolled">
+    <div class="nav-container">
+        <a href="/" class="logo">&lt; Muhammad Saad /&gt;</a>
+        <div class="nav-links">
+            <a href="/#about">ABOUT</a>
+            <a href="/#stack">STACK</a>
+            <a href="/#projects">PROJECTS</a>
+            <a href="/blog/" class="active">ARTICLES</a>
+            <a href="/#backend">BACKEND</a>
+            <a href="/#education">EDUCATION</a>
+            <a href="/#contact">CONTACT</a>
+        </div>
+        <button class="hamburger" aria-label="Toggle Navigation Menu" type="button">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<main class="container section-padding" style="margin-top: 3rem;">
+    <!-- Breadcrumb -->
+    <div class="article-breadcrumb" style="max-width: 1200px; margin-bottom: 2rem;">
+        <a href="/">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-current">Articles</span>
+    </div>
+
+    <!-- Header & On-Page SEO -->
+    <header class="blog-listing-header">
+        <div class="section-label" style="justify-content: center;">// TECHNICAL WRITING &amp; CASE STUDIES</div>
+        <h1 class="blog-listing-title">Android Engineering Articles &amp; Insights</h1>
+        <p class="blog-listing-desc">
+            Deep-dive walk-throughs covering native Android system design, declarative Jetpack Compose paradigms, offline-first Room database persistence, and Firebase real-time infrastructure. Practical lessons learned from building and scaling production mobile apps.
+        </p>
+    </header>
+
+    <!-- Articles Grid -->
+    <section aria-label="All Technical Articles">
+        <div class="blog-listing-grid" id="articles-listing-grid">
+            <!-- Article 1 -->
+            <article class="blog-card is-visible">
+                <div class="blog-card-content">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.8rem; gap: 0.5rem; flex-wrap: wrap;">
+                        <span class="badge" style="font-size: 0.68rem; padding: 0.2rem 0.55rem; color: var(--accent); border-color: rgba(37, 99, 235, 0.35);">Case Study</span>
+                        <div class="blog-card-meta" style="margin-bottom: 0;">JULY 19, 2026 · 8 MIN READ</div>
+                    </div>
+                    <h2 class="blog-card-title" style="font-size: 1.15rem; margin-bottom: 0.8rem;">How I Built GiveEase: A Verified Donation Platform Using Kotlin &amp; Firebase</h2>
+                    <p class="blog-card-desc">Technical deep dive into GiveEase, a verified Android donation platform built with Kotlin, Firebase Auth, Cloud Firestore, and clean MVVM architecture patterns.</p>
+                    <a href="/blog/giveease-case-study" class="blog-card-link">READ FULL CASE STUDY &rarr;</a>
+                </div>
+            </article>
+
+            <!-- Article 2 -->
+            <article class="blog-card is-visible">
+                <div class="blog-card-content">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.8rem; gap: 0.5rem; flex-wrap: wrap;">
+                        <span class="badge" style="font-size: 0.68rem; padding: 0.2rem 0.55rem; color: var(--accent); border-color: rgba(37, 99, 235, 0.35);">Case Study</span>
+                        <div class="blog-card-meta" style="margin-bottom: 0;">JUNE 15, 2026 · 6 MIN READ</div>
+                    </div>
+                    <h2 class="blog-card-title" style="font-size: 1.15rem; margin-bottom: 0.8rem;">SpendWise: Building an Offline-First Expense Tracker with Room Database</h2>
+                    <p class="blog-card-desc">Architecting SpendWise, an offline-first Android expense tracker with Room SQLite database, Jetpack Compose, Material 3, and zero-latency local operations.</p>
+                    <a href="/blog/spendwise-case-study" class="blog-card-link">READ FULL CASE STUDY &rarr;</a>
+                </div>
+            </article>
+
+            <!-- Article 3 -->
+            <article class="blog-card is-visible">
+                <div class="blog-card-content">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.8rem; gap: 0.5rem; flex-wrap: wrap;">
+                        <span class="badge" style="font-size: 0.68rem; padding: 0.2rem 0.55rem; color: var(--accent); border-color: rgba(37, 99, 235, 0.35);">UI Architecture</span>
+                        <div class="blog-card-meta" style="margin-bottom: 0;">MAY 10, 2026 · 6 MIN READ</div>
+                    </div>
+                    <h2 class="blog-card-title" style="font-size: 1.15rem; margin-bottom: 0.8rem;">Jetpack Compose vs XML: Why I Switched for My Latest Projects</h2>
+                    <p class="blog-card-desc">A performance, syntax, and maintainability comparison between declarative Jetpack Compose composables and traditional Android XML view hierarchies.</p>
+                    <a href="/blog/jetpack-compose-vs-xml" class="blog-card-link">READ COMPARISON ANALYSIS &rarr;</a>
+                </div>
+            </article>
+        </div>
+    </section>
+</main>
+
+<!-- Dynamic Hydration from Centralized Data -->
+<script type="module">
+    import { getAllPosts, formatDate } from '/blog/posts-data.js';
+    try {
+        const grid = document.getElementById('articles-listing-grid');
+        const posts = getAllPosts();
+        if (grid && posts && posts.length > 0) {
+            grid.innerHTML = posts.map(post => `
+                <article class="blog-card is-visible">
+                    <div class="blog-card-content">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.8rem; gap: 0.5rem; flex-wrap: wrap;">
+                            <span class="badge" style="font-size: 0.68rem; padding: 0.2rem 0.55rem; color: var(--accent); border-color: rgba(37, 99, 235, 0.35);">${post.category}</span>
+                            <div class="blog-card-meta" style="margin-bottom: 0;">${formatDate(post.datePublished).toUpperCase()} · ${post.readTimeMinutes} MIN READ</div>
+                        </div>
+                        <h2 class="blog-card-title" style="font-size: 1.15rem; margin-bottom: 0.8rem;">${post.title}</h2>
+                        <p class="blog-card-desc">${post.excerpt}</p>
+                        <a href="/blog/${post.slug}" class="blog-card-link">READ FULL ARTICLE &rarr;</a>
+                    </div>
+                </article>
+            `).join('');
+        }
+    } catch (err) {
+        console.debug('Static posts active:', err);
+    }
+</script>
+
+<!-- Mobile Navigation and Theme Toggle Scripts -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+        }
+
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                const isLight = document.documentElement.classList.toggle('light-mode');
+                localStorage.setItem('portfolio-theme', isLight ? 'light' : 'dark');
+            });
+        }
+    });
+</script>
+
+<!-- Dark/Light Mode Toggle -->
+<button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+    <span class="icon-moon">&#127769;</span>
+    <span class="icon-sun">&#9728;&#65039;</span>
+</button>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-logo">&lt; Muhammad Saad /&gt;</div>
+        <div class="footer-right">Deploy on Firebase Hosting · 2026</div>
+    </div>
+    <div class="footer-center"><a href="/privacy" style="color: var(--accent); text-decoration: underline;">Privacy Policy</a> · Designed &amp; Developed by Saad</div>
+</footer>
+
+</body>
+</html>

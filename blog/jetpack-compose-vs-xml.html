@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jetpack Compose vs XML: Why I Switched for My Latest Projects | Android Developer Blog</title>
-    <meta name="description" content="A comprehensive analysis comparing declarative Jetpack Compose layouts with traditional XML view systems in modern Android app development.">
+    <meta name="description" content="A deep architectural comparison between declarative Jetpack Compose composables and traditional Android XML view hierarchies, covering performance and migrations.">
     <link rel="canonical" href="https://saadev.site/blog/jetpack-compose-vs-xml">
     <link rel="alternate" hreflang="en-us" href="https://saadev.site/blog/jetpack-compose-vs-xml">
     <meta property="og:title" content="Jetpack Compose vs XML: Why I Switched for My Latest Projects">
@@ -25,18 +25,18 @@
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
     <link rel="manifest" href="/manifest.json">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/style.css?v=10">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "TechArticle",
+      "@type": "BlogPosting",
       "headline": "Jetpack Compose vs XML: Why I Switched for My Latest Projects",
       "description": "An in-depth performance, syntax, and development speed comparison between declarative Jetpack Compose layouts and traditional XML layouts in modern Android development.",
       "image": "https://saadev.site/assets/og-image.jpg",
       "author": {
         "@type": "Person",
         "name": "Muhammad Saad",
-        "url": "https://saadev.site"
+        "url": "https://saadev.site/"
       },
       "publisher": {
         "@type": "Person",
@@ -46,8 +46,8 @@
           "url": "https://saadev.site/assets/muhammad-saad-android-developer.webp"
         }
       },
-      "datePublished": "2026-07-19",
-      "dateModified": "2026-07-30",
+      "datePublished": "2026-05-10",
+      "dateModified": "2026-07-25",
       "mainEntityOfPage": "https://saadev.site/blog/jetpack-compose-vs-xml",
       "inLanguage": "en-US",
       "keywords": "Jetpack Compose vs XML, Android UI performance, Compose declarative layout, migrate Android XML to Compose"
@@ -59,8 +59,8 @@
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://saadev.site/" },
-        { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://saadev.site/#blog" },
-        { "@type": "ListItem", "position": 3, "name": "Jetpack Compose vs XML Comparison", "item": "https://saadev.site/blog/jetpack-compose-vs-xml" }
+        { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://saadev.site/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Jetpack Compose vs XML", "item": "https://saadev.site/blog/jetpack-compose-vs-xml" }
       ]
     }
     </script>
@@ -75,25 +75,48 @@
             <a href="/#about">ABOUT</a>
             <a href="/#stack">STACK</a>
             <a href="/#projects">PROJECTS</a>
+            <a href="/blog/" class="active">ARTICLES</a>
+            <a href="/#backend">BACKEND</a>
             <a href="/#education">EDUCATION</a>
             <a href="/#contact">CONTACT</a>
         </div>
+        <button class="hamburger" aria-label="Toggle Navigation Menu" type="button">
+            <span></span><span></span><span></span>
+        </button>
     </div>
 </nav>
 
-<main class="container section-padding" style="margin-top: 4rem; max-width: 850px;">
-    <article class="blog-post" style="color: var(--text); line-height: 1.8;">
-        <header class="post-header" style="margin-bottom: 3rem;">
-            <div class="section-label">// UI PARADIGM ANALYSIS</div>
-            <h1 class="post-title" style="font-family: var(--font-ui); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin: 1rem 0; font-weight: 800;">
+<main class="article-container section-padding" style="margin-top: 3.5rem;">
+    <!-- Breadcrumb Trail -->
+    <div class="article-breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <a href="/blog/">Articles</a>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-current">Jetpack Compose vs XML</span>
+    </div>
+
+    <article class="blog-post">
+        <header class="article-header">
+            <div class="article-badge-row">
+                <span class="badge" style="color: var(--accent); border-color: rgba(37, 99, 235, 0.35);">Analysis</span>
+                <span class="badge" style="color: var(--muted); border-color: var(--border);">UI Architecture</span>
+            </div>
+            <h1 class="article-title">
                 Jetpack Compose vs XML: Why I Switched for My Latest Projects
             </h1>
-            <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(61, 220, 132, 0.1); border: 1px solid var(--android-dim); padding: 0.4rem 0.8rem; border-radius: 4px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--android); margin-top: 0.5rem;">
-                <span>📅 Published: July 19, 2026</span> · <span style="color: var(--firebase);">⚡ Last Updated: July 30, 2026</span> · <span>👨‍💻 Author: Muhammad Saad</span>
+            <div class="article-meta-bar">
+                <span>📅 Published: May 10, 2026</span>
+                <span class="meta-divider">·</span>
+                <span style="color: var(--accent);">⚡ Updated: July 25, 2026</span>
+                <span class="meta-divider">·</span>
+                <span>⏱️ 6 min read</span>
+                <span class="meta-divider">·</span>
+                <span>👨‍💻 Muhammad Saad</span>
             </div>
         </header>
 
-        <section class="post-body">
+        <section class="article-body">
             <h2 style="font-family: var(--font-ui); color: var(--android); font-size: 1.8rem; margin: 2rem 0 1rem;">1. How does Jetpack Compose improve UI rendering performance over XML?</h2>
             <p style="margin-bottom: 1.5rem; opacity: 0.85;">
                 <strong>Jetpack Compose is Android's modern declarative UI toolkit that simplifies and accelerates UI development by replacing traditional imperative XML view hierarchies with composable Kotlin functions.</strong> For over a decade, Android UI development relied exclusively on imperative XML layout definitions coupled with Java/Kotlin view binding controllers (`findViewById`). As mobile interfaces grew more dynamic, this legacy approach introduced deep view trees, layout inflation overheads, and high boilerplate maintenance.
@@ -110,11 +133,11 @@
                 In the declarative Compose model, the UI is stateless. Views are defined as functions marked with the <code>@Composable</code> annotation. These functions accept input state parameters and emit UI elements. When the input state changes, the compose engine automatically runs the functions again with the updated arguments in a process called <strong>recomposition</strong>. 
             </p>
             <p style="margin-bottom: 1.5rem; opacity: 0.85;">
-                Let's contrast the syntax for displaying a simple loading state.
+                Let's contrast the syntax for displaying a simple loading state:
             </p>
             
             <h3 style="font-family: var(--font-ui); color: var(--text); font-size: 1.3rem; margin: 1.5rem 0 0.8rem;">The XML Imperative Approach</h3>
-            <div style="background: var(--surface2); border-left: 3px solid var(--firebase); padding: 1.5rem; margin: 2rem 0; font-family: var(--font-mono); font-size: 0.85rem; overflow-x: auto;">
+            <div style="background: var(--surface2); border-left: 3px solid var(--accent); padding: 1.5rem; margin: 2rem 0; font-family: var(--font-mono); font-size: 0.85rem; border-radius: 6px; overflow-x: auto;">
 <pre style="margin: 0; color: #d4d4d4;"><span style="color: #6a9955;">// layout.xml</span>
 &lt;ProgressBar
     android:id="@+id/loadingBar"
@@ -130,80 +153,72 @@ fun updateLoadingState(isLoading: Boolean) {
             </div>
 
             <h3 style="font-family: var(--font-ui); color: var(--text); font-size: 1.3rem; margin: 1.5rem 0 0.8rem;">The Jetpack Compose Declarative Approach</h3>
-            <div style="background: var(--surface2); border-left: 3px solid var(--android); padding: 1.5rem; margin: 2rem 0; font-family: var(--font-mono); font-size: 0.85rem; overflow-x: auto;">
-<pre style="margin: 0; color: #b5c2b1;"><span style="color: #6a9955;">// Compose handles state observation and redraws automatically</span>
+            <div style="background: var(--surface2); border-left: 3px solid var(--android); padding: 1.5rem; margin: 2rem 0; font-family: var(--font-mono); font-size: 0.85rem; border-radius: 6px; overflow-x: auto;">
+<pre style="margin: 0; color: #b5c2b1;"><span style="color: #6a9955;">// LoadingScreen.kt</span>
 @Composable
-fun LoadingComponent(isLoading: Boolean) {
+fun LoadingScreen(isLoading: Boolean) {
     if (isLoading) {
-        CircularProgressIndicator(
-            color = MaterialTheme.colorScheme.primary
-        )
+        CircularProgressIndicator()
     }
 }</pre>
             </div>
             <p style="margin-bottom: 1.5rem; opacity: 0.85;">
-                In the Compose example, there is no manual visibility toggling or view queries. The UI structure naturally reflects the logic state, eliminating view synchronization bugs.
+                Notice how Compose eliminates null-pointer exceptions, IDs, and manual visibility toggles. The composable either emits the indicator into the layout tree or it does not exist at all.
             </p>
 
-            <h2 style="font-family: var(--font-ui); color: var(--android); font-size: 1.8rem; margin: 2rem 0 1rem;">3. State Management: The Single Source of Truth</h2>
+            <h2 style="font-family: var(--font-ui); color: var(--android); font-size: 1.8rem; margin: 2rem 0 1rem;">3. Layout Tree Depth and Recomposition</h2>
             <p style="margin-bottom: 1.5rem; opacity: 0.85;">
-                Compose relies on unidirectional data flow (UDF). States flow down from view models to composable functions, and user interactions (events) flow up to the view models. This pattern aligns with MVVM standards, ensuring data updates originate from a single source of truth.
+                In traditional XML, creating complex nested designs often required nesting multiple <code>LinearLayout</code> or <code>RelativeLayout</code> instances, leading to costly multi-pass layout traversals (measure/layout cycle). Google introduced <code>ConstraintLayout</code> to flatten trees, but configuring constraints remained verbose and error-prone.
             </p>
             <p style="margin-bottom: 1.5rem; opacity: 0.85;">
-                To preserve values across recompositions, Compose utilizes <code>remember { mutableStateOf(defaultValue) }</code>. When building more complex dashboards, we observe data channels from repository modules using LiveData or Flow and collect them directly inside the composable tree:
+                In Compose, layout hierarchies are fundamentally flat and lightweight. Compose executes layout measurements in a single pass (O(n)), preventing exponential measurement explosions. Furthermore, Compose uses smart <strong>skipping</strong>: if a composable's input parameters have not changed, Compose skips executing that subtree entirely, minimizing CPU cycles and battery drain.
             </p>
-            <div style="background: var(--surface2); border-left: 3px solid var(--android); padding: 1.5rem; margin: 2rem 0; font-family: var(--font-mono); font-size: 0.85rem; overflow-x: auto;">
-<pre style="margin: 0; color: #b5c2b1;"><span style="color: #6a9955;">// Reactive state tracking within a Compose screen</span>
-@Composable
-fun DashboardScreen(viewModel: DashboardViewModel) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    when (val state = uiState) {
-        is UiState.Loading -&gt; LoadingIndicator()
-        is UiState.Success -&gt; TransactionList(state.data)
-        is UiState.Error -&gt; ErrorMessage(state.message)
+            <h2 style="font-family: var(--font-ui); color: var(--android); font-size: 1.8rem; margin: 2rem 0 1rem;">4. Development Velocity and Code Reusability</h2>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                By keeping UI definition inside Kotlin, developers gain full access to standard programming constructs: loops, conditionals, extensions, and higher-order functions. You no longer context-switch between XML attributes and Kotlin logic.
+            </p>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                Creating a custom reusable card component in XML requires an XML layout file, an attribute definition file (`attrs.xml`), a custom View subclass, and styled attributes parsing. In Compose, it is simply a Kotlin function:
+            </p>
+            <div style="background: var(--surface2); border-left: 3px solid var(--android); padding: 1.5rem; margin: 2rem 0; font-family: var(--font-mono); font-size: 0.85rem; border-radius: 6px; overflow-x: auto;">
+<pre style="margin: 0; color: #b5c2b1;">@Composable
+fun MetricBadge(label: String, value: String, modifier: Modifier = Modifier) {
+    Card(
+        modifier = modifier.padding(8.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(text = label, style = MaterialTheme.typography.labelSmall)
+            Text(text = value, style = MaterialTheme.typography.titleMedium)
+        }
     }
 }</pre>
             </div>
 
-            <h2 style="font-family: var(--font-ui); color: var(--android); font-size: 1.8rem; margin: 2rem 0 1rem;">4. Rendering Engine and App Performance</h2>
+            <h2 style="font-family: var(--font-ui); color: var(--android); font-size: 1.8rem; margin: 2rem 0 1rem;">5. Interoperability: How to Migrate Incrementally</h2>
             <p style="margin-bottom: 1.5rem; opacity: 0.85;">
-                Beyond clean syntax, the differences in under-the-hood rendering mechanics significantly impact <strong>Android UI performance</strong>.
-            </p>
-            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
-                In the XML view model, the layout system parses XML nodes at runtime, instantiating view classes reflectively. The layout tree then goes through a multi-pass measurement cycle (Measure, Layout, Draw). For deeply nested layouts, this multi-pass cycle causes rendering overhead, occasionally dropping frames (stuttering).
-            </p>
-            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
-                In contrast, Jetpack Compose bypasses the traditional Android View system entirely. Compose draws elements directly onto a hardware-accelerated <code>Canvas</code> using its own internal nodes. 
-            </p>
-            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
-                By enforcing a **single-pass layout constraint**, Compose avoids nested measurement performance hits. The compile-time code optimization translates to faster view creation, reducing screen launch delays.
+                A common misconception is that adopting Compose requires rewriting entire production applications. In reality, Google engineered Compose with bidirectional interoperability:
             </p>
 
-            <h2 style="font-family: var(--font-ui); color: var(--android); font-size: 1.8rem; margin: 2rem 0 1rem;">5. Migration Strategy: Integrating Compose with XML</h2>
+            <h3 style="font-family: var(--font-ui); color: var(--text); font-size: 1.3rem; margin: 1.5rem 0 0.8rem;">Method A: Embedding Compose in XML Layouts</h3>
             <p style="margin-bottom: 1.5rem; opacity: 0.85;">
-                Many engineering teams hesitate to adopt Jetpack Compose because of the size of their legacy codebases. Fortunately, Compose offers excellent interoperability. You don't need to rebuild your application from scratch; instead, you can migrate incrementally using two integration methods:
+                You can add a <code>ComposeView</code> directly inside any XML layout and call <code>setContent {}</code> in your Fragment or Activity:
             </p>
-            
-            <h3 style="font-family: var(--font-ui); color: var(--text); font-size: 1.3rem; margin: 1.5rem 0 0.8rem;">Method A: Adding Compose Components to XML Views</h3>
-            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
-                You can insert a <code>ComposeView</code> node inside an XML file. This allows you to write new, complex components in Compose while retaining the legacy layout skeleton:
-            </p>
-            <div style="background: var(--surface2); border-left: 3px solid var(--firebase); padding: 1.5rem; margin: 2rem 0; font-family: var(--font-mono); font-size: 0.85rem; overflow-x: auto;">
-<pre style="margin: 0; color: #d4d4d4;"><span style="color: #6a9955;">// XML File containing a Compose container</span>
-&lt;androidx.constraintlayout.widget.ConstraintLayout ...&gt;
-    &lt;androidx.compose.ui.platform.ComposeView
-        android:id="@+id/composeContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" /&gt;
-&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;</pre>
+            <div style="background: var(--surface2); border-left: 3px solid var(--accent); padding: 1.5rem; margin: 2rem 0; font-family: var(--font-mono); font-size: 0.85rem; border-radius: 6px; overflow-x: auto;">
+<pre style="margin: 0; color: #d4d4d4;"><span style="color: #6a9955;">// Inside an existing Fragment</span>
+binding.composeContainer.setContent {
+    MaterialTheme {
+        SpendingTrendChart(data = viewModel.monthlySpendData)
+    }
+}</pre>
             </div>
 
             <h3 style="font-family: var(--font-ui); color: var(--text); font-size: 1.3rem; margin: 1.5rem 0 0.8rem;">Method B: Embedding XML Views in Compose layouts</h3>
             <p style="margin-bottom: 1.5rem; opacity: 0.85;">
                 For specialized UI components that are not yet natively supported in Compose (such as legacy map frameworks or video players), you can wrap the view in an <code>AndroidView</code> block inside your Composable function tree:
             </p>
-            <div style="background: var(--surface2); border-left: 3px solid var(--android); padding: 1.5rem; margin: 2rem 0; font-family: var(--font-mono); font-size: 0.85rem; overflow-x: auto;">
+            <div style="background: var(--surface2); border-left: 3px solid var(--android); padding: 1.5rem; margin: 2rem 0; font-family: var(--font-mono); font-size: 0.85rem; border-radius: 6px; overflow-x: auto;">
 <pre style="margin: 0; color: #b5c2b1;"><span style="color: #6a9955;">// Embedding a legacy map component in a Compose tree</span>
 @Composable
 fun LegacyMapView(coordinate: LatLng) {
@@ -230,7 +245,7 @@ fun LegacyMapView(coordinate: LatLng) {
                 For <strong>GiveEase</strong>, the project required a hybrid model: we maintained XML layouts for initial entry sheets while utilizing Compose views for the complex donor-NGO tracking feeds. This verification app confirmed that incremental migration is highly viable.
             </p>
             <p style="margin-bottom: 1.5rem; opacity: 0.85;">
-                If you are looking to build a clean local database app or modernize your current view layouts using Jetpack Compose, please explore my featured projects on the <a href="/" style="color: var(--android); border-bottom: 1px solid var(--android);">Muhammad Saad portfolio home page</a>, or submit an inquiry directly through the <a href="/#contact" style="color: var(--android); border-bottom: 1px solid var(--android);">contact form</a>.
+                If you are looking to build a clean local database app or modernize your current view layouts using Jetpack Compose, explore my featured projects on the <a href="/#projects" style="color: var(--accent); border-bottom: 1px solid var(--accent);">Muhammad Saad portfolio</a>, or submit an inquiry directly through the <a href="/#contact" style="color: var(--accent); border-bottom: 1px solid var(--accent);">contact form</a>.
             </p>
         </section>
 
@@ -238,17 +253,102 @@ fun LegacyMapView(coordinate: LatLng) {
         
         <!-- Outbound Citations & Internal Links (EEAT) -->
         <section class="eeat-citations" style="font-size: 0.95rem; color: var(--muted);">
-            <h4 style="color: var(--text); font-family: var(--font-ui); margin-bottom: 1rem;">References & Resources:</h4>
+            <h4 style="color: var(--text); font-family: var(--font-ui); margin-bottom: 1rem;">References &amp; Resources:</h4>
             <ul style="list-style: none; padding: 0;">
-                <li style="margin-bottom: 0.5rem;">📖 Google Compose Guidelines: <a href="https://developer.android.com/jetpack/compose" target="_blank" rel="noopener noreferrer" style="color: var(--firebase);">Jetpack Compose Developer Documentation</a></li>
-                <li style="margin-bottom: 0.5rem;">📖 Android UI Performance: <a href="https://developer.android.com/topic/performance" target="_blank" rel="noopener noreferrer" style="color: var(--firebase);">Android Performance Guide</a></li>
-                <li style="margin-bottom: 0.5rem;">📖 Comsats University Engineering: <a href="https://sahiwal.comsats.edu.pk/" target="_blank" rel="noopener noreferrer" style="color: var(--firebase);">COMSATS University Islamabad, Sahiwal Campus</a></li>
+                <li style="margin-bottom: 0.5rem;">📖 Google Compose Guidelines: <a href="https://developer.android.com/jetpack/compose" target="_blank" rel="noopener noreferrer" style="color: var(--accent);">Jetpack Compose Developer Documentation</a></li>
+                <li style="margin-bottom: 0.5rem;">📖 Android UI Performance: <a href="https://developer.android.com/topic/performance" target="_blank" rel="noopener noreferrer" style="color: var(--accent);">Android Performance Guide</a></li>
+                <li style="margin-bottom: 0.5rem;">📖 COMSATS University Engineering: <a href="https://sahiwal.comsats.edu.pk/" target="_blank" rel="noopener noreferrer" style="color: var(--accent);">COMSATS University Islamabad, Sahiwal Campus</a></li>
                 <li style="margin-bottom: 0.5rem;">🔗 Review my database integrations: <a href="/blog/spendwise-case-study" style="color: var(--android);">SpendWise Offline-First Expense Tracker Design Case Study</a></li>
-                <li style="margin-bottom: 0.5rem;">🔗 Learn about my cloud app setup: <a href="/blog/giveease-case-study" style="color: var(--android);">How I Built GiveEase: A Verified Donation Platform Using Kotlin & Firebase</a></li>
+                <li style="margin-bottom: 0.5rem;">🔗 Learn about my cloud app setup: <a href="/blog/giveease-case-study" style="color: var(--android);">How I Built GiveEase: A Verified Donation Platform Using Kotlin &amp; Firebase</a></li>
             </ul>
+        </section>
+
+        <!-- Related Articles Section -->
+        <section class="related-articles-section">
+            <h3 class="related-articles-heading">Related Articles</h3>
+            <div class="related-grid" id="related-articles-grid">
+                <!-- GiveEase Case Study -->
+                <article class="blog-card is-visible">
+                    <div class="blog-card-content">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.8rem; gap: 0.5rem; flex-wrap: wrap;">
+                            <span class="badge" style="font-size: 0.68rem; padding: 0.2rem 0.55rem; color: var(--accent); border-color: rgba(37, 99, 235, 0.35);">Case Study</span>
+                            <div class="blog-card-meta" style="margin-bottom: 0;">JULY 19, 2026 · 8 MIN READ</div>
+                        </div>
+                        <h4 class="blog-card-title" style="font-size: 1.05rem; margin-bottom: 0.8rem;">How I Built GiveEase: A Verified Donation Platform Using Kotlin &amp; Firebase</h4>
+                        <p class="blog-card-desc">Architecture and implementation breakdown of GiveEase, a verified Android donation app built with Kotlin, Firebase Auth, Cloud Firestore, and clean MVVM patterns.</p>
+                        <a href="/blog/giveease-case-study" class="blog-card-link">READ FULL CASE STUDY &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- SpendWise Case Study -->
+                <article class="blog-card is-visible">
+                    <div class="blog-card-content">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.8rem; gap: 0.5rem; flex-wrap: wrap;">
+                            <span class="badge" style="font-size: 0.68rem; padding: 0.2rem 0.55rem; color: var(--accent); border-color: rgba(37, 99, 235, 0.35);">Case Study</span>
+                            <div class="blog-card-meta" style="margin-bottom: 0;">JUNE 15, 2026 · 6 MIN READ</div>
+                        </div>
+                        <h4 class="blog-card-title" style="font-size: 1.05rem; margin-bottom: 0.8rem;">SpendWise: Building an Offline-First Expense Tracker with Room Database</h4>
+                        <p class="blog-card-desc">Deep dive into building SpendWise, an offline-first Android expense tracker using Room SQLite, Jetpack Compose, Material 3, and Kotlin Flow streams.</p>
+                        <a href="/blog/spendwise-case-study" class="blog-card-link">READ FULL CASE STUDY &rarr;</a>
+                    </div>
+                </article>
+            </div>
         </section>
     </article>
 </main>
+
+<!-- Dynamic Related Articles Script -->
+<script type="module">
+    import { getRelatedPosts, formatDate } from '/blog/posts-data.js';
+    try {
+        const grid = document.getElementById('related-articles-grid');
+        const related = getRelatedPosts('jetpack-compose-vs-xml', 2);
+        if (grid && related && related.length > 0) {
+            grid.innerHTML = related.map(post => `
+                <article class="blog-card is-visible">
+                    <div class="blog-card-content">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.8rem; gap: 0.5rem; flex-wrap: wrap;">
+                            <span class="badge" style="font-size: 0.68rem; padding: 0.2rem 0.55rem; color: var(--accent); border-color: rgba(37, 99, 235, 0.35);">${post.category}</span>
+                            <div class="blog-card-meta" style="margin-bottom: 0;">${formatDate(post.datePublished).toUpperCase()} · ${post.readTimeMinutes} MIN READ</div>
+                        </div>
+                        <h4 class="blog-card-title" style="font-size: 1.05rem; margin-bottom: 0.8rem;">${post.title}</h4>
+                        <p class="blog-card-desc">${post.excerpt}</p>
+                        <a href="/blog/${post.slug}" class="blog-card-link">READ FULL ARTICLE &rarr;</a>
+                    </div>
+                </article>
+            `).join('');
+        }
+    } catch (e) {
+        console.debug('Static related articles active');
+    }
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+        }
+
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                const isLight = document.documentElement.classList.toggle('light-mode');
+                localStorage.setItem('portfolio-theme', isLight ? 'light' : 'dark');
+            });
+        }
+    });
+</script>
+
+<!-- Dark/Light Mode Toggle -->
+<button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+    <span class="icon-moon">&#127769;</span>
+    <span class="icon-sun">&#9728;&#65039;</span>
+</button>
 
 <!-- Footer -->
 <footer class="footer">
@@ -256,7 +356,7 @@ fun LegacyMapView(coordinate: LatLng) {
         <div class="footer-logo">&lt; Muhammad Saad /&gt;</div>
         <div class="footer-right">Deploy on Firebase Hosting · 2026</div>
     </div>
-    <div class="footer-center"><a href="/privacy" style="color: var(--android); text-decoration: underline;">Privacy Policy</a> · Designed &amp; Developed by Saad</div>
+    <div class="footer-center"><a href="/privacy" style="color: var(--accent); text-decoration: underline;">Privacy Policy</a> · Designed &amp; Developed by Saad</div>
 </footer>
 
 </body>
