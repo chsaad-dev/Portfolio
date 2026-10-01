@@ -242,36 +242,32 @@ img { max-width:100%; display:block; }
     letter-spacing: -0.04em;
     line-height:0.95; margin-bottom:1.5rem;
 }
-.hero-line-1 { display:block; color:var(--white); opacity:0; animation: fadeIn 0.7s forwards 0.2s; }
+.hero-line-1 { display:block; color:var(--white); }
 .hero-line-2 {
     display:block; color:var(--text);
-    opacity:0; animation: fadeIn 0.7s forwards 0.4s;
 }
 .hero-line-3 {
     display:block; font-size:clamp(1.5rem,3.5vw,3.5rem);
-    color:var(--text); opacity:0; animation: fadeIn 0.7s forwards 0.6s;
+    color:var(--text);
 }
 
 .hero-rule {
-    width:0; height:2px; background:var(--accent);
-    margin:1.5rem 0; animation: expandWidth 0.6s forwards 0.9s;
+    width:100px; height:2px; background:var(--accent);
+    margin:1.5rem 0;
 }
 
 .hero-subtitle {
     font-size:1.1rem; color:var(--muted); max-width:500px;
     font-weight:300; margin-bottom:2rem;
-    opacity:0; animation: fadeUp 0.6s forwards 1.1s;
 }
 
 .hero-buttons {
     display:flex; gap:1rem;
-    opacity:0; animation: fadeUp 0.6s forwards 1.3s;
 }
 
 .hero-social {
     position:absolute; bottom:3rem; left:2rem;
     display:flex; flex-direction:column; align-items:center; gap:1rem;
-    opacity:0; animation: fadeUp 0.6s forwards 1.5s;
 }
 .hero-social a {
     font-family:var(--font-body); font-size:0.75rem; font-weight:500; color:var(--muted);
@@ -741,7 +737,7 @@ img { max-width:100%; display:block; }
     .hero-title { font-size:clamp(3rem,8vw,5rem); }
     .hero-buttons { flex-direction:column; }
     .btn { text-align:center; }
-    .hero-social, .scroll-indicator { display:none; }
+    .hero-social, .scroll-indicator, .hero-blob-1, .hero-blob-2 { display:none !important; }
     .contact-grid { grid-template-columns:1fr; }
     .contact-box { width:100%; }
     .footer-inner { flex-direction:column; gap:0.5rem; text-align:center; }

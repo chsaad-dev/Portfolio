@@ -4,32 +4,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelector('.nav-links');
     const allNavLinks = document.querySelectorAll('.nav-links a');
 
-    // 1. Navbar scroll
-    window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 80);
-        updateActiveNav();
-    });
+    // 1. Navbar scroll & Active Nav link (RAF throttled & passive listener)
+    const sections = Array.from(document.querySelectorAll('section[id]'));
+    let scrollTicking = false;
+
+    function handleScroll() {
+        if (!scrollTicking) {
+            requestAnimationFrame(() => {
+                const scrollY = window.scrollY;
+                navbar.classList.toggle('scrolled', scrollY > 80);
+
+                let current = '';
+                for (let i = 0; i < sections.length; i++) {
+                    const s = sections[i];
+                    if (scrollY >= s.offsetTop - 200) current = s.id;
+                }
+                allNavLinks.forEach(a => {
+                    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+                });
+                scrollTicking = false;
+            });
+            scrollTicking = true;
+        }
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     // 2. Mobile menu
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navLinks.classList.toggle('active');
-    });
-    allNavLinks.forEach(link => link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navLinks.classList.remove('active');
-    }));
-
-    // 3. Active nav link
-    function updateActiveNav() {
-        const sections = document.querySelectorAll('section[id]');
-        let current = '';
-        sections.forEach(s => {
-            if (window.scrollY >= s.offsetTop - 200) current = s.id;
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
         });
-        allNavLinks.forEach(a => {
-            a.classList.toggle('active', a.getAttribute('href') === '#' + current);
-        });
+        allNavLinks.forEach(link => link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+        }));
     }
 
     // 4. Smooth scroll
@@ -52,8 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
 
-                // Stagger child elements (badges, pills, cards, stat counters)
-                if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                // Stagger child elements on desktop only to avoid mobile layout thrashing
+                if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && !window.matchMedia('(pointer: coarse)').matches) {
                     const staggerChildren = entry.target.querySelectorAll('.badge, .pill, .service-card, .stat-counter-box, .stat-box, .cert-item, .blog-card');
                     staggerChildren.forEach((child, idx) => {
                         child.style.transitionDelay = `${idx * 60}ms`;
@@ -222,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 9.5. Scroll Depth Tracking (25%, 50%, 75%, 100%)
+    // 9.5. Scroll Depth Tracking (25%, 50%, 75%, 100%) — passive listener
     let scrolledDepths = new Set();
     window.addEventListener('scroll', () => {
         const h = document.documentElement,
@@ -241,25 +250,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
-    });
+    }, { passive: true });
 
-    // 9.6. Web-Vitals Real User Monitoring (RUM) Tracking
-    import('https://unpkg.com/web-vitals@4/dist/web-vitals.attribution.js?module').then(({ onCLS, onFID, onLCP, onFCP, onINP }) => {
-        function sendToGA4({ name, delta, id }) {
-            if (typeof gtag === 'function') {
-                gtag('event', name, {
-                    'value': Math.round(name === 'CLS' ? delta * 1000 : delta),
-                    'metric_id': id,
-                    'non_interaction': true
-                });
+    // 9.6. Web-Vitals Real User Monitoring (RUM) Tracking (Deferred to idle / post-load)
+    function initWebVitals() {
+        import('https://unpkg.com/web-vitals@4/dist/web-vitals.attribution.js?module').then(({ onCLS, onFID, onLCP, onFCP, onINP }) => {
+            function sendToGA4({ name, delta, id }) {
+                if (typeof gtag === 'function') {
+                    gtag('event', name, {
+                        'value': Math.round(name === 'CLS' ? delta * 1000 : delta),
+                        'metric_id': id,
+                        'non_interaction': true
+                    });
+                }
             }
-        }
-        onCLS(sendToGA4);
-        onFID(sendToGA4);
-        onLCP(sendToGA4);
-        onFCP(sendToGA4);
-        onINP(sendToGA4);
-    }).catch(err => console.log("Web-vitals load skipped or failed."));
+            onCLS(sendToGA4);
+            onFID(sendToGA4);
+            onLCP(sendToGA4);
+            onFCP(sendToGA4);
+            onINP(sendToGA4);
+        }).catch(() => {});
+    }
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => initWebVitals());
+    } else {
+        window.addEventListener('load', () => setTimeout(initWebVitals, 2500));
+    }
 
     // 10. Project Share Buttons Interaction
     document.querySelectorAll('.share-btn').forEach(btn => {
@@ -332,13 +348,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 13. Live GitHub Activity & Contribution Heatmap
-    const heatmapContainer = document.querySelector('.github-heatmap');
-    if (heatmapContainer) {
+    // 13. Live GitHub Activity & Contribution Heatmap (Batch created via DocumentFragment)
+    function initHeatmap() {
+        const heatmapContainer = document.querySelector('.github-heatmap');
+        if (!heatmapContainer) return;
+        const fragment = document.createDocumentFragment();
         const activityWeights = [0, 0, 0, 0, 1, 1, 1, 2, 2, 3, 4];
         for (let i = 0; i < 364; i++) {
             const cell = document.createElement('div');
-            cell.classList.add('gh-cell');
+            cell.className = 'gh-cell';
             const dayOfWeek = i % 7;
             const weekNumber = Math.floor(i / 7);
             let level = 0;
@@ -353,8 +371,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             if (level > 0) cell.classList.add('l' + level);
-            heatmapContainer.appendChild(cell);
+            fragment.appendChild(cell);
         }
+        heatmapContainer.appendChild(fragment);
+    }
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(initHeatmap);
+    } else {
+        setTimeout(initHeatmap, 1000);
     }
 
     // Live GitHub Data Fetcher with LocalStorage Caching (20 min TTL)
@@ -445,7 +469,11 @@ document.addEventListener('DOMContentLoaded', () => {
             console.debug('GitHub live sync deferred:', err);
         }
     }
-    initLiveGitHub();
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => initLiveGitHub());
+    } else {
+        setTimeout(initLiveGitHub, 1500);
+    }
 
     // 14. Resume Preview Modal
     const resumePreviewBtn = document.getElementById('resume-preview-btn');
