@@ -10,10 +10,10 @@
     --accent-text: #60a5fa;
     --accent-text-hover: #93c5fd;
     --white: #ffffff;
-    --font-display: 'Inter', sans-serif;
-    --font-ui: 'Inter', sans-serif;
-    --font-body: 'Inter', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
+    --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 
     /* Legacy aliases — subpage inline styles reference these */
     --android: var(--accent-text);
@@ -43,12 +43,15 @@ body {
     overflow-x: hidden;
 }
 
-/* Noise overlay */
+/* Noise overlay - disabled on mobile devices to prevent expensive CPU rasterization */
 body::before {
     content: '';
     position: fixed; top:0; left:0; width:100%; height:100%;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
     pointer-events: none; z-index: 9999;
+}
+@media (max-width: 768px) {
+    body::before { display: none !important; }
 }
 
 /* Dot grid */
@@ -1423,17 +1426,29 @@ html.light-mode ::selection { background: var(--accent); color: #fff; }
     letter-spacing: 0.5px;
 }
 .gh-live-dot {
+    position: relative;
     width: 8px;
     height: 8px;
     background: #3DDC84;
     border-radius: 50%;
-    box-shadow: 0 0 0 0 rgba(61, 220, 132, 0.7);
-    animation: livePulse 2s infinite;
+    display: inline-block;
 }
-@keyframes livePulse {
-    0% { box-shadow: 0 0 0 0 rgba(61, 220, 132, 0.7); }
-    70% { box-shadow: 0 0 0 8px rgba(61, 220, 132, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(61, 220, 132, 0); }
+.gh-live-dot::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    background: #3DDC84;
+    animation: livePulseComposite 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    pointer-events: none;
+}
+@keyframes livePulseComposite {
+    0% { transform: scale(1); opacity: 0.8; }
+    70% { transform: scale(2.4); opacity: 0; }
+    100% { transform: scale(2.4); opacity: 0; }
 }
 
 .github-live-card {

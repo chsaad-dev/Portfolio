@@ -4,30 +4,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelector('.nav-links');
     const allNavLinks = document.querySelectorAll('.nav-links a');
 
-    // 1. Navbar scroll & Active Nav link (RAF throttled & passive listener)
-    const sections = Array.from(document.querySelectorAll('section[id]'));
-    let scrollTicking = false;
+    // 1. Navbar scroll & Active Nav link (IntersectionObserver based, zero reflow)
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 80);
+    }, { passive: true });
 
-    function handleScroll() {
-        if (!scrollTicking) {
-            requestAnimationFrame(() => {
-                const scrollY = window.scrollY;
-                navbar.classList.toggle('scrolled', scrollY > 80);
-
-                let current = '';
-                for (let i = 0; i < sections.length; i++) {
-                    const s = sections[i];
-                    if (scrollY >= s.offsetTop - 200) current = s.id;
+    if ('IntersectionObserver' in window) {
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    allNavLinks.forEach(a => {
+                        a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+                    });
                 }
-                allNavLinks.forEach(a => {
-                    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
-                });
-                scrollTicking = false;
             });
-            scrollTicking = true;
-        }
+        }, { rootMargin: '-20% 0px -70% 0px' });
+        document.querySelectorAll('section[id]').forEach(s => navObserver.observe(s));
     }
-    window.addEventListener('scroll', handleScroll, { passive: true });
 
     // 2. Mobile menu
     if (hamburger && navLinks) {
@@ -81,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 8. Typing animation
     const roles = ['Android Developer', 'Kotlin Specialist', 'Firebase Expert'];
     const typedEl = document.getElementById('typed-text');
-    let roleIndex = 0, charIndex = 0, isDeleting = false;
+    let roleIndex = 0, charIndex = roles[0].length, isDeleting = true;
 
     function typeEffect() {
         const current = roles[roleIndex];
@@ -90,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
             charIndex++;
             if (charIndex === current.length) {
                 isDeleting = true;
-                setTimeout(typeEffect, 1800);
+                setTimeout(typeEffect, 2200);
                 return;
             }
             setTimeout(typeEffect, 80);
@@ -106,7 +100,13 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(typeEffect, 40);
         }
     }
-    if (typedEl) setTimeout(typeEffect, 500);
+    if (typedEl) {
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(() => setTimeout(typeEffect, 2500));
+        } else {
+            setTimeout(typeEffect, 2500);
+        }
+    }
 
     // 9. GA4 Event Tracking
     // REPLACE G-XXXXXXXXXX with your actual Measurement ID from GA4.
@@ -231,25 +231,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 9.5. Scroll Depth Tracking (25%, 50%, 75%, 100%) — passive listener
+    // 9.5. Scroll Depth Tracking (25%, 50%, 75%, 100%) — rAF throttled passive listener
     let scrolledDepths = new Set();
+    let scrollDepthTicking = false;
     window.addEventListener('scroll', () => {
-        const h = document.documentElement,
-              b = document.body,
-              st = 'scrollTop',
-              sh = 'scrollHeight';
-        const percent = Math.round((h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight) * 100);
-        
-        [25, 50, 75, 100].forEach(threshold => {
-            if (percent >= threshold && !scrolledDepths.has(threshold)) {
-                scrolledDepths.add(threshold);
-                if (typeof gtag === 'function') {
-                    gtag('event', 'scroll_depth', {
-                        'depth_percentage': threshold
-                    });
-                }
-            }
-        });
+        if (scrolledDepths.size === 4) return;
+        if (!scrollDepthTicking) {
+            requestAnimationFrame(() => {
+                const h = document.documentElement,
+                      b = document.body,
+                      st = 'scrollTop',
+                      sh = 'scrollHeight';
+                const percent = Math.round((h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight) * 100);
+                
+                [25, 50, 75, 100].forEach(threshold => {
+                    if (percent >= threshold && !scrolledDepths.has(threshold)) {
+                        scrolledDepths.add(threshold);
+                        if (typeof gtag === 'function') {
+                            gtag('event', 'scroll_depth', {
+                                'depth_percentage': threshold
+                            });
+                        }
+                    }
+                });
+                scrollDepthTicking = false;
+            });
+            scrollDepthTicking = true;
+        }
     }, { passive: true });
 
     // 9.6. Web-Vitals Real User Monitoring (RUM) Tracking (Deferred to idle / post-load)
@@ -272,9 +280,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }).catch(() => {});
     }
     if ('requestIdleCallback' in window) {
-        requestIdleCallback(() => initWebVitals());
+        requestIdleCallback(() => setTimeout(initWebVitals, 4000));
     } else {
-        window.addEventListener('load', () => setTimeout(initWebVitals, 2500));
+        window.addEventListener('load', () => setTimeout(initWebVitals, 4500));
     }
 
     // 10. Project Share Buttons Interaction
@@ -375,12 +383,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         heatmapContainer.appendChild(fragment);
     }
-    if ('requestIdleCallback' in window) {
-        requestIdleCallback(initHeatmap);
-    } else {
-        setTimeout(initHeatmap, 1000);
-    }
-
     // Live GitHub Data Fetcher with LocalStorage Caching (20 min TTL)
     async function initLiveGitHub() {
         const repoTitleEl = document.getElementById('gh-repo-title');
@@ -469,10 +471,23 @@ document.addEventListener('DOMContentLoaded', () => {
             console.debug('GitHub live sync deferred:', err);
         }
     }
-    if ('requestIdleCallback' in window) {
-        requestIdleCallback(() => initLiveGitHub());
+
+    // Defer heatmap and live GitHub until user scrolls near the GitHub section
+    const ghSection = document.getElementById('github') || document.querySelector('.github-heatmap');
+    if (ghSection && 'IntersectionObserver' in window) {
+        const ghObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                initHeatmap();
+                initLiveGitHub();
+                ghObserver.disconnect();
+            }
+        }, { rootMargin: '250px' });
+        ghObserver.observe(ghSection);
     } else {
-        setTimeout(initLiveGitHub, 1500);
+        setTimeout(() => {
+            initHeatmap();
+            initLiveGitHub();
+        }, 4000);
     }
 
     // 14. Resume Preview Modal
