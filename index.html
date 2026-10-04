@@ -1017,6 +1017,12 @@
     z-index: 9999;
     font-family: inherit;
   }
+  #ai-chat-panel {
+    display: none;
+  }
+  #ai-chat-panel.open {
+    display: flex !important;
+  }
   #ai-chat-btn {
     background: var(--accent);
     color: white;
@@ -1078,7 +1084,7 @@
 </style>
 
 <div id="ai-chat-widget">
-  <div id="ai-chat-panel">
+  <div id="ai-chat-panel" style="display: none;">
     <div id="ai-chat-header">
       <div style="display: flex; align-items: center; gap: 8px;">
         <span class="ai-status-dot"></span>
@@ -1122,24 +1128,38 @@
 <script>
   (function() {
     var loaded = false;
-    function initChat() {
+    var openOnLoad = false;
+    function initChat(shouldOpen) {
+      if (shouldOpen) openOnLoad = true;
       if (loaded) return;
       loaded = true;
       var link = document.createElement('link');
       link.rel = 'stylesheet';
-      link.href = '/chatbot.min.css?v=1';
+      link.href = '/chatbot.min.css?v=2';
       document.head.appendChild(link);
       var s = document.createElement('script');
-      s.src = '/chatbot.min.js?v=1';
+      s.src = '/chatbot.min.js?v=2';
       s.defer = true;
+      s.onload = function() {
+        if (openOnLoad && window.__saadToggleChat) {
+          window.__saadToggleChat();
+          openOnLoad = false;
+        }
+      };
       document.body.appendChild(s);
     }
     var btn = document.getElementById('ai-chat-btn');
-    if (btn) btn.addEventListener('click', initChat, { once: true });
+    function onFirstClick() {
+      if (btn) btn.removeEventListener('click', onFirstClick);
+      if (!window.__saadToggleChat) {
+        initChat(true);
+      }
+    }
+    if (btn) btn.addEventListener('click', onFirstClick);
     if ('requestIdleCallback' in window) {
-      requestIdleCallback(function() { setTimeout(initChat, 3000); });
+      requestIdleCallback(function() { setTimeout(function() { initChat(false); }, 3000); });
     } else {
-      setTimeout(initChat, 3500);
+      setTimeout(function() { initChat(false); }, 3500);
     }
   })();
 </script>

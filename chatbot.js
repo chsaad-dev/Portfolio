@@ -14,15 +14,18 @@
   if (!btn || !panel) return;
 
   function toggleChat() {
-    panel.classList.toggle('open');
-    btn.classList.toggle('open', panel.classList.contains('open'));
-    if (panel.classList.contains('open') && input) input.focus();
+    const isOpen = panel.classList.toggle('open');
+    panel.style.display = isOpen ? 'flex' : 'none';
+    btn.classList.toggle('open', isOpen);
+    if (isOpen && input) input.focus();
   }
+  window.__saadToggleChat = toggleChat;
 
   btn.addEventListener('click', toggleChat);
   if (closeBtn) {
     closeBtn.addEventListener('click', () => {
       panel.classList.remove('open');
+      panel.style.display = 'none';
       btn.classList.remove('open');
     });
   }
