@@ -716,24 +716,24 @@ document.addEventListener('DOMContentLoaded', () => {
             apkLabel: "Download APK ↓"
         },
         {
-            badge: "PROJECT 03 · PERSONAL PROJECT",
-            title: "FindCircle — Lost & Found Community App",
-            img: "/assets/lostandfound.jpeg",
-            alt: "FindCircle Lost & Found mobile app high resolution interface",
-            caption: "Community lost & found platform featuring real-time location mapping, photo uploads, Coroutines, and Firebase Cloud Messaging.",
-            github: "https://github.com/chsaad-dev/FindCircle",
-            apk: "https://github.com/chsaad-dev/FindCircle/releases/download/v1.0/FindCircle.apk",
+            badge: "PROJECT 03 · PORTFOLIO PROJECT",
+            title: "Dev-Journal — Developer Publishing & Community Platform",
+            img: "/assets/dev-journal.jpeg",
+            alt: "Dev-Journal Android developer publishing platform mobile app interface",
+            caption: "Social publishing platform built with Kotlin, Jetpack Compose, Material3, MVVM Clean Architecture (46 use cases), Hilt, Cloud Firestore, Room, and serverless FCM push notifications.",
+            github: "https://github.com/chsaad-dev/Dev-Journal-Android",
+            apk: "https://github.com/chsaad-dev/Dev-Journal-Android/releases/tag/v1.0.0/Dev-Journal.apk",
             apkLabel: "Download APK ↓"
         },
         {
-            badge: "PROJECT 04 · FULL STACK & ANDROID LEAD",
-            title: "CampusConnect — Social Campus Platform & AI",
-            img: "/assets/campusconnect.jpeg",
-            alt: "CampusConnect Android social app high resolution interface",
-            caption: "Social campus platform with integrated Gemini 2.5 Flash-Lite AI assistant, Hilt DI, Room DB, and live web admin console.",
-            github: "https://github.com/chsaad-dev/CampusConnect",
-            apk: "https://campusconnect71x75.web.app/",
-            apkLabel: "Admin Console →"
+            badge: "PROJECT 04 · SOLE DEVELOPER & SYSTEM DESIGNER",
+            title: "GupShup — Real-Time Android Messaging & Status App",
+            img: "/assets/gupshup.jpeg",
+            alt: "GupShup Android real-time messaging and social status app interface",
+            caption: "Real-time messaging and status stories app featuring Room offline-first caching, dynamic notification channel versioning, and serverless JWT-signed FCM v1 dispatch.",
+            github: "https://github.com/chsaad-dev/GupShup",
+            apk: "https://github.com/chsaad-dev/GupShup/releases/download/v1.0.0/GupShup.apk",
+            apkLabel: "Download APK ↓"
         },
         {
             badge: "PROJECT 05 · CROSS-PLATFORM ENGINEER",

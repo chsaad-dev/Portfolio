@@ -151,11 +151,13 @@
           "position": 3,
           "item": {
             "@type": "SoftwareApplication",
-            "name": "FindCircle",
-            "applicationCategory": "MobileApplication",
+            "name": "Dev-Journal",
+            "description": "A social publishing platform for Android where developers write and publish Markdown posts about their technical work, follow peers, and engage through comments and likes.",
+            "applicationCategory": "SocialNetworkingApplication",
             "operatingSystem": "Android",
             "url": "https://saadev.site/#projects",
-            "codeRepository": "https://github.com/chsaad-dev/FindCircle",
+            "codeRepository": "https://github.com/chsaad-dev/Dev-Journal-Android",
+            "downloadUrl": "https://github.com/chsaad-dev/Dev-Journal-Android/releases/tag/v1.0.0/Dev-Journal.apk",
             "author": { "@type": "Person", "name": "Muhammad Saad" }
           }
         },
@@ -164,11 +166,13 @@
           "position": 4,
           "item": {
             "@type": "SoftwareApplication",
-            "name": "CampusConnect",
-            "applicationCategory": "MobileApplication",
+            "name": "GupShup",
+            "description": "Real-time Android messaging and status stories application featuring offline-first Room caching and serverless FCM v1 push notification infrastructure via Cloudflare Workers.",
+            "applicationCategory": "CommunicationApplication",
             "operatingSystem": "Android",
-            "url": "https://campusconnect71x75.web.app/",
-            "codeRepository": "https://github.com/chsaad-dev/CampusConnect",
+            "url": "https://saadev.site/#projects",
+            "codeRepository": "https://github.com/chsaad-dev/GupShup",
+            "downloadUrl": "https://github.com/chsaad-dev/GupShup/releases/download/v1.0.0/GupShup.apk",
             "author": { "@type": "Person", "name": "Muhammad Saad" }
           }
         },
@@ -216,15 +220,15 @@
           "name": "Does Muhammad Saad build offline-first Android applications?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes, projects like SpendWise and NoteSync are architected offline-first using Room SQLite and Isar databases, ensuring zero-latency local operations with automatic background cloud sync when online."
+            "text": "Yes, projects like SpendWise, GupShup, and NoteSync are architected offline-first using Room SQLite and Isar databases, ensuring zero-latency local operations with automatic background cloud sync when online."
           }
         },
         {
           "@type": "Question",
-          "name": "What AI features has Muhammad Saad integrated into Android apps?",
+          "name": "What serverless and notification architectures has Muhammad Saad implemented?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Muhammad Saad integrated Google's Gemini 2.5 Flash-Lite LLM via Cloudflare Worker API proxies into CampusConnect to provide automated course support and smart campus assistance."
+            "text": "Muhammad Saad builds serverless notification backends using Cloudflare Workers (TypeScript) with Web Crypto JWT signing to securely dispatch Firebase Cloud Messaging (FCM HTTP v1) alerts for apps like Dev-Journal and GupShup without exposing API credentials on-device."
           }
         },
         {
@@ -556,18 +560,18 @@
         <div class="project-item reveal">
             <div>
                 <div class="project-number">03</div>
-                <h3 class="project-name">FindCircle — Lost & Found Community App</h3>
-                <p class="project-desc">FindCircle is a community-driven lost & found mobile app that connects people who have lost personal belongings with those who have found them, using real-time location mapping, smart image-based matching, and instant push notifications.</p>
+                <h3 class="project-name">Dev-Journal — Developer Publishing &amp; Community Platform</h3>
+                <p class="project-desc">Dev-Journal is a social publishing platform for Android where developers write and publish Markdown posts about their technical work, follow peers, and engage through comments and likes. Backed by a real-time Firebase backend, it features a full-stack Clean Architecture with 46 domain use cases and a Next.js web admin panel.</p>
                 <div class="project-challenge">
                     <span class="challenge-label">&#9889; Problem Solved:</span>
-                    Every day, countless people lose valuable items with no centralized way to search for them. FindCircle solves this by creating a dedicated, geo-aware platform where users can instantly post lost or found items with photos, precise locations, and category tags.
+                    Most developers have no dedicated space to document what they are building day to day. General social platforms are not structured for technical writing, and blogging tools are disconnected from any sense of community. Dev-Journal gives developers one place to write with Markdown, build a public profile of their work over time, follow peers whose work they care about, and get notified when someone engages with their content — without the noise of a general-purpose social network.
                 </div>
-                <div class="project-meta">ROLE &rarr; <span>Personal Project</span> &nbsp;&nbsp; YEAR &rarr; <span>2025-2026</span></div>
-                <div class="project-tags"><span>Kotlin</span><span>MVVM</span><span>Coroutines</span><span>FCM</span></div>
+                <div class="project-meta">ROLE &rarr; <span>Portfolio Project</span> &nbsp;&nbsp; YEAR &rarr; <span>2026–2027</span></div>
+                <div class="project-tags"><span>Kotlin</span><span>Jetpack Compose</span><span>Clean Architecture</span><span>Hilt</span><span>Cloud Firestore</span><span>Room DB</span><span>Cloudflare FCM</span></div>
                 <div class="project-actions">
                     <button type="button" class="project-link btn-preview-screens" data-project="2">PREVIEW SCREENS &rarr;</button>
-                    <a href="https://github.com/chsaad-dev/FindCircle" target="_blank" rel="noopener noreferrer" class="project-link">VIEW ON GITHUB &rarr;</a>
-                    <a href="https://github.com/chsaad-dev/FindCircle/releases/download/v1.0/FindCircle.apk" class="project-link download-link" download>DOWNLOAD APK &#8595;</a>
+                    <a href="https://github.com/chsaad-dev/Dev-Journal-Android" target="_blank" rel="noopener noreferrer" class="project-link">VIEW ON GITHUB &rarr;</a>
+                    <a href="https://github.com/chsaad-dev/Dev-Journal-Android/releases/tag/v1.0.0/Dev-Journal.apk" class="project-link download-link" download>DOWNLOAD APK &#8595;</a>
                 </div>
                 
                 <!-- Project Share Container -->
@@ -575,16 +579,16 @@
                     <span class="share-label">SHARE PROJECT:</span>
                     <button class="share-btn" data-url="https://saadev.site/#projects">Copy Link</button>
                     <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://saadev.site/" target="_blank" rel="noopener noreferrer" class="share-btn">LinkedIn</a>
-                    <a href="https://twitter.com/intent/tweet?url=https://saadev.site/&text=Check%20out%20FindCircle%20-%20A%20Lost%20and%20Found%20App" target="_blank" rel="noopener noreferrer" class="share-btn">X</a>
+                    <a href="https://twitter.com/intent/tweet?url=https://saadev.site/&text=Check%20out%20Dev-Journal%20-%20A%20Social%20Publishing%20Platform%20for%20Developers" target="_blank" rel="noopener noreferrer" class="share-btn">X</a>
                 </div>
             </div>
             <div>
-                <div class="project-mockup" data-project="2" role="button" tabindex="0" aria-label="Open FindCircle app screenshot in fullscreen lightbox">
+                <div class="project-mockup" data-project="2" role="button" tabindex="0" aria-label="Open Dev-Journal app screenshot in fullscreen lightbox">
                     <div class="mockup-inner">
                         <picture>
-                            <source srcset="/assets/findcircle-lost-found-community-android-app.avif 1x, /assets/findcircle-lost-found-community-android-app-2x.avif 2x" type="image/avif">
-                            <source srcset="/assets/findcircle-lost-found-community-android-app.webp 1x, /assets/findcircle-lost-found-community-android-app-2x.webp 2x" type="image/webp">
-                            <img src="/assets/findcircle-lost-found-community-android-app.jpg" alt="FindCircle Android app, lost and found community app with real-time location mapping" width="260" height="520" loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;">
+                            <source srcset="/assets/dev-journal-publishing-platform-android-app.avif 1x, /assets/dev-journal-publishing-platform-android-app-2x.avif 2x" type="image/avif">
+                            <source srcset="/assets/dev-journal-publishing-platform-android-app.webp 1x, /assets/dev-journal-publishing-platform-android-app-2x.webp 2x" type="image/webp">
+                            <img src="/assets/dev-journal-publishing-platform-android-app.jpg" alt="Dev-Journal Android app, developer publishing platform with Markdown posts and real-time community engagement" width="260" height="520" loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;">
                         </picture>
                     </div>
                     <div class="mockup-zoom-hint"><span>🔍 Click to expand</span></div>
@@ -595,34 +599,34 @@
         <div class="project-item reverse reveal">
             <div>
                 <div class="project-number">04</div>
-                <h3 class="project-name">CampusConnect — Social Campus Platform &amp; AI Assistant</h3>
-                <p class="project-desc">CampusConnect is a social campus application built with Kotlin, XML, MVVM Clean Architecture, Hilt dependency injection, Firebase, and Room. It features an integrated AI assistant powered by Gemini 2.5 Flash-Lite via Cloudflare Workers and is paired with a live web admin console for moderation.</p>
+                <h3 class="project-name">GupShup — Real-Time Android Messaging &amp; Social Status App</h3>
+                <p class="project-desc">GupShup is a full-featured Android messaging application that enables real-time one-on-one chat, Instagram-style media status stories, and social friend networking with a robust offline-first architecture. It delivers instant push notifications via a serverless Cloudflare Worker backend integrated with Firebase Cloud Messaging, ensuring messages reach users even when the app is closed.</p>
                 <div class="project-challenge">
                     <span class="challenge-label">&#9889; Problem Solved:</span>
-                    University campuses lack a unified digital hub for verified announcements, student collaboration, and AI-driven course support. CampusConnect unifies real-time feeds with an admin management console deployed live at <a href="https://campusconnect71x75.web.app/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-text); text-decoration: underline;">campusconnect71x75.web.app</a>.
+                    Solves mobile network drops and notification failures: an offline-first Room cache with a 5-minute freshness policy and 7-day auto-cleanup guarantees instant chat access, a dynamic NotificationChannelManager prevents silent notifications on Android 8+ by recreating versioned channels when user sound/vibration settings change, and unique PendingIntent URIs fix multi-notification deep-link overwrite bugs.
                 </div>
-                <div class="project-meta">ROLE &rarr; <span>Full Stack &amp; Android Lead</span> &nbsp;&nbsp; YEAR &rarr; <span>2025-2026</span></div>
-                <div class="project-tags"><span>Kotlin</span><span>MVVM Clean</span><span>Hilt</span><span>Firebase</span><span>Room</span><span>Gemini AI</span></div>
+                <div class="project-meta">ROLE &rarr; <span>Sole Android Developer &amp; System Designer</span> &nbsp;&nbsp; YEAR &rarr; <span>2025–2026</span></div>
+                <div class="project-tags"><span>Kotlin</span><span>MVVM</span><span>Room DB</span><span>Cloud Firestore</span><span>Cloudflare FCM</span><span>Cloudinary</span><span>Coroutines</span></div>
                 <div class="project-actions">
                     <button type="button" class="project-link btn-preview-screens" data-project="3">PREVIEW SCREENS &rarr;</button>
-                    <a href="https://github.com/chsaad-dev/CampusConnect" target="_blank" rel="noopener noreferrer" class="project-link">VIEW ON GITHUB &rarr;</a>
-                    <a href="https://campusconnect71x75.web.app/" target="_blank" rel="noopener noreferrer" class="project-link">ADMIN CONSOLE &rarr;</a>
+                    <a href="https://github.com/chsaad-dev/GupShup" target="_blank" rel="noopener noreferrer" class="project-link">VIEW ON GITHUB &rarr;</a>
+                    <a href="https://github.com/chsaad-dev/GupShup/releases/download/v1.0.0/GupShup.apk" class="project-link download-link" download>DOWNLOAD APK &#8595;</a>
                 </div>
                 
                 <div class="project-share">
                     <span class="share-label">SHARE PROJECT:</span>
                     <button class="share-btn" data-url="https://saadev.site/#projects">Copy Link</button>
                     <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://saadev.site/" target="_blank" rel="noopener noreferrer" class="share-btn">LinkedIn</a>
-                    <a href="https://twitter.com/intent/tweet?url=https://saadev.site/&text=Check%20out%20CampusConnect%20-%20A%20Social%20Campus%20Platform" target="_blank" rel="noopener noreferrer" class="share-btn">X</a>
+                    <a href="https://twitter.com/intent/tweet?url=https://saadev.site/&text=Check%20out%20GupShup%20-%20A%20Real-Time%20Android%20Messaging%20App" target="_blank" rel="noopener noreferrer" class="share-btn">X</a>
                 </div>
             </div>
             <div>
-                <div class="project-mockup" data-project="3" role="button" tabindex="0" aria-label="Open CampusConnect app screenshot in fullscreen lightbox">
+                <div class="project-mockup" data-project="3" role="button" tabindex="0" aria-label="Open GupShup app screenshot in fullscreen lightbox">
                     <div class="mockup-inner">
                         <picture>
-                            <source srcset="/assets/campusconnect-social-campus-android-app.avif 1x, /assets/campusconnect-social-campus-android-app-2x.avif 2x" type="image/avif">
-                            <source srcset="/assets/campusconnect-social-campus-android-app.webp 1x, /assets/campusconnect-social-campus-android-app-2x.webp 2x" type="image/webp">
-                            <img src="/assets/campusconnect-social-campus-android-app.jpg" alt="CampusConnect Android app, social campus platform with Gemini AI assistant and web admin console" width="260" height="520" loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;">
+                            <source srcset="/assets/gupshup-realtime-messaging-android-app.avif 1x, /assets/gupshup-realtime-messaging-android-app-2x.avif 2x" type="image/avif">
+                            <source srcset="/assets/gupshup-realtime-messaging-android-app.webp 1x, /assets/gupshup-realtime-messaging-android-app-2x.webp 2x" type="image/webp">
+                            <img src="/assets/gupshup-realtime-messaging-android-app.jpg" alt="GupShup Android app, real-time messaging application with media status stories and offline-first Room cache" width="260" height="520" loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;">
                         </picture>
                     </div>
                     <div class="mockup-zoom-hint"><span>🔍 Click to expand</span></div>
@@ -806,10 +810,10 @@
         <p class="backend-sub reveal">Every app I build uses Firebase as its backbone. Here's how I use each service.</p>
         <div class="backend-grid">
             <div class="service-card reveal"><h3>Firebase Auth</h3><p>Email/password and Google Sign-In for user accounts</p><span class="service-tag">All Projects</span></div>
-            <div class="service-card reveal"><h3>Cloud Firestore</h3><p>Real-time NoSQL data sync across app</p><span class="service-tag">GiveEase · CampusConnect</span></div>
-            <div class="service-card reveal"><h3>Realtime Database</h3><p>Live data updates for chat or feed features</p><span class="service-tag">CampusConnect · NoteSync</span></div>
+            <div class="service-card reveal"><h3>Cloud Firestore</h3><p>Real-time NoSQL data sync across app</p><span class="service-tag">GiveEase · Dev-Journal · GupShup</span></div>
+            <div class="service-card reveal"><h3>Realtime Database</h3><p>Live data updates for chat or feed features</p><span class="service-tag">GupShup · NoteSync</span></div>
             <div class="service-card reveal"><h3>Firebase Storage</h3><p>User profile pictures and file uploads</p><span class="service-tag">Multiple Projects</span></div>
-            <div class="service-card reveal"><h3>FCM</h3><p>Push notifications to keep users engaged</p><span class="service-tag">GiveEase · FindCircle</span></div>
+            <div class="service-card reveal"><h3>FCM</h3><p>Push notifications to keep users engaged</p><span class="service-tag">GiveEase · Dev-Journal · GupShup</span></div>
             <div class="service-card reveal"><h3>Crashlytics</h3><p>Crash reporting and monitoring in production</p><span class="service-tag">SpendWise</span></div>
             <div class="service-card reveal"><h3>Firebase Hosting</h3><p>Hosting this very portfolio site</p><span class="service-tag">Portfolio</span></div>
             <div class="service-card reveal"><h3>Remote Config</h3><p>Feature flags without app updates</p><span class="service-tag">SpendWise</span></div>

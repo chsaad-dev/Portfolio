@@ -50,21 +50,22 @@ export const PROFILE = {
       highlights: "Zero data leaves the device, instant 0ms offline latency, custom canvas charts and Android PDF document generation."
     },
     {
-      name: "CampusConnect",
-      role: "Full Stack & Android Lead (2025–2026)",
-      desc: "Social campus platform with student feeds, course collaboration, and an automated Gemini AI course assistant hosted via Cloudflare Workers.",
-      tech: "Kotlin, MVVM Clean Architecture, Hilt, Firebase, Room DB, Google Gemini 2.5 Flash-Lite LLM",
-      github: "https://github.com/chsaad-dev/CampusConnect",
-      highlights: "Integrated Gemini 2.5 Flash-Lite via Cloudflare Workers proxy, real-time FCM updates, comprehensive web admin console."
+      name: "Dev-Journal",
+      role: "Portfolio Project (2026–2027)",
+      desc: "Social publishing platform for Android where developers write and publish Markdown posts about their technical work, follow peers, and engage through comments and likes.",
+      tech: "Kotlin, Jetpack Compose, Material3, MVVM Clean Architecture (46 use cases), Hilt, Firebase Auth, Cloud Firestore, Room DB, Cloudinary, Cloudflare Worker (TypeScript / Web Crypto JWT / FCM v1), Next.js 16 Web Admin Panel",
+      github: "https://github.com/chsaad-dev/Dev-Journal-Android",
+      apk: "https://github.com/chsaad-dev/Dev-Journal-Android/releases/tag/v1.0.0/Dev-Journal.apk",
+      highlights: "Strict Clean Architecture with 46 domain use cases, real-time Firestore synchronization, serverless Cloudflare Worker dispatching FCM v1 push notifications, Next.js web moderation panel."
     },
     {
-      name: "FindCircle",
-      role: "Personal Project (2025–2026)",
-      desc: "Community lost & found network with geolocation mapping, category filtering, and real-time alerts.",
-      tech: "Kotlin, MVVM, Coroutines, Firebase Cloud Messaging (FCM), Google Maps SDK",
-      github: "https://github.com/chsaad-dev/FindCircle",
-      apk: "https://github.com/chsaad-dev/FindCircle/releases/download/v1.0/FindCircle.apk",
-      highlights: "Instant push alerts for matching items in user radius, camera integration, secure direct owner messaging."
+      name: "GupShup",
+      role: "Sole Android Developer & System Designer (2025–2026)",
+      desc: "Full-featured real-time Android messaging application with one-on-one chat, Instagram-style media status stories, and social friend networking.",
+      tech: "Kotlin 2.0, Material Design 3, MVVM + Repository Pattern, Room DB (SQLite), Cloud Firestore, Firebase Auth, FCM (HTTP v1), Cloudflare Worker (TypeScript / Hono / Web Crypto JWT), Cloudinary SDK, Glide, Coroutines & Flow",
+      github: "https://github.com/chsaad-dev/GupShup",
+      apk: "https://github.com/chsaad-dev/GupShup/releases/download/v1.0.0/GupShup.apk",
+      highlights: "Offline-first Room cache with 5-minute freshness policy and 7-day auto-cleanup, dynamic NotificationChannelManager fixing Android 8+ silent notification bugs, unique PendingIntent URIs eliminating deep-link extra collisions, serverless FCM backend with zero credentials on-device."
     },
     {
       name: "NoteSync",
@@ -124,19 +125,19 @@ CRITICAL IDENTITY & SAFETY RULES:
    - Keep all off-topic deflections BRIEF to preserve API quota. Never write code when declining.
 
 COMMUNICATION & FORMATTING GUIDELINES:
-1. FOCUS: Only discuss Muhammad Saad's actual experience, projects (GiveEase, SpendWise, CampusConnect, FindCircle, NoteSync), published articles, education, certifications, and availability for hire.
+1. FOCUS: Only discuss Muhammad Saad's actual experience, projects (GiveEase, SpendWise, Dev-Journal, GupShup, NoteSync), published articles, education, certifications, and availability for hire.
 2. CITATIONS & LINKS: When mentioning projects, articles, contact methods, or his resume, format them as active Markdown links using his exact URLs:
    - Projects: [GitHub](${p.contact.github}) · APK download links · Case Study links.
    - Articles: Cite their specific article URLs.
    - Resume: [Download Resume](${p.contact.resume}).
    - Contact: [saaddevlabs@gmail.com](mailto:${p.contact.email}) or [LinkedIn](${p.contact.linkedin}).
-3. EVIDENCE-BASED: When discussing skills, cite concrete proof from his shipped projects (e.g. SpendWise for Jetpack Compose & Room; CampusConnect for Gemini AI & Cloudflare Workers; GiveEase for Firebase).
+3. EVIDENCE-BASED: When discussing skills, cite concrete proof from his shipped projects (e.g. SpendWise for Jetpack Compose & Room; Dev-Journal for Clean Architecture & Hilt; GupShup for Offline-First Room & Serverless FCM; GiveEase for Firebase).
 4. FORMATTING & COMPLETENESS:
    - Use standard single-prefix Markdown headers (e.g. "### Background"), bullet points, and active clickable markdown links.
    - Every response MUST be completely finished with a natural conclusion; never trail off or stop mid-sentence.
 5. CONCISENESS & INTERACTION:
    - Keep answers well-structured and readable in a compact chat window.
-   - When asked broad questions (e.g. "tell me as much detail about Saad as you can"), provide a structured overview highlighting his background, core stack, flagship projects with links (GiveEase, SpendWise, CampusConnect), and published articles, then invite the recruiter to dive deeper into any specific app or architectural decision.
+   - When asked broad questions (e.g. "tell me as much detail about Saad as you can"), provide a structured overview highlighting his background, core stack, flagship projects with links (GiveEase, SpendWise, Dev-Journal, GupShup), and published articles, then invite the recruiter to dive deeper into any specific app or architectural decision.
    - Always conclude with an inviting call-to-action (e.g. offering his resume or direct email).
 
 ---
