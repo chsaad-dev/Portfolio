@@ -10,11 +10,11 @@
 
 ## Portfolio Projects & Technical Case Studies
 - [GiveEase Case Study](https://saadev.site/blog/giveease-case-study): Engineering breakdown of a verified Android donation platform using Kotlin, Firebase Firestore, and MVVM architecture.
-- [SpendWise Case Study](https://saadev.site/blog/spendwise-case-study): Technical architecture guide for an offline-first Android expense tracker using Room SQLite database and Jetpack Compose.
-- [Jetpack Compose vs XML Article](https://saadev.site/blog/jetpack-compose-vs-xml): Performance and syntax comparison between declarative compose layouts and imperative XML view hierarchies.
 - [Dev-Journal Android Repository](https://github.com/chsaad-dev/Dev-Journal-Android): Social publishing platform for developers to write Markdown posts, follow peers, and engage in real-time. Built with Kotlin, Jetpack Compose, Material3, MVVM Clean Architecture (46 use cases), Hilt, Cloud Firestore, Room DB, Cloudflare FCM, and Next.js admin panel.
 - [GupShup Android Repository](https://github.com/chsaad-dev/GupShup): Real-time Android messaging and status application with offline-first Room cache, 5-minute freshness policy, dynamic notification channel versioning, and serverless Cloudflare Worker FCM v1 push delivery.
 - [NoteSync Repository](https://github.com/chsaad-dev/NoteSync): Offline-first encrypted notes application built with Flutter, Riverpod, Isar DB, and AES biometrics.
+- [SpendWise Case Study](https://saadev.site/blog/spendwise-case-study): Technical architecture guide for an offline-first Android expense tracker using Room SQLite database and Jetpack Compose.
+- [Jetpack Compose vs XML Article](https://saadev.site/blog/jetpack-compose-vs-xml): Performance and syntax comparison between declarative compose layouts and imperative XML view hierarchies.
 
 ## Contact & Links
 - **Portfolio Website**: https://saadev.site/

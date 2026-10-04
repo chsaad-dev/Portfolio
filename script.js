@@ -706,17 +706,7 @@ document.addEventListener('DOMContentLoaded', () => {
             apkLabel: "Download APK ↓"
         },
         {
-            badge: "PROJECT 02 · PERSONAL PROJECT",
-            title: "SpendWise — Offline Expense Tracker",
-            img: "/assets/spendwise.jpeg",
-            alt: "SpendWise Android expense tracker high resolution interface",
-            caption: "Modern offline-first fintech expense tracker built with Jetpack Compose, Material 3, Room SQLite, and local PDF reports.",
-            github: "https://github.com/chsaad-dev/SpendWise",
-            apk: "https://github.com/chsaad-dev/SpendWise/releases/download/v1.0/SpendWise.apk",
-            apkLabel: "Download APK ↓"
-        },
-        {
-            badge: "PROJECT 03 · PORTFOLIO PROJECT",
+            badge: "PROJECT 02 · PORTFOLIO PROJECT",
             title: "Dev-Journal — Developer Publishing & Community Platform",
             img: "/assets/dev-journal.jpeg",
             alt: "Dev-Journal Android developer publishing platform mobile app interface",
@@ -726,7 +716,7 @@ document.addEventListener('DOMContentLoaded', () => {
             apkLabel: "Download APK ↓"
         },
         {
-            badge: "PROJECT 04 · SOLE DEVELOPER & SYSTEM DESIGNER",
+            badge: "PROJECT 03 · SOLE DEVELOPER & SYSTEM DESIGNER",
             title: "GupShup — Real-Time Android Messaging & Status App",
             img: "/assets/gupshup.jpeg",
             alt: "GupShup Android real-time messaging and social status app interface",
@@ -736,7 +726,7 @@ document.addEventListener('DOMContentLoaded', () => {
             apkLabel: "Download APK ↓"
         },
         {
-            badge: "PROJECT 05 · CROSS-PLATFORM ENGINEER",
+            badge: "PROJECT 04 · CROSS-PLATFORM ENGINEER",
             title: "NoteSync — Encrypted Cloud Sync Notes",
             img: "/assets/notesync.jpeg",
             alt: "NoteSync Flutter encrypted notes app high resolution interface",
@@ -744,6 +734,16 @@ document.addEventListener('DOMContentLoaded', () => {
             github: "https://github.com/chsaad-dev/NoteSync",
             apk: null,
             apkLabel: null
+        },
+        {
+            badge: "PROJECT 05 · PERSONAL PROJECT",
+            title: "SpendWise — Offline Expense Tracker",
+            img: "/assets/spendwise.jpeg",
+            alt: "SpendWise Android expense tracker high resolution interface",
+            caption: "Modern offline-first fintech expense tracker built with Jetpack Compose, Material 3, Room SQLite, and local PDF reports.",
+            github: "https://github.com/chsaad-dev/SpendWise",
+            apk: "https://github.com/chsaad-dev/SpendWise/releases/download/v1.0/SpendWise.apk",
+            apkLabel: "Download APK ↓"
         }
     ];
 

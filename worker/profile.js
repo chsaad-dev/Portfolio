@@ -40,16 +40,6 @@ export const PROFILE = {
       highlights: "ID-verified trust framework, real-time donation progress, 100% crash-free rate across testing."
     },
     {
-      name: "SpendWise",
-      role: "Personal Project (2025–2026)",
-      desc: "Offline-first personal expense tracking app with local SQLite storage, interactive budget charts, and automated local PDF report export.",
-      tech: "Kotlin, Jetpack Compose, Room Database, Kotlin Coroutines & Flow, Material Design 3",
-      github: "https://github.com/chsaad-dev/SpendWise",
-      apk: "https://github.com/chsaad-dev/SpendWise/releases/download/v1.0/SpendWise.apk",
-      caseStudy: "https://saadev.site/blog/spendwise-case-study",
-      highlights: "Zero data leaves the device, instant 0ms offline latency, custom canvas charts and Android PDF document generation."
-    },
-    {
       name: "Dev-Journal",
       role: "Portfolio Project (2026–2027)",
       desc: "Social publishing platform for Android where developers write and publish Markdown posts about their technical work, follow peers, and engage through comments and likes.",
@@ -74,6 +64,16 @@ export const PROFILE = {
       tech: "Flutter, Riverpod, Isar DB, Firebase, AES-256 hardware encryption",
       github: "https://github.com/chsaad-dev/NoteSync",
       highlights: "Hardware-backed AES biometrics, instant local search via Isar DB, conflict-free background synchronization."
+    },
+    {
+      name: "SpendWise",
+      role: "Personal Project (2025–2026)",
+      desc: "Offline-first personal expense tracking app with local SQLite storage, interactive budget charts, and automated local PDF report export.",
+      tech: "Kotlin, Jetpack Compose, Room Database, Kotlin Coroutines & Flow, Material Design 3",
+      github: "https://github.com/chsaad-dev/SpendWise",
+      apk: "https://github.com/chsaad-dev/SpendWise/releases/download/v1.0/SpendWise.apk",
+      caseStudy: "https://saadev.site/blog/spendwise-case-study",
+      highlights: "Zero data leaves the device, instant 0ms offline latency, custom canvas charts and Android PDF document generation."
     }
   ],
   articles: [
@@ -125,7 +125,7 @@ CRITICAL IDENTITY & SAFETY RULES:
    - Keep all off-topic deflections BRIEF to preserve API quota. Never write code when declining.
 
 COMMUNICATION & FORMATTING GUIDELINES:
-1. FOCUS: Only discuss Muhammad Saad's actual experience, projects (GiveEase, SpendWise, Dev-Journal, GupShup, NoteSync), published articles, education, certifications, and availability for hire.
+1. FOCUS: Only discuss Muhammad Saad's actual experience, projects (GiveEase, Dev-Journal, GupShup, NoteSync, SpendWise), published articles, education, certifications, and availability for hire.
 2. CITATIONS & LINKS: When mentioning projects, articles, contact methods, or his resume, format them as active Markdown links using his exact URLs:
    - Projects: [GitHub](${p.contact.github}) · APK download links · Case Study links.
    - Articles: Cite their specific article URLs.
@@ -137,7 +137,7 @@ COMMUNICATION & FORMATTING GUIDELINES:
    - Every response MUST be completely finished with a natural conclusion; never trail off or stop mid-sentence.
 5. CONCISENESS & INTERACTION:
    - Keep answers well-structured and readable in a compact chat window.
-   - When asked broad questions (e.g. "tell me as much detail about Saad as you can"), provide a structured overview highlighting his background, core stack, flagship projects with links (GiveEase, SpendWise, Dev-Journal, GupShup), and published articles, then invite the recruiter to dive deeper into any specific app or architectural decision.
+   - When asked broad questions (e.g. "tell me as much detail about Saad as you can"), provide a structured overview highlighting his background, core stack, flagship projects with links (GiveEase, Dev-Journal, GupShup, NoteSync, SpendWise), and published articles, then invite the recruiter to dive deeper into any specific app or architectural decision.
    - Always conclude with an inviting call-to-action (e.g. offering his resume or direct email).
 
 ---
