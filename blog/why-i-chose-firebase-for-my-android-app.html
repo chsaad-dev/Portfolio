@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Why I Chose Firebase for My Android App | Android Developer Blog</title>
+    <meta name="description" content="Why I chose Firebase over a custom backend for Android apps like GiveEase and Dev-Journal—exploring real-time Firestore listeners, auth, rules, and offline sync.">
+    
+    <link rel="canonical" href="https://saadev.site/blog/why-i-chose-firebase-for-my-android-app">
+    <link rel="alternate" hreflang="en-us" href="https://saadev.site/blog/why-i-chose-firebase-for-my-android-app">
+    
+    <!-- OpenGraph Metadata -->
+    <meta property="og:title" content="Why I Chose Firebase for My Android App">
+    <meta property="og:description" content="Why I chose Firebase over building a custom backend from scratch for apps like GiveEase and Dev-Journal—covering real-time Firestore listeners, auth lifecycle, declarative security rules, and offline persistence.">
+    <meta property="og:image" content="https://saadev.site/assets/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://saadev.site/blog/why-i-chose-firebase-for-my-android-app">
+    <meta property="og:type" content="article">
+    
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Why I Chose Firebase for My Android App">
+    <meta name="twitter:description" content="Why I chose Firebase over building a custom backend from scratch for apps like GiveEase and Dev-Journal—covering real-time Firestore listeners, auth lifecycle, declarative security rules, and offline persistence.">
+    <meta name="twitter:image" content="https://saadev.site/assets/og-image.jpg">
+    
+    <!-- Core Assets -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="/style.css?v=11">
+    
+    <!-- Schema.org BlogPosting JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Why I Chose Firebase for My Android App",
+      "description": "Why I chose Firebase over building a custom backend from scratch for apps like GiveEase and Dev-Journal—covering real-time Firestore listeners, auth lifecycle, declarative security rules, and offline persistence.",
+      "image": "https://saadev.site/assets/og-image.jpg",
+      "author": {
+        "@type": "Person",
+        "name": "Muhammad Saad",
+        "url": "https://saadev.site/"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Muhammad Saad",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://saadev.site/assets/muhammad-saad-android-developer.webp"
+        }
+      },
+      "datePublished": "2026-10-24",
+      "dateModified": "2026-10-24",
+      "mainEntityOfPage": "https://saadev.site/blog/why-i-chose-firebase-for-my-android-app",
+      "inLanguage": "en-US",
+      "keywords": "Firebase, Android, Kotlin, Cloud Firestore, Firebase Auth, Mobile Architecture, Jetpack Compose, Offline First"
+    }
+    </script>
+    
+    <!-- BreadcrumbList JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://saadev.site/" },
+        { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://saadev.site/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Why I Chose Firebase for My Android App", "item": "https://saadev.site/blog/why-i-chose-firebase-for-my-android-app" }
+      ]
+    }
+    </script>
+</head>
+<body class="blog-page">
+
+<!-- Navbar -->
+<nav class="navbar scrolled">
+    <div class="nav-container">
+        <a href="/" class="logo">&lt; Muhammad Saad /&gt;</a>
+        <div class="nav-links">
+            <a href="/#about">ABOUT</a>
+            <a href="/#stack">STACK</a>
+            <a href="/#projects">PROJECTS</a>
+            <a href="/blog/" class="active">ARTICLES</a>
+            <a href="/#backend">BACKEND</a>
+            <a href="/#education">EDUCATION</a>
+            <a href="/#contact">CONTACT</a>
+        </div>
+        <button class="hamburger" aria-label="Toggle Navigation Menu" type="button">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<main class="article-container section-padding" style="margin-top: 3.5rem;">
+    <!-- Visual Breadcrumb Trail -->
+    <div class="article-breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <a href="/blog/">Articles</a>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-current">Why I Chose Firebase for My Android App</span>
+    </div>
+
+    <article class="blog-post">
+        <!-- Article Header -->
+        <header class="article-header">
+            <div class="article-badge-row">
+                <span class="badge" style="color: var(--accent-text); border-color: rgba(96, 165, 250, 0.35);">Architecture</span>
+                <span class="badge" style="color: var(--muted); border-color: var(--border);">Firebase &amp; Android</span>
+            </div>
+            <h1 class="article-title">
+                Why I Chose Firebase for My Android App
+            </h1>
+            <div class="article-meta-bar">
+                <span>📅 Published: October 24, 2026</span>
+                <span class="meta-divider">·</span>
+                <span style="color: var(--accent-text);">⚡ Updated: October 24, 2026</span>
+                <span class="meta-divider">·</span>
+                <span>⏱️ 7 min read</span>
+                <span class="meta-divider">·</span>
+                <span>👨‍💻 Muhammad Saad</span>
+            </div>
+        </header>
+
+        <!-- Article Body Content -->
+        <section class="article-body">
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                Whenever you start building a non-trivial Android application, you hit a crossroad early on: <strong>how do you handle the backend?</strong> Do you spin up a custom VPS, configure PostgreSQL, write a REST or GraphQL server in Ktor, Spring Boot, or Node.js, and manage deployment containers? Or do you pick a Backend-as-a-Service (BaaS) like Google Firebase?
+            </p>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                When I architected <strong>GiveEase</strong> (a verified donation platform) and <strong>Dev-Journal</strong> (a real-time social publishing app for developers), I made the deliberate engineering choice to build on Firebase. This wasn't because I wanted to take a shortcut, but because for modern Android mobile architectures, Firebase delivers unmatched reactive primitives, rock-solid security models, and effortless offline resilience.
+            </p>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                Here is an honest, technical look at why Firebase became my default backend foundation, how it integrates directly with Kotlin Coroutines and MVVM, and the exact trade-offs every mobile engineer should evaluate.
+            </p>
+
+            <h2 style="font-family: var(--font-ui); color: var(--android); font-size: 1.8rem; margin: 2rem 0 1rem;">1. The Solo Mobile Engineer's Trap: "Backend Fatigue"</h2>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                Every Android developer loves the idea of full-stack purity—having complete control over your own relational database tables, custom JWT token generators, and raw SQL queries. But in practice, building a custom backend from scratch for a mobile product introduces immense operational overhead:
+            </p>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem; opacity: 0.85; list-style-type: square;">
+                <li style="margin-bottom: 0.5rem;"><strong>Infrastructure Maintenance:</strong> Managing Linux servers, Docker daemon health, SSL certificate renewals, and memory leak triage on server nodes.</li>
+                <li style="margin-bottom: 0.5rem;"><strong>Security Debt:</strong> Rolling your own password salting (Argon2/bcrypt), token refresh rotation, brute-force rate limiters, and CORS headers.</li>
+                <li style="margin-bottom: 0.5rem;"><strong>WebSockets Boilerplate:</strong> Writing custom socket managers and ping-pong heartbeat reconnect routines to keep real-time updates alive on flaky mobile networks.</li>
+            </ul>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                When you are building alone or in a small team, every hour spent tuning database connection pools is an hour <em>not</em> spent perfecting smooth 60fps Jetpack Compose UI animations, crafting robust Room SQLite offline caches, or improving app startup time. Firebase lets you channel 90% of your energy directly into the mobile user experience.
+            </p>
+
+            <h2 style="font-family: var(--font-ui); color: var(--android); font-size: 1.8rem; margin: 2rem 0 1rem;">2. Native Lifecycle Authentication with Kotlin Coroutines</h2>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                Authentication in mobile apps is famously tedious. You need email/password registration, email verification checks, password resets, Google Sign-In OAuth token swaps, and automatic token refresh when tokens expire.
+            </p>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                With Firebase Auth, the Android SDK natively handles token lifecycle and secure on-device keychain storage without leaking credentials into user memory. More importantly, it fits directly into modern reactive Kotlin patterns. By bridging Firebase's auth state listener with Kotlin's <code>callbackFlow</code>, you can expose a clean, lifecycle-aware stream of user state directly to your ViewModels:
+            </p>
+
+            <div style="background: var(--surface2); border-left: 3px solid var(--android); padding: 1.5rem; margin: 2rem 0; font-family: var(--font-mono); font-size: 0.85rem; border-radius: 6px; overflow-x: auto;">
+<pre style="margin: 0; color: #b5c2b1;"><span style="color: #6a9955;">// Converting Firebase Auth Listener into a cold Kotlin Flow</span>
+class AuthRepositoryImpl @Inject constructor(
+    private val auth: FirebaseAuth
+) : AuthRepository {
+
+    override fun observeAuthState(): Flow&lt;AuthState&gt; = callbackFlow {
+        val listener = FirebaseAuth.AuthStateListener { firebaseAuth -&gt;
+            val user = firebaseAuth.currentUser
+            if (user != null) {
+                trySend(AuthState.Authenticated(user.uid, user.email.orEmpty()))
+            } else {
+                trySend(AuthState.Unauthenticated)
+            }
+        }
+        auth.addAuthStateListener(listener)
+        awaitClose { auth.removeAuthStateListener(listener) }
+    }.flowOn(Dispatchers.IO)
+}</pre>
+            </div>
+
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                In Jetpack Compose, this transforms auth status from an imperative mess into a simple <code>val authState by viewModel.authState.collectAsStateWithLifecycle()</code> that seamlessly triggers navigation transitions between login screens and the main application feed.
+            </p>
+
+            <h2 style="font-family: var(--font-ui); color: var(--android); font-size: 1.8rem; margin: 2rem 0 1rem;">3. True Reactive Real-Time Sync vs. Inefficient Polling</h2>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                In apps like <strong>GiveEase</strong>, when an NGO posts an urgent blood or relief campaign, or in <strong>Dev-Journal</strong>, when someone comments on an article, donors and peers shouldn't have to pull-to-refresh or wait for an arbitrary 30-second poll interval.
+            </p>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                Building this over a custom REST API requires setting up WebSockets, STOMP protocols, or Server-Sent Events (SSE), along with connection resumption logic when the Android device switches between Wi-Fi and 5G cellular.
+            </p>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                Cloud Firestore solves this at the protocol level. Under the hood, Firestore communicates via optimized streaming gRPC channels. By calling <code>addSnapshotListener</code>, you subscribe to real-time query updates that push changes to the Android client instantly:
+            </p>
+
+            <div style="background: var(--surface2); border-left: 3px solid var(--android); padding: 1.5rem; margin: 2rem 0; font-family: var(--font-mono); font-size: 0.85rem; border-radius: 6px; overflow-x: auto;">
+<pre style="margin: 0; color: #b5c2b1;"><span style="color: #6a9955;">// Real-time Firestore document collection stream</span>
+fun getLiveCampaigns(): Flow&lt;Resource&lt;List&lt;Campaign&gt;&gt;&gt; = callbackFlow {
+    val listenerRegistration = firestore.collection("campaigns")
+        .whereEqualTo("status", "ACTIVE")
+        .orderBy("createdAt", Query.Direction.DESCENDING)
+        .addSnapshotListener { snapshot, error -&gt;
+            if (error != null) {
+                trySend(Resource.Error(error.localizedMessage ?: "Firestore error"))
+                return@addSnapshotListener
+            }
+            if (snapshot != null) {
+                val campaigns = snapshot.toObjects(Campaign::class.java)
+                trySend(Resource.Success(campaigns))
+            }
+        }
+    awaitClose { listenerRegistration.remove() }
+}.flowOn(Dispatchers.IO)</pre>
+            </div>
+
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                Whenever a new campaign is approved or a donation goal is reached, the UI updates smoothly without a single user swipe or manual network re-fetch.
+            </p>
+
+            <h2 style="font-family: var(--font-ui); color: var(--android); font-size: 1.8rem; margin: 2rem 0 1rem;">4. Built-in Offline Persistence Without the Room Headache</h2>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                One of the most complex parts of Android software engineering is making an app work offline. If you use a traditional REST API, an offline-first architecture requires:
+            </p>
+            <ol style="margin-left: 1.5rem; margin-bottom: 1.5rem; opacity: 0.85; list-style-type: decimal;">
+                <li style="margin-bottom: 0.5rem;">A local SQLite database (via Room).</li>
+                <li style="margin-bottom: 0.5rem;">A sync queue table to record mutations created while offline.</li>
+                <li style="margin-bottom: 0.5rem;">Background <code>WorkManager</code> jobs to retry network synchronization when connectivity resumes.</li>
+                <li style="margin-bottom: 0.5rem;">Custom conflict resolution logic for concurrent writes.</li>
+            </ol>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                While I built exactly this custom Room synchronization pipeline for <a href="/blog/spendwise-case-study" style="color: var(--android); text-decoration: underline;">SpendWise</a> because it handles strictly local offline financial records, doing this for a multi-user collaborative platform from scratch is a massive undertaking.
+            </p>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                Firestore provides this functionality out of the box through client-side offline persistence. When enabled, Firestore maintains an internal LevelDB/SQLite cache on the Android device. Reads check the local cache immediately, and writes are applied to local storage first (delivering 0ms optimistic UI latency) and queued in the background until the device reconnects.
+            </p>
+
+            <h2 style="font-family: var(--font-ui); color: var(--android); font-size: 1.8rem; margin: 2rem 0 1rem;">5. Security Without a Custom Gateway: Declarative Security Rules</h2>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                A common objection from developers unfamiliar with Firebase is: <em>"Isn't allowing an Android APK to query Firestore directly insecure?"</em>
+            </p>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                The answer is: <strong>Only if you leave your security rules in test mode.</strong> In production, Firebase Security Rules execute on Google's edge infrastructure before any query or mutation is allowed to touch your database. They give you granular, document-level and field-level authorization:
+            </p>
+
+            <div style="background: var(--surface2); border-left: 3px solid var(--android); padding: 1.5rem; margin: 2rem 0; font-family: var(--font-mono); font-size: 0.85rem; border-radius: 6px; overflow-x: auto;">
+<pre style="margin: 0; color: #b5c2b1;"><span style="color: #6a9955;">// Production Firestore Security Rule Example</span>
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /posts/{postId} {
+      // Anyone authenticated can read published posts
+      allow read: if request.auth != null;
+      
+      // Only the author can create a post, and must set themselves as author
+      allow create: if request.auth != null 
+                    &amp;&amp; request.resource.data.authorId == request.auth.uid
+                    &amp;&amp; request.resource.data.title.size() &gt; 3;
+                    
+      // Authors can update, but cannot tamper with creation timestamps or authorId
+      allow update: if request.auth != null 
+                    &amp;&amp; resource.data.authorId == request.auth.uid
+                    &amp;&amp; request.resource.data.authorId == resource.data.authorId
+                    &amp;&amp; request.resource.data.createdAt == resource.data.createdAt;
+                    
+      // Only author or system admin can delete
+      allow delete: if request.auth != null 
+                    &amp;&amp; (resource.data.authorId == request.auth.uid || request.auth.token.admin == true);
+    }
+  }
+}</pre>
+            </div>
+
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                Even if someone decompiles your Android APK, extracts your Firebase Project ID, and attempts to execute unauthorized queries via cURL or Postman, Firestore evaluates these rules server-side and immediately rejects unauthorized requests with <code>PERMISSION_DENIED</code>.
+            </p>
+
+            <h2 style="font-family: var(--font-ui); color: var(--android); font-size: 1.8rem; margin: 2rem 0 1rem;">6. The Honest Trade-offs: Where Firebase Needs Help</h2>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                No architectural choice is without trade-offs. While Firebase excels for mobile applications, you must be aware of its limitations and architect around them:
+            </p>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem; opacity: 0.85; list-style-type: square;">
+                <li style="margin-bottom: 0.8rem;">
+                    <strong>No Native Complex Relational JOINs:</strong> Firestore is a NoSQL document store. You cannot run a SQL <code>JOIN</code> across four collections. Instead, you design your data models around read patterns—denormalizing data (e.g., storing the author's display name and avatar directly inside the post document) rather than fetching it in multiple round-trips.
+                </li>
+                <li style="margin-bottom: 0.8rem;">
+                    <strong>Full-Text Search Limitations:</strong> Firestore does not support native substring or fuzzy full-text indexing. If your app requires deep text searching (like searching inside article bodies in Dev-Journal), you need a lightweight external search index like Algolia or Typesense.
+                </li>
+                <li style="margin-bottom: 0.8rem;">
+                    <strong>Handling Secrets &amp; Privileged APIs:</strong> As I detailed in my previous article on <a href="/blog/why-you-shouldnt-put-secret-api-keys-in-your-android-app" style="color: var(--accent-text); text-decoration: underline;">Why You Shouldn't Put Secret API Keys in Your Android App</a>, you should never put sensitive API keys (like AI model keys or payment gateway secret keys) directly in your mobile APK.
+                </li>
+            </ul>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                My preferred solution to this trade-off is a <strong>hybrid serverless architecture</strong>: I use Firebase for client-facing Auth, Firestore real-time documents, and Storage, and pair it with a serverless <strong>Cloudflare Worker</strong> or Firebase Cloud Function to handle private API credentials, Web Crypto JWT signatures, and Firebase Cloud Messaging (FCM HTTP v1) push deliveries securely.
+            </p>
+
+            <h2 style="font-family: var(--font-ui); color: var(--android); font-size: 1.8rem; margin: 2rem 0 1rem;">Conclusion: Focus on What Makes Your App Unique</h2>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                Software engineering is about trade-offs and leverage. For Android mobile engineers, choosing Firebase is not a compromise—it is a strategic decision to avoid undifferentiated heavy lifting.
+            </p>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                By trusting Firebase with auth state persistence, gRPC snapshot streaming, and declarative cloud security, I was able to build and ship production-ready apps like GiveEase and Dev-Journal with clean MVVM architecture, comprehensive testing, and responsive UI in weeks rather than months. If you're building native Android apps in 2026, Firebase remains one of the strongest multipliers in a mobile engineer's toolkit.
+            </p>
+        </section>
+
+        <hr style="border: none; border-top: 1px solid var(--border); margin: 3rem 0;">
+
+        <!-- References / Outbound Citations & EEAT Internal Links -->
+        <section class="eeat-citations" style="font-size: 0.95rem; color: var(--muted);">
+            <h4 style="color: var(--text); font-family: var(--font-ui); margin-bottom: 1rem;">References &amp; Resources:</h4>
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin-bottom: 0.5rem;">📖 Official Documentation: <a href="https://firebase.google.com/docs/android/setup" target="_blank" rel="noopener noreferrer" style="color: var(--accent-text);">Firebase for Android Setup Guide</a></li>
+                <li style="margin-bottom: 0.5rem;">🔒 Security Guide: <a href="/blog/why-you-shouldnt-put-secret-api-keys-in-your-android-app" style="color: var(--android);">Why You Shouldn't Put Secret API Keys Directly in Your Android App</a></li>
+                <li style="margin-bottom: 0.5rem;">🔗 Case Study: <a href="/blog/giveease-case-study" style="color: var(--accent-text);">How I Built GiveEase: A Verified Donation Platform Using Kotlin &amp; Firebase</a></li>
+                <li style="margin-bottom: 0.5rem;">🔗 Explore Muhammad Saad's Android Projects: <a href="/#projects" style="color: var(--accent-text);">View Portfolio Android Apps &amp; Repositories</a></li>
+            </ul>
+        </section>
+
+        <!-- Related Articles Section (Auto-hydrated from posts-data.js) -->
+        <section class="related-articles-section">
+            <h3 class="related-articles-heading">Related Articles</h3>
+            <div class="related-grid" id="related-articles-grid">
+                <!-- Fallback static cards will be populated by script below -->
+                <article class="blog-card is-visible">
+                    <div class="blog-card-content">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.8rem; gap: 0.5rem; flex-wrap: wrap;">
+                            <span class="badge" style="font-size: 0.68rem; padding: 0.2rem 0.55rem; color: var(--accent-text); border-color: rgba(96, 165, 250, 0.35);">Case Study</span>
+                            <div class="blog-card-meta" style="margin-bottom: 0;">JULY 19, 2026 · 8 MIN READ</div>
+                        </div>
+                        <h4 class="blog-card-title" style="font-size: 1.05rem; margin-bottom: 0.8rem;">How I Built GiveEase: A Verified Donation Platform Using Kotlin &amp; Firebase</h4>
+                        <p class="blog-card-desc">Technical deep dive into GiveEase, a verified Android donation platform built with Kotlin, Firebase Auth, Cloud Firestore, and clean MVVM architecture patterns.</p>
+                        <a href="/blog/giveease-case-study" class="blog-card-link">READ FULL CASE STUDY &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="blog-card is-visible">
+                    <div class="blog-card-content">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.8rem; gap: 0.5rem; flex-wrap: wrap;">
+                            <span class="badge" style="font-size: 0.68rem; padding: 0.2rem 0.55rem; color: var(--accent-text); border-color: rgba(96, 165, 250, 0.35);">Developer Notes</span>
+                            <div class="blog-card-meta" style="margin-bottom: 0;">SEPTEMBER 29, 2026 · 5 MIN READ</div>
+                        </div>
+                        <h4 class="blog-card-title" style="font-size: 1.05rem; margin-bottom: 0.8rem;">Why You Shouldn't Put Secret API Keys Directly in Your Android App</h4>
+                        <p class="blog-card-desc">Any API key you put inside an Android app can be pulled out in minutes. Here is what I learned building a proxy with Cloudflare Workers instead.</p>
+                        <a href="/blog/why-you-shouldnt-put-secret-api-keys-in-your-android-app" class="blog-card-link">READ FULL ARTICLE &rarr;</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </article>
+</main>
+
+<!-- Dynamic Related Articles Script -->
+<script type="module">
+    import { getRelatedPosts, formatDate } from '/blog/posts-data.js';
+    try {
+        const currentSlug = 'why-i-chose-firebase-for-my-android-app';
+        const grid = document.getElementById('related-articles-grid');
+        const related = getRelatedPosts(currentSlug, 2);
+        if (grid && related && related.length > 0) {
+            grid.innerHTML = related.map(post => `
+                <article class="blog-card is-visible">
+                    <div class="blog-card-content">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.8rem; gap: 0.5rem; flex-wrap: wrap;">
+                            <span class="badge" style="font-size: 0.68rem; padding: 0.2rem 0.55rem; color: var(--accent-text); border-color: rgba(96, 165, 250, 0.35);">${post.category}</span>
+                            <div class="blog-card-meta" style="margin-bottom: 0;">${formatDate(post.datePublished).toUpperCase()} · ${post.readTimeMinutes} MIN READ</div>
+                        </div>
+                        <h4 class="blog-card-title" style="font-size: 1.05rem; margin-bottom: 0.8rem;">${post.title}</h4>
+                        <p class="blog-card-desc">${post.excerpt}</p>
+                        <a href="/blog/${post.slug}" class="blog-card-link">READ FULL ARTICLE &rarr;</a>
+                    </div>
+                </article>
+            `).join('');
+        }
+    } catch (e) {
+        console.debug('Static related articles fallback active');
+    }
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+        }
+
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                const isLight = document.documentElement.classList.toggle('light-mode');
+                localStorage.setItem('portfolio-theme', isLight ? 'light' : 'dark');
+            });
+        }
+    });
+</script>
+
+<!-- Dark/Light Mode Toggle -->
+<button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+    <span class="icon-moon">&#127769;</span>
+    <span class="icon-sun">&#9728;&#65039;</span>
+</button>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-logo">&lt; Muhammad Saad /&gt;</div>
+        <div class="footer-right">Deploy on Firebase Hosting · 2026</div>
+    </div>
+    <div class="footer-center"><a href="/privacy" style="color: var(--accent-text); text-decoration: underline;">Privacy Policy</a> · Designed &amp; Developed by Saad</div>
+</footer>
+
+</body>
+</html>

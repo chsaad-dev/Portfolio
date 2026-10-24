@@ -78,6 +78,12 @@ export const PROFILE = {
   ],
   articles: [
     {
+      title: "Why I Chose Firebase for My Android App",
+      url: "https://saadev.site/blog/why-i-chose-firebase-for-my-android-app",
+      topic: "Mobile Architecture, Real-Time Sync & Firebase vs Custom Backend",
+      summary: "Explains why Firebase was chosen over a custom backend for apps like GiveEase and Dev-Journal—covering real-time Firestore listeners, auth lifecycle, declarative security rules, and offline persistence."
+    },
+    {
       title: "Why You Shouldn't Put Secret API Keys Directly in Your Android App",
       url: "https://saadev.site/blog/why-you-shouldnt-put-secret-api-keys-in-your-android-app",
       topic: "Android Security, Decompiler Risks & Cloudflare Workers Proxy",

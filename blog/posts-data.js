@@ -6,6 +6,18 @@
 
 export const POSTS = [
   {
+    slug: "why-i-chose-firebase-for-my-android-app",
+    title: "Why I Chose Firebase for My Android App",
+    excerpt: "Why I chose Firebase over building a custom backend from scratch for apps like GiveEase and Dev-Journal—covering real-time Firestore listeners, auth lifecycle, declarative security rules, and offline persistence.",
+    category: "Architecture",
+    tags: ["Firebase", "Android", "Kotlin", "Cloud Firestore", "Backend"],
+    datePublished: "2026-10-24",
+    dateModified: "2026-10-24",
+    readTimeMinutes: 7,
+    featured: true,
+    coverImage: "/assets/og-image.jpg"
+  },
+  {
     slug: "why-you-shouldnt-put-secret-api-keys-in-your-android-app",
     title: "Why You Shouldn't Put Secret API Keys Directly in Your Android App",
     excerpt: "Any API key you put inside an Android app can be pulled out in minutes. Here is what I learned building a proxy with Cloudflare Workers instead.",

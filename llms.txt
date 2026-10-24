@@ -9,6 +9,8 @@
 - **Certifications**: Meta Android Developer Certificate, Google UX Design Professional Certificate
 
 ## Portfolio Projects & Technical Case Studies
+- [Why I Chose Firebase for My Android App](https://saadev.site/blog/why-i-chose-firebase-for-my-android-app): Deep dive into why Firebase was selected over custom servers for Android apps like GiveEase and Dev-Journal—covering real-time Firestore listeners, auth lifecycle, declarative security rules, and offline persistence.
+- [Why You Shouldn't Put Secret API Keys in Your Android App](https://saadev.site/blog/why-you-shouldnt-put-secret-api-keys-in-your-android-app): Explains why R8/BuildConfig strings are trivial to extract with jadx, and provides the production Cloudflare Workers proxy architecture.
 - [GiveEase Case Study](https://saadev.site/blog/giveease-case-study): Engineering breakdown of a verified Android donation platform using Kotlin, Firebase Firestore, and MVVM architecture.
 - [Dev-Journal Android Repository](https://github.com/chsaad-dev/Dev-Journal-Android): Social publishing platform for developers to write Markdown posts, follow peers, and engage in real-time. Built with Kotlin, Jetpack Compose, Material3, MVVM Clean Architecture (46 use cases), Hilt, Cloud Firestore, Room DB, Cloudflare FCM, and Next.js admin panel.
 - [GupShup Android Repository](https://github.com/chsaad-dev/GupShup): Real-time Android messaging and status application with offline-first Room cache, 5-minute freshness policy, dynamic notification channel versioning, and serverless Cloudflare Worker FCM v1 push delivery.

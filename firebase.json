@@ -80,6 +80,10 @@
       ],
       "rewrites": [
         {
+          "source": "/blog/why-i-chose-firebase-for-my-android-app",
+          "destination": "/blog/why-i-chose-firebase-for-my-android-app.html"
+        },
+        {
           "source": "/blog/why-you-shouldnt-put-secret-api-keys-in-your-android-app",
           "destination": "/blog/why-you-shouldnt-put-secret-api-keys-in-your-android-app.html"
         },
