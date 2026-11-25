@@ -490,22 +490,41 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 4000);
     }
 
-    // 14. Resume Preview Modal
+    // 14. Resume & Certificate PDF Preview Modal
     const resumePreviewBtn = document.getElementById('resume-preview-btn');
     const resumeModal = document.getElementById('resume-modal');
     const resumeModalClose = document.getElementById('resume-modal-close');
+    const resumeModalTitle = document.getElementById('resume-modal-title');
+    const resumeModalDownload = document.getElementById('resume-modal-download');
     const resumeIframe = document.getElementById('resume-iframe');
 
-    if (resumePreviewBtn && resumeModal && resumeIframe) {
-        resumePreviewBtn.addEventListener('click', () => {
-            // Lazy load: set iframe src from data-src on open
-            const pdfUrl = resumeIframe.getAttribute('data-src');
+    if (resumeModal && resumeIframe) {
+        const defaultPdfUrl = resumeIframe.getAttribute('data-src');
+        const defaultTitle = resumeModalTitle ? resumeModalTitle.textContent : 'Muhammad Saad — Resume';
+
+        const openPdfModal = (title, pdfUrl, analyticsAction) => {
+            if (resumeModalTitle) resumeModalTitle.textContent = title;
+            if (resumeModalDownload) resumeModalDownload.href = pdfUrl;
             resumeIframe.src = pdfUrl;
             resumeModal.classList.add('active');
             document.body.style.overflow = 'hidden';
             if (typeof gtag === 'function') {
-                gtag('event', 'resume_preview', { 'action': 'open' });
+                gtag('event', analyticsAction, { 'action': 'open', 'title': title });
             }
+        };
+
+        if (resumePreviewBtn) {
+            resumePreviewBtn.addEventListener('click', () => {
+                openPdfModal(defaultTitle, defaultPdfUrl, 'resume_preview');
+            });
+        }
+
+        document.querySelectorAll('.cert-pdf-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const certTitle = btn.getAttribute('data-cert-title') || 'Certificate';
+                const certPdf = btn.getAttribute('data-cert-pdf');
+                if (certPdf) openPdfModal(`🏆 ${certTitle}`, certPdf, 'certificate_preview');
+            });
         });
 
         const closeResumeModal = () => {
@@ -515,7 +534,7 @@ document.addEventListener('DOMContentLoaded', () => {
             resumeIframe.src = '';
         };
 
-        resumeModalClose.addEventListener('click', closeResumeModal);
+        if (resumeModalClose) resumeModalClose.addEventListener('click', closeResumeModal);
 
         // Close on overlay click
         resumeModal.addEventListener('click', (e) => {

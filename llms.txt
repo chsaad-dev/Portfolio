@@ -6,7 +6,7 @@
 - **Role**: Android Developer / Mobile Software Engineer
 - **Tech Stack**: Kotlin, Jetpack Compose, Room SQLite, Coroutines, Hilt, Firebase (Auth, Firestore, Storage, FCM), Flutter
 - **Education**: Bachelor of Software Engineering, COMSATS University Islamabad, Sahiwal Campus (Graduated July 2026)
-- **Certifications**: Meta Android Developer Certificate, Google UX Design Professional Certificate
+- **Certifications**: Meta Android Developer Certificate, AI For Everyone (DeepLearning.AI), Design Thinking for Innovation (University of Virginia)
 
 ## Portfolio Projects & Technical Case Studies
 - [Why I Chose Firebase for My Android App](https://saadev.site/blog/why-i-chose-firebase-for-my-android-app): Deep dive into why Firebase was selected over custom servers for Android apps like GiveEase and Dev-Journal—covering real-time Firestore listeners, auth lifecycle, declarative security rules, and offline persistence.

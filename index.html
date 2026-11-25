@@ -77,8 +77,8 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600;700;800&family=JetBrains+Mono:wght@400&display=swap"></noscript>
 
     <!-- Main Stylesheet -->
-    <link rel="preload" href="/style.min.css?v=14" as="style">
-    <link rel="stylesheet" href="/style.min.css?v=14">
+    <link rel="preload" href="/style.min.css?v=15" as="style">
+    <link rel="stylesheet" href="/style.min.css?v=15">
 
     <!-- Person Schema (JSON-LD) -->
     <script type="application/ld+json">
@@ -104,12 +104,17 @@
         {
           "@type": "EducationalOccupationalCredential",
           "name": "Meta Android Developer Certificate",
-          "url": "https://www.coursera.org/professional-certificates/meta-android-developer"
+          "url": "https://coursera.org/verify/FG41QTREXDNE"
         },
         {
           "@type": "EducationalOccupationalCredential",
-          "name": "Google UX Design Professional Certificate",
-          "url": "https://www.coursera.org/professional-certificates/google-ux-design"
+          "name": "AI For Everyone (DeepLearning.AI)",
+          "url": "https://coursera.org/verify/PFJMJC2BRLU5"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "Design Thinking for Innovation (University of Virginia)",
+          "url": "https://coursera.org/verify/241U3LU7HXBR"
         }
       ]
     }
@@ -237,7 +242,7 @@
           "name": "What certifications does Muhammad Saad hold?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Muhammad Saad holds the Meta Android Developer Certificate and the Google UX Design Professional Certificate from Coursera."
+            "text": "Muhammad Saad holds the Meta Android Developer Certificate, AI For Everyone (DeepLearning.AI), and Design Thinking for Innovation (University of Virginia) from Coursera."
           }
         },
         {
@@ -419,7 +424,7 @@
                 <div class="stat-counter-label">Years Coding</div>
             </div>
             <div class="stat-counter-box reveal">
-                <div class="stat-counter-val"><span class="counter" data-target="4">4</span><span class="stat-suffix"></span></div>
+                <div class="stat-counter-val"><span class="counter" data-target="3">3</span><span class="stat-suffix"></span></div>
                 <div class="stat-counter-label">Certifications</div>
             </div>
         </div>
@@ -851,20 +856,34 @@
                 <h3 class="edu-card-title">&#127942; Certifications</h3>
                 <div class="cert-list">
                     <div class="cert-item">
-                        <span class="cert-badge">Meta</span>
-                        <span class="cert-name"><a href="https://www.coursera.org/professional-certificates/meta-android-developer" target="_blank" rel="noopener noreferrer" style="text-decoration: underline; color: inherit;">Meta Android Developer Certificate</a></span>
+                        <div class="cert-main">
+                            <span class="cert-badge">Meta</span>
+                            <span class="cert-name">Meta Android Developer Certificate</span>
+                        </div>
+                        <div class="cert-actions">
+                            <a href="https://coursera.org/verify/FG41QTREXDNE" target="_blank" rel="noopener noreferrer" class="cert-action-btn" aria-label="Verify Meta Android Developer Certificate on Coursera">Verify &#8599;</a>
+                            <button type="button" class="cert-action-btn cert-pdf-btn" data-cert-title="Meta Android Developer Certificate" data-cert-pdf="/assets/cert-meta.pdf" aria-label="View Meta Android Developer Certificate PDF">View PDF</button>
+                        </div>
                     </div>
                     <div class="cert-item">
-                        <span class="cert-badge">DeepLearning.AI</span>
-                        <span class="cert-name">AI For Everyone</span>
+                        <div class="cert-main">
+                            <span class="cert-badge">DeepLearning.AI</span>
+                            <span class="cert-name">AI For Everyone</span>
+                        </div>
+                        <div class="cert-actions">
+                            <a href="https://coursera.org/verify/PFJMJC2BRLU5" target="_blank" rel="noopener noreferrer" class="cert-action-btn" aria-label="Verify AI For Everyone Certificate on Coursera">Verify &#8599;</a>
+                            <button type="button" class="cert-action-btn cert-pdf-btn" data-cert-title="AI For Everyone — DeepLearning.AI" data-cert-pdf="/assets/cert-ai.pdf" aria-label="View AI For Everyone Certificate PDF">View PDF</button>
+                        </div>
                     </div>
                     <div class="cert-item">
-                        <span class="cert-badge">Google</span>
-                        <span class="cert-name"><a href="https://www.coursera.org/professional-certificates/google-ux-design" target="_blank" rel="noopener noreferrer" style="text-decoration: underline; color: inherit;">Google UX Design Professional Certificate</a></span>
-                    </div>
-                    <div class="cert-item">
-                        <span class="cert-badge">Coursera</span>
-                        <span class="cert-name">Design Thinking For Innovation by University of Virginia</span>
+                        <div class="cert-main">
+                            <span class="cert-badge">Coursera</span>
+                            <span class="cert-name">Design Thinking For Innovation by University of Virginia</span>
+                        </div>
+                        <div class="cert-actions">
+                            <a href="https://coursera.org/verify/241U3LU7HXBR" target="_blank" rel="noopener noreferrer" class="cert-action-btn" aria-label="Verify Design Thinking For Innovation Certificate on Coursera">Verify &#8599;</a>
+                            <button type="button" class="cert-action-btn cert-pdf-btn" data-cert-title="Design Thinking For Innovation — University of Virginia" data-cert-pdf="/assets/cert-design-thinking.pdf" aria-label="View Design Thinking For Innovation Certificate PDF">View PDF</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -960,9 +979,9 @@
 <div class="resume-modal-overlay" id="resume-modal" role="dialog" aria-modal="true" aria-label="Resume Preview Modal">
     <div class="resume-modal">
         <div class="resume-modal-header">
-            <span class="resume-modal-title">&#128196; Muhammad Saad — Resume</span>
+            <span class="resume-modal-title" id="resume-modal-title">&#128196; Muhammad Saad — Resume</span>
             <div class="resume-modal-actions">
-                <a href="/muhammad-saad-android-developer-resume.pdf?v=6" download>Download</a>
+                <a href="/muhammad-saad-android-developer-resume.pdf?v=6" id="resume-modal-download" download>Download</a>
                 <button class="resume-modal-close" id="resume-modal-close" aria-label="Close resume preview">&#10005; Close</button>
             </div>
         </div>
@@ -1007,7 +1026,7 @@
     </div>
 </div>
 
-<script src="/script.min.js?v=15" defer></script>
+<script src="/script.min.js?v=16" defer></script>
 <!-- AI Chatbot Widget -->
 <style>
   #ai-chat-widget {

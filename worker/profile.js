@@ -7,10 +7,9 @@ export const PROFILE = {
     "BS Software Engineering, COMSATS University Islamabad, Sahiwal Campus (Graduated July 2026, CGPA 3.14/4.00)"
   ],
   certifications: [
-    "Meta Android Developer Certificate (Coursera)",
-    "Google UX Design Professional Certificate (Coursera)",
-    "AI For Everyone by DeepLearning.AI",
-    "Design Thinking For Innovation (University of Virginia & Darden School of Business)"
+    "Meta Android Developer Certificate (Coursera: https://coursera.org/verify/FG41QTREXDNE)",
+    "AI For Everyone by DeepLearning.AI (Coursera: https://coursera.org/verify/PFJMJC2BRLU5)",
+    "Design Thinking For Innovation by University of Virginia (Coursera: https://coursera.org/verify/241U3LU7HXBR)"
   ],
   stack: {
     coreLanguages: ["Kotlin (primary expertise)", "Java", "Dart"],
@@ -26,7 +25,7 @@ export const PROFILE = {
     "Offline-First Design: Local SQLite/Room as the single source of truth with background cloud sync ensures 0ms latency and high reliability in low-connectivity environments.",
     "Security-First Architecture: Never hardcode sensitive API keys or admin tokens in Android APKs. Use serverless proxies (like Cloudflare Workers) to protect quotas, keys, and budgets.",
     "Declarative UI & Clean Architecture: Emphasize state hoisting, single-responsibility composables, and strict separation between domain, data, and presentation layers.",
-    "UX & Micro-interactions: Combining technical engineering with Google UX Design certification to craft accessible, intuitive, and delightful user experiences."
+    "UX & Micro-interactions: Combining technical engineering with human-centered design thinking principles to craft accessible, intuitive, and delightful user experiences."
   ],
   projects: [
     {
@@ -172,7 +171,7 @@ ${p.projects.map((pr, i) => `${i + 1}. **${pr.name}** (${pr.role})
    - Description: ${pr.desc}
    - Stack: ${pr.tech}
    - Highlights: ${pr.highlights}
-   - Links: [GitHub](${pr.github})${pr.apk ? ` · [Download APK](${pr.apk})` : ""}${pr.caseStudy ? ` · [Read Case Study](${pr.caseStudy})` : ""}`).join("\n\n")}
+   - Links: [GitHub](${pr.github})${pr.apk ? ` · [${pr.apk.includes("play.google.com") ? "Get on Google Play" : "Download APK"}](${pr.apk})` : ""}${pr.caseStudy ? ` · [Read Case Study](${pr.caseStudy})` : ""}`).join("\n\n")}
 
 PUBLISHED TECHNICAL ARTICLES:
 ${p.articles.map((art, i) => `${i + 1}. [${art.title}](${art.url})
