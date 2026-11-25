@@ -757,8 +757,8 @@ document.addEventListener('DOMContentLoaded', () => {
             alt: "SpendWise Android expense tracker high resolution interface",
             caption: "Modern offline-first fintech expense tracker built with Jetpack Compose, Material 3, Room SQLite, and local PDF reports.",
             github: "https://github.com/chsaad-dev/SpendWise",
-            apk: "https://github.com/chsaad-dev/SpendWise/releases/download/v1.0/SpendWise.apk",
-            apkLabel: "Download APK ↓"
+            apk: "https://play.google.com/store/apps/details?id=com.saaddev.spendwise",
+            apkLabel: "Get on Play Store →"
         }
     ];
 

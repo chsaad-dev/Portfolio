@@ -71,7 +71,7 @@ export const PROFILE = {
       desc: "Offline-first personal expense tracking app with local SQLite storage, interactive budget charts, and automated local PDF report export.",
       tech: "Kotlin, Jetpack Compose, Room Database, Kotlin Coroutines & Flow, Material Design 3",
       github: "https://github.com/chsaad-dev/SpendWise",
-      apk: "https://github.com/chsaad-dev/SpendWise/releases/download/v1.0/SpendWise.apk",
+      apk: "https://play.google.com/store/apps/details?id=com.saaddev.spendwise",
       caseStudy: "https://saadev.site/blog/spendwise-case-study",
       highlights: "Zero data leaves the device, instant 0ms offline latency, custom canvas charts and Android PDF document generation."
     }
@@ -113,7 +113,7 @@ export const PROFILE = {
     github: "https://github.com/chsaad-dev",
     linkedin: "https://www.linkedin.com/in/muhammad-saad075/",
     portfolio: "https://saadev.site",
-    resume: "https://saadev.site/muhammad-saad-android-developer-resume.pdf?v=5"
+    resume: "https://saadev.site/muhammad-saad-android-developer-resume.pdf?v=6"
   }
 };
 
