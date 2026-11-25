@@ -640,12 +640,10 @@ img { max-width:100%; display:block; }
 /* ===== EDUCATION ===== */
 .edu-grid {
     display:grid; grid-template-columns:1fr 1fr; gap:3rem;
-    perspective: 1000px;
 }
 .edu-card {
     background:var(--surface); border:1px solid var(--border);
     padding:2rem; border-radius:4px;
-    transform-style: preserve-3d;
 }
 .edu-card-title {
     font-family:var(--font-ui); font-size:1.4rem; font-weight:700;
