@@ -80,6 +80,10 @@
       ],
       "rewrites": [
         {
+          "source": "/blog/what-i-learned-building-my-first-production-android-app-spendwise",
+          "destination": "/blog/what-i-learned-building-my-first-production-android-app-spendwise.html"
+        },
+        {
           "source": "/blog/why-i-chose-firebase-for-my-android-app",
           "destination": "/blog/why-i-chose-firebase-for-my-android-app.html"
         },

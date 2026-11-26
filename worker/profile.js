@@ -77,6 +77,12 @@ export const PROFILE = {
   ],
   articles: [
     {
+      title: "What I Learned Building My First Production Android App: SpendWise Expense Tracker",
+      url: "https://saadev.site/blog/what-i-learned-building-my-first-production-android-app-spendwise",
+      topic: "Production Android Engineering, Google Play Release, SQLite WAL & Performance",
+      summary: "Shares real-world lessons from shipping SpendWise to Google Play Store—including zero-lag fragment caching, eliminating cold-launch empty-state flashes, SQLite WAL checkpointing for safe backups, and R8 release polish."
+    },
+    {
       title: "Why I Chose Firebase for My Android App",
       url: "https://saadev.site/blog/why-i-chose-firebase-for-my-android-app",
       topic: "Mobile Architecture, Real-Time Sync & Firebase vs Custom Backend",

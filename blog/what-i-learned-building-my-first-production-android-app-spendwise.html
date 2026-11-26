@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>What I Learned Building My First Production Android App: SpendWise Expense Tracker | Android Developer Blog</title>
+    <meta name="description" content="Real-world Android engineering lessons from shipping SpendWise to Google Play: eliminating cold-launch flashes, zero-lag tab caching, SQLite WAL backup safety, and release polish.">
+    
+    <link rel="canonical" href="https://saadev.site/blog/what-i-learned-building-my-first-production-android-app-spendwise">
+    <link rel="alternate" hreflang="en-us" href="https://saadev.site/blog/what-i-learned-building-my-first-production-android-app-spendwise">
+    
+    <!-- OpenGraph Metadata -->
+    <meta property="og:title" content="What I Learned Building My First Production Android App: SpendWise Expense Tracker">
+    <meta property="og:description" content="Real-world Android engineering lessons from shipping SpendWise to Google Play: eliminating cold-launch flashes, zero-lag tab caching, SQLite WAL backup safety, and release polish.">
+    <meta property="og:image" content="https://saadev.site/assets/spendwise-og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://saadev.site/blog/what-i-learned-building-my-first-production-android-app-spendwise">
+    <meta property="og:type" content="article">
+    
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="What I Learned Building My First Production Android App: SpendWise">
+    <meta name="twitter:description" content="Lessons from taking SpendWise from a side project to a production Android app on Google Play Store.">
+    <meta name="twitter:image" content="https://saadev.site/assets/spendwise-og.jpg">
+    
+    <!-- Core Assets -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="/style.min.css?v=16">
+    
+    <!-- Schema.org BlogPosting JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "What I Learned Building My First Production Android App: SpendWise Expense Tracker",
+      "description": "Real-world Android engineering lessons from shipping SpendWise to Google Play: eliminating cold-launch flashes, zero-lag tab caching, SQLite WAL backup safety, and release polish.",
+      "image": "https://saadev.site/assets/spendwise-og.jpg",
+      "author": {
+        "@type": "Person",
+        "name": "Muhammad Saad",
+        "url": "https://saadev.site/"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Muhammad Saad",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://saadev.site/assets/muhammad-saad-android-developer.webp"
+        }
+      },
+      "datePublished": "2026-11-26",
+      "dateModified": "2026-11-26",
+      "mainEntityOfPage": "https://saadev.site/blog/what-i-learned-building-my-first-production-android-app-spendwise",
+      "inLanguage": "en-US",
+      "keywords": "SpendWise, Production Android App, Google Play Store, Kotlin, Room Database, SQLite WAL, Android Performance, Material 3"
+    }
+    </script>
+    
+    <!-- BreadcrumbList JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://saadev.site/" },
+        { "@type": "ListItem", "position": 2, "name": "Articles", "item": "https://saadev.site/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "What I Learned Building SpendWise", "item": "https://saadev.site/blog/what-i-learned-building-my-first-production-android-app-spendwise" }
+      ]
+    }
+    </script>
+</head>
+<body class="blog-page">
+
+<!-- Navbar -->
+<nav class="navbar scrolled">
+    <div class="nav-container">
+        <a href="/" class="logo">&lt; Muhammad Saad /&gt;</a>
+        <div class="nav-links">
+            <a href="/#about">ABOUT</a>
+            <a href="/#stack">STACK</a>
+            <a href="/#projects">PROJECTS</a>
+            <a href="/blog/" class="active">ARTICLES</a>
+            <a href="/#backend">BACKEND</a>
+            <a href="/#education">EDUCATION</a>
+            <a href="/#contact">CONTACT</a>
+        </div>
+        <button class="hamburger" aria-label="Toggle Navigation Menu" type="button">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<main class="article-container section-padding" style="margin-top: 3.5rem;">
+    <!-- Visual Breadcrumb Trail -->
+    <div class="article-breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <a href="/blog/">Articles</a>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-current">What I Learned Building SpendWise</span>
+    </div>
+
+    <article class="blog-post">
+        <!-- Article Header -->
+        <header class="article-header">
+            <div class="article-badge-row">
+                <span class="badge" style="color: var(--accent-text); border-color: rgba(96, 165, 250, 0.35);">Production Lessons</span>
+                <span class="badge" style="color: var(--muted); border-color: var(--border);">Android &amp; Google Play</span>
+            </div>
+            <h1 class="article-title">
+                What I Learned Building My First Production Android App: SpendWise Expense Tracker
+            </h1>
+            <div class="article-meta-bar">
+                <span>📅 Published: November 26, 2026</span>
+                <span class="meta-divider">·</span>
+                <span style="color: var(--accent-text);">⚡ Updated: November 26, 2026</span>
+                <span class="meta-divider">·</span>
+                <span>⏱️ 7 min read</span>
+                <span class="meta-divider">·</span>
+                <span>👨‍💻 Muhammad Saad</span>
+            </div>
+        </header>
+
+        <!-- Article Body Content -->
+        <section class="article-body">
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                There is a huge gap between an Android app that runs cleanly on your Pixel emulator and a production app that real people install from the <a href="https://play.google.com/store/apps/details?id=com.saaddev.spendwise" target="_blank" rel="noopener noreferrer" style="color: var(--android); text-decoration: underline;">Google Play Store</a>. When I started building <strong>SpendWise</strong>—an offline-first personal finance and budget-envelope app—I thought the hardest part would be writing Room queries or drawing spending charts.
+            </p>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                I was wrong. The real engineering lessons showed up in the final 20% of polish: the subtle cold-launch flicker, SQLite file-locking bugs during database backups, dropped frames when switching tabs on mid-range phones, and the discipline required to ship a signed, R8-minified release build to Google Play. Here is what building and shipping my first production Android app taught me.
+            </p>
+
+            <h2 style="font-family: var(--font-ui); color: var(--android); font-size: 1.8rem; margin: 2rem 0 1rem;">1. "Works on My Emulator" Hides Real-World Frame Drops</h2>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                In the early versions of SpendWise, navigating between the five main screens—<strong>Home</strong>, <strong>History</strong>, <strong>Categories</strong>, <strong>Goals</strong>, and <strong>Settings</strong>—used standard <code>replace()</code> transactions. On a fast desktop emulator with 16 GB of RAM, it felt instant. On a real budget Android device with real transaction data, re-inflating views and re-attaching chart observers on every tab tap caused noticeable micro-stutters.
+            </p>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                The fix was switching to a <strong>show-and-hide fragment caching strategy</strong>. Each of the five tabs is inflated once, kept in memory, and toggled with a subtle 110ms fade-in and 90ms fade-out—with zero scale or translation jitter. Tab switching immediately became predictable and buttery smooth, even on lower-end hardware.
+            </p>
+
+            <h2 style="font-family: var(--font-ui); color: var(--android); font-size: 1.8rem; margin: 2rem 0 1rem;">2. Cold-Launch Empty-State Flashes Ruin First Impressions</h2>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                Even with fast local Room queries, reading SQLite from disk is asynchronous. During the first few milliseconds of a cold launch, before Room emitted its first <code>Flow</code> value, SpendWise briefly rendered a <em>"No transactions yet"</em> empty state and a blank chart—only to snap to the user's real balance a frame later.
+            </p>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                That tiny 100ms flash makes an app feel amateurish. I learned to model UI loading state explicitly: keep empty-state views hidden by default until the <strong>first Room database emission actually completes</strong>. Only when the database confirms zero rows should the empty state appear.
+            </p>
+
+            <h2 style="font-family: var(--font-ui); color: var(--android); font-size: 1.8rem; margin: 2rem 0 1rem;">3. SQLite WAL Checkpointing Is Non-Negotiable for Backups</h2>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                Because SpendWise is 100% offline-first—no user financial data ever leaves the phone—giving users a reliable <strong>local database backup and restore</strong> feature was critical. My first naive attempt simply copied the primary <code>.db</code> file.
+            </p>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                That is a dangerous trap in Android. Room enables <strong>Write-Ahead Logging (WAL)</strong> by default, meaning recent transactions often live inside <code>-wal</code> and <code>-shm</code> sidecar files rather than the main database file. Copying only the <code>.db</code> file without flushing the WAL produces incomplete or corrupted backups.
+            </p>
+
+            <div style="background: var(--surface2); border-left: 3px solid var(--android); padding: 1.5rem; margin: 2rem 0; font-family: var(--font-mono); font-size: 0.85rem; border-radius: 6px; overflow-x: auto;">
+<pre style="margin: 0; color: #b5c2b1;"><span style="color: #6a9955;">// Always checkpoint Room's WAL before copying the SQLite file for backup</span>
+@Dao
+interface MaintenanceDao {
+    @RawQuery
+    suspend fun checkpoint(supportSQLiteQuery: SupportSQLiteQuery): Int
+}
+
+suspend fun flushWalBeforeBackup(maintenanceDao: MaintenanceDao) {
+    maintenanceDao.checkpoint(SimpleSQLiteQuery("PRAGMA wal_checkpoint(FULL)"))
+}</pre>
+            </div>
+
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                Running <code>PRAGMA wal_checkpoint(FULL)</code> (and closing/re-opening the Room instance cleanly on restore) guaranteed that every exported backup contains 100% of committed transactions.
+            </p>
+
+            <h2 style="font-family: var(--font-ui); color: var(--android); font-size: 1.8rem; margin: 2rem 0 1rem;">4. Edge-to-Edge, Gesture Bars, and Real Device Polish</h2>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                Modern Android spans dozens of OEM skins, notch shapes, and Android 12–16 gesture navigation bars. Going edge-to-edge in SpendWise—especially with a floating frosted-glass bottom bar using <code>RenderEffect</code> blur on Android 12+ and a full-screen pinch-to-zoom receipt viewer—taught me to respect <code>WindowInsets</code> everywhere.
+            </p>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                Every floating button, modal bottom sheet, and scroll container needs proper system bar padding so the navigation pill never collides with the gesture handle or clips behind the status bar. Similarly, theme switching (System / Light / Dark) should apply immediately via <code>AppCompatDelegate</code> without jarring Activity restarts.
+            </p>
+
+            <h2 style="font-family: var(--font-ui); color: var(--android); font-size: 1.8rem; margin: 2rem 0 1rem;">5. Shipping to Google Play Teaches Discipline</h2>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                Publishing <a href="https://play.google.com/store/apps/details?id=com.saaddev.spendwise" target="_blank" rel="noopener noreferrer" style="color: var(--android); text-decoration: underline;">SpendWise on Google Play</a> forced a level of rigor that debug builds never demand:
+            </p>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem; opacity: 0.85; list-style-type: square;">
+                <li style="margin-bottom: 0.6rem;"><strong>Release Minification (R8 / ProGuard):</strong> Testing the actual signed <code>.aab</code> release bundle—not just debug APKs—to ensure Room entities, PDF exporters, and WorkManager reminder workers survive code shrinking and obfuscation.</li>
+                <li style="margin-bottom: 0.6rem;"><strong>Privacy-First by Design:</strong> Keeping financial records strictly on-device made Google Play's Data Safety declaration transparent and trustworthy—zero third-party tracking of user expenses.</li>
+                <li style="margin-bottom: 0.6rem;"><strong>Production Observability:</strong> Pairing offline reliability with Firebase Crashlytics and Remote Config so unexpected OEM-specific crashes can be caught and feature flags toggled without waiting for another app review cycle.</li>
+            </ul>
+
+            <h2 style="font-family: var(--font-ui); color: var(--android); font-size: 1.8rem; margin: 2rem 0 1rem;">Conclusion: Finished Means Shipped</h2>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                Building SpendWise taught me that production quality is rarely about one massive architectural breakthrough—it is the sum of dozens of small, deliberate decisions: eliminating a 100ms empty-state flash, checkpointing SQLite WAL files before backup, keeping tab transitions lag-free, and testing signed release bundles on real hardware.
+            </p>
+            <p style="margin-bottom: 1.5rem; opacity: 0.85;">
+                You can try SpendWise today on the <a href="https://play.google.com/store/apps/details?id=com.saaddev.spendwise" target="_blank" rel="noopener noreferrer" style="color: var(--android); text-decoration: underline;">Google Play Store</a> or inspect the full Kotlin codebase on <a href="https://github.com/chsaad-dev/SpendWise" target="_blank" rel="noopener noreferrer" style="color: var(--accent-text); text-decoration: underline;">GitHub</a>.
+            </p>
+        </section>
+
+        <hr style="border: none; border-top: 1px solid var(--border); margin: 3rem 0;">
+
+        <!-- References / Outbound Citations & EEAT Internal Links -->
+        <section class="eeat-citations" style="font-size: 0.95rem; color: var(--muted);">
+            <h4 style="color: var(--text); font-family: var(--font-ui); margin-bottom: 1rem;">References &amp; Resources:</h4>
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin-bottom: 0.5rem;">📱 Google Play Store: <a href="https://play.google.com/store/apps/details?id=com.saaddev.spendwise" target="_blank" rel="noopener noreferrer" style="color: var(--android);">Download SpendWise on Google Play</a></li>
+                <li style="margin-bottom: 0.5rem;">💻 Source Code: <a href="https://github.com/chsaad-dev/SpendWise" target="_blank" rel="noopener noreferrer" style="color: var(--accent-text);">SpendWise Repository on GitHub</a></li>
+                <li style="margin-bottom: 0.5rem;">🔗 Deep Dive: <a href="/blog/spendwise-case-study" style="color: var(--accent-text);">SpendWise Technical Case Study: Room Database &amp; Offline Architecture</a></li>
+                <li style="margin-bottom: 0.5rem;">🔗 Portfolio Home: <a href="/#projects" style="color: var(--accent-text);">Explore Muhammad Saad's Android Projects</a></li>
+            </ul>
+        </section>
+
+        <!-- Related Articles Section (Auto-hydrated from posts-data.js) -->
+        <section class="related-articles-section">
+            <h3 class="related-articles-heading">Related Articles</h3>
+            <div class="related-grid" id="related-articles-grid">
+                <article class="blog-card is-visible">
+                    <div class="blog-card-content">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.8rem; gap: 0.5rem; flex-wrap: wrap;">
+                            <span class="badge" style="font-size: 0.68rem; padding: 0.2rem 0.55rem; color: var(--accent-text); border-color: rgba(96, 165, 250, 0.35);">Case Study</span>
+                            <div class="blog-card-meta" style="margin-bottom: 0;">JULY 19, 2026 · 6 MIN READ</div>
+                        </div>
+                        <h4 class="blog-card-title" style="font-size: 1.05rem; margin-bottom: 0.8rem;">SpendWise: Building an Offline-First Expense Tracker with Room Database</h4>
+                        <p class="blog-card-desc">Architecting SpendWise, an offline-first Android expense tracker with Room SQLite database, Jetpack Compose, Material 3, and zero-latency local operations.</p>
+                        <a href="/blog/spendwise-case-study" class="blog-card-link">READ FULL CASE STUDY &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="blog-card is-visible">
+                    <div class="blog-card-content">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.8rem; gap: 0.5rem; flex-wrap: wrap;">
+                            <span class="badge" style="font-size: 0.68rem; padding: 0.2rem 0.55rem; color: var(--accent-text); border-color: rgba(96, 165, 250, 0.35);">Architecture</span>
+                            <div class="blog-card-meta" style="margin-bottom: 0;">OCTOBER 24, 2026 · 7 MIN READ</div>
+                        </div>
+                        <h4 class="blog-card-title" style="font-size: 1.05rem; margin-bottom: 0.8rem;">Why I Chose Firebase for My Android App</h4>
+                        <p class="blog-card-desc">Why I chose Firebase over building a custom backend from scratch for apps like GiveEase and Dev-Journal—covering real-time Firestore listeners, auth lifecycle, and offline persistence.</p>
+                        <a href="/blog/why-i-chose-firebase-for-my-android-app" class="blog-card-link">READ FULL ARTICLE &rarr;</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </article>
+</main>
+
+<!-- Dynamic Related Articles Script -->
+<script type="module">
+    import { getRelatedPosts, formatDate } from '/blog/posts-data.js';
+    try {
+        const currentSlug = 'what-i-learned-building-my-first-production-android-app-spendwise';
+        const grid = document.getElementById('related-articles-grid');
+        const related = getRelatedPosts(currentSlug, 2);
+        if (grid && related && related.length > 0) {
+            grid.innerHTML = related.map(post => `
+                <article class="blog-card is-visible">
+                    <div class="blog-card-content">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.8rem; gap: 0.5rem; flex-wrap: wrap;">
+                            <span class="badge" style="font-size: 0.68rem; padding: 0.2rem 0.55rem; color: var(--accent-text); border-color: rgba(96, 165, 250, 0.35);">${post.category}</span>
+                            <div class="blog-card-meta" style="margin-bottom: 0;">${formatDate(post.datePublished).toUpperCase()} · ${post.readTimeMinutes} MIN READ</div>
+                        </div>
+                        <h4 class="blog-card-title" style="font-size: 1.05rem; margin-bottom: 0.8rem;">${post.title}</h4>
+                        <p class="blog-card-desc">${post.excerpt}</p>
+                        <a href="/blog/${post.slug}" class="blog-card-link">READ FULL ARTICLE &rarr;</a>
+                    </div>
+                </article>
+            `).join('');
+        }
+    } catch (e) {
+        console.debug('Static related articles fallback active');
+    }
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+        }
+
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                const isLight = document.documentElement.classList.toggle('light-mode');
+                localStorage.setItem('portfolio-theme', isLight ? 'light' : 'dark');
+            });
+        }
+    });
+</script>
+
+<!-- Dark/Light Mode Toggle -->
+<button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+    <span class="icon-moon">&#127769;</span>
+    <span class="icon-sun">&#9728;&#65039;</span>
+</button>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-logo">&lt; Muhammad Saad /&gt;</div>
+        <div class="footer-right">Deploy on Firebase Hosting · 2026</div>
+    </div>
+    <div class="footer-center"><a href="/privacy" style="color: var(--accent-text); text-decoration: underline;">Privacy Policy</a> · Designed &amp; Developed by Saad</div>
+</footer>
+
+</body>
+</html>

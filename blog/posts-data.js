@@ -6,6 +6,18 @@
 
 export const POSTS = [
   {
+    slug: "what-i-learned-building-my-first-production-android-app-spendwise",
+    title: "What I Learned Building My First Production Android App: SpendWise Expense Tracker",
+    excerpt: "Real-world Android engineering lessons from shipping SpendWise to Google Play: eliminating cold-launch flashes, zero-lag tab caching, SQLite WAL backup safety, and release polish.",
+    category: "Production Lessons",
+    tags: ["Android", "Google Play", "Kotlin", "Room SQLite", "Material 3"],
+    datePublished: "2026-11-26",
+    dateModified: "2026-11-26",
+    readTimeMinutes: 7,
+    featured: true,
+    coverImage: "/assets/spendwise-og.jpg"
+  },
+  {
     slug: "why-i-chose-firebase-for-my-android-app",
     title: "Why I Chose Firebase for My Android App",
     excerpt: "Why I chose Firebase over building a custom backend from scratch for apps like GiveEase and Dev-Journal—covering real-time Firestore listeners, auth lifecycle, declarative security rules, and offline persistence.",

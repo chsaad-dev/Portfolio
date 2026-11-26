@@ -9,6 +9,7 @@
 - **Certifications**: Meta Android Developer Certificate, AI For Everyone (DeepLearning.AI), Design Thinking for Innovation (University of Virginia)
 
 ## Portfolio Projects & Technical Case Studies
+- [What I Learned Building My First Production Android App: SpendWise](https://saadev.site/blog/what-i-learned-building-my-first-production-android-app-spendwise): Production engineering lessons from shipping SpendWise to Google Play—eliminating cold-launch flashes, zero-lag tab caching, SQLite WAL backup safety, and R8 release polish.
 - [Why I Chose Firebase for My Android App](https://saadev.site/blog/why-i-chose-firebase-for-my-android-app): Deep dive into why Firebase was selected over custom servers for Android apps like GiveEase and Dev-Journal—covering real-time Firestore listeners, auth lifecycle, declarative security rules, and offline persistence.
 - [Why You Shouldn't Put Secret API Keys in Your Android App](https://saadev.site/blog/why-you-shouldnt-put-secret-api-keys-in-your-android-app): Explains why R8/BuildConfig strings are trivial to extract with jadx, and provides the production Cloudflare Workers proxy architecture.
 - [GiveEase Case Study](https://saadev.site/blog/giveease-case-study): Engineering breakdown of a verified Android donation platform using Kotlin, Firebase Firestore, and MVVM architecture.
